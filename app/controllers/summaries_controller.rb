@@ -3,6 +3,24 @@ class SummariesController < ApplicationController
 
   def index
     @summaries = Summary.all
+
+    if params[:title].nil?
+
+      searches = RakutenWebService::Books::Book.search(title: "Ruby")
+    else
+      searches = RakutenWebService::Books::Book.search(title: params[:title])
+    end
+      searches_hits = searches.response
+      # binding.pry
+      @searches = []
+
+        searches_hits.each do |item|
+          book = item
+          @searches << book
+        end
+      @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(10)
+
+      @hit_count = searches.response["count"]
   end
 
   def new

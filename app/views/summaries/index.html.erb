@@ -20,6 +20,28 @@
       </tr>
     <% end %>
   </tbody>
+
+  <tbody>
+  <% i = 1 %>
+
+    <% @searches.each do |search| %>
+
+      <tr>
+        <td><%= i %></td><% i += 1 %>
+        <td><img src="<%= search['mediumImageUrl'] %>"></td>
+        <td><a href="<%= search['itemUrl'] %>" target="_blank"><%= search['title'] %></a></td>
+        <td><%= search['publisherName'] %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+
+  <% if @searches.present? %>
+
+    <p><%= paginate @searches %></p>
+  <% end %>
+
+
 </table>
 
 <br>

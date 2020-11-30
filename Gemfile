@@ -65,3 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'
 gem 'image_processing'
 gem 'webpacker', '~> 5.x'
+
+gem 'rakuten_web_service'
+gem 'dotenv-rails'
+gem 'kaminari', '~> 0.17.0'
