@@ -69,3 +69,7 @@ gem 'webpacker', '~> 5.x'
 gem 'rakuten_web_service'
 gem 'dotenv-rails'
 gem 'kaminari', '~> 0.17.0'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
