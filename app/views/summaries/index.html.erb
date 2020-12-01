@@ -2,6 +2,19 @@
 
 <h1>Articles</h1>
 
+<%= form_with(url:summaries_path, local: true, method: :get) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>

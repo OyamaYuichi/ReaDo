@@ -24,7 +24,23 @@ class SummariesController < ApplicationController
   end
 
   def new
-      @summary = Summary.new
+    @summary = Summary.new
+
+    if params[:title].nil?
+
+      searches = RakutenWebService::Books::Book.search(title: "Ruby")
+    else
+      searches = RakutenWebService::Books::Book.search(title: params[:title])
+    end
+      searches_hits = searches.response
+      # binding.pry
+      @searches = []
+
+        searches_hits.each do |item|
+          book = item
+          @searches << book
+        end
+      @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(3)
   end
 
   def create
