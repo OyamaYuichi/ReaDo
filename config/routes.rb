@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  # get '/seaches', to: 'summaries#search'
+
+  resources :books
 end
