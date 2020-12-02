@@ -42,7 +42,6 @@
         <td><a href="<%= search['itemUrl'] %>" target="_blank"><%= search['title'] %></a></td>
         <td><%= search['publisherName'] %></td>
         <td><%= search['author'] %></td>
-        <td><%= search['genreName'] %></td>
       </tr>
     <% end %>
 
@@ -59,3 +58,4 @@
 <br>
 
 <%= link_to 'New summary', new_summary_path %>
+<%= link_to 'New summary search', search_summaries_path %>

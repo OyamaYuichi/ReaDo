@@ -1,0 +1,35 @@
+<%= form_with(url:search_summaries_path, local: true, method: :get) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<tbody>
+  <% i = 1 %>
+
+    <% @searches.each do |search| %>
+      <tr>
+        <td><%= i %></td><% i += 1 %>
+        <td><img src="<%= search['mediumImageUrl'] %>"></td>
+        <td><a href="<%= search['itemUrl'] %>" target="_blank"><%= search['title'] %></a></td>
+        <td><%= search['publisherName'] %></td>
+        <td><%= search['author'] %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+
+  <% if @searches.present? %>
+
+    <p><%= paginate @searches %></p>
+  <% end %>
+
+  <%= link_to 'New summary', new_summary_path %>
+  <%= link_to 'Back', summaries_path %>

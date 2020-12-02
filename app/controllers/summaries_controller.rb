@@ -18,7 +18,7 @@ class SummariesController < ApplicationController
           book = item
           @searches << book
         end
-      @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(10)
+      @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(3)
 
       @hit_count = searches.response["count"]
 
@@ -106,7 +106,7 @@ class SummariesController < ApplicationController
 
   private
   def summary_params
-    params.require(:summary).permit(:content)
+    params.require(:summary).permit(:book_title, :book_url, :book_image, :book_author, :book_publisher)
   end
 
   def set_summary

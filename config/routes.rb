@@ -4,5 +4,10 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  resources :summaries
+  resources :summaries do
+    collection do
+      get :search
+    end
+  end
+  # get '/seaches', to: 'summaries#search'
 end

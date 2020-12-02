@@ -47,7 +47,11 @@ ActiveRecord::Schema.define(version: 2020_12_01_004224) do
   end
 
   create_table "summaries", force: :cascade do |t|
-    t.text "content"
+    t.string "book_title"
+    t.text "book_image"
+    t.text "book_url"
+    t.string "book_author"
+    t.string "book_publisher"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
