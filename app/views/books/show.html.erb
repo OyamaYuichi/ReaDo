@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <td><%= @item.title%></td>
+  </tr>
+  <tr>
+    <td><%= image_tag(@item.image_url)%></td>
+  </tr>
+  <tr>
+    <td><%= @item.author%></td>
+  </tr>
+  <tr>
+    <td><%= @item.publisher%></td>
+  </tr>
+</table>
+
+<%= link_to 'book search', new_book_path %>
+<%= link_to 'Back', summaries_path %>

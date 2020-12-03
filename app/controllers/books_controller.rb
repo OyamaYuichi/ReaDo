@@ -1,4 +1,8 @@
 class BooksController < ApplicationController
+  def index
+    @books = Book.all
+  end
+
   def new
     @items = []
 
@@ -26,6 +30,11 @@ class BooksController < ApplicationController
       @item = Book.new(read(results.first))
       @item.save
     end
+    redirect_to @item
+  end
+
+  def show
+    @item = Book.find(params[:id])
   end
 
   private
@@ -46,6 +55,9 @@ class BooksController < ApplicationController
       author: author,
       publisher: publisher
     }
+  end
 
+  def set_book
+    @item = Book.find(params[:isbn])
   end
 end

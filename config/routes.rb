@@ -4,11 +4,15 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
+  resources :books do
+    resources :summaries, only: [:new, :create] do
+    end
+  end
+
   resources :summaries do
     collection do
       get :search
     end
   end
-
-  resources :books
+  # resources :books
 end

@@ -1,17 +1,4 @@
-<%= form_with(url:new_summary_path, local: true, method: :get) do |book| %>
-
-  <div class="field">
-    <%= book.label :title %>
-    <%= book.text_field :title %>
-  </div>
-
-
-  <div class="actions">
-    <%= book.submit  "検索"%>
-  </div>
-<% end %>
-
-<%= form_with(model: summary, local: true) do |form| %>
+<%= form_with(model: [book, summary], local: true) do |form| %>
   <% if summary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(summary.errors.count, "error") %> prohibited this summary from being saved:</h2>
@@ -24,48 +11,22 @@
     </div>
   <% end %>
 
-  <tbody>
-    <% @searches.each do |search| %>
-
-      <tr>
-        <td><img src="<%= search['mediumImageUrl'] %>"></td>
-        <td><a href="<%= search['itemUrl'] %>" target="_blank"><%= search['title'] %></a></td>
-        <td><%= search['publisherName'] %></td>
-      </tr>
-    <% end %>
-
-  </tbody>
-
-  <% if @searches.present? %>
-
-    <p><%= paginate @searches %></p>
-  <% end %>
+  <table>
+    <tr>
+      <td><%= @book.title%></td>
+    </tr>
+    <tr>
+      <td><%= image_tag(@book.image_url)%></td>
+    </tr>
+    <tr>
+      <td><%= @book.author%></td>
+    </tr>
+    <tr>
+      <td><%= @book.publisher%></td>
+    </tr>
+  </table>
 
 
-  <div class="field">
-    <%= form.label :book_title %>
-    <%= form.text_field :book_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :book_image %>
-    <%= form.text_field :book_image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :book_url %>
-    <%= form.text_field :book_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :book_author %>
-    <%= form.text_field :book_author %>
-  </div>
-
-  <div class="field">
-    <%= form.label :book_publisher %>
-    <%= form.text_field :book_publisher %>
-  </div>
 
   <div class="field">
     <%= form.label :content %>

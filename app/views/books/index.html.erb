@@ -1,0 +1,14 @@
+<table>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= image_tag(book.image_url)%></td>
+      <td><%= book.author%></td>
+      <td><%= book.publisher%></td>
+      <td><%= link_to 'Show', book %></td>
+      <td><%= link_to 'new', new_book_summary_path(book) %></td>
+    </tr>
+  <% end %>
+</table>
+
+  <%= link_to 'Back', summaries_path %>

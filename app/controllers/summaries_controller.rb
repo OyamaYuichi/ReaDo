@@ -1,6 +1,6 @@
 class SummariesController < ApplicationController
   before_action :set_summary, only: [:show, :edit, :update, :destroy]
-  before_action :search, only: [:index, :new]
+  before_action :search, only: [:index]
 
   def search
     if params[:title].nil?
@@ -49,26 +49,15 @@ class SummariesController < ApplicationController
 
   def new
     @summary = Summary.new
-
-    # if params[:title].nil?
-
-    #   searches = RakutenWebService::Books::Book.search(title: "Ruby")
-    # else
-    #   searches = RakutenWebService::Books::Book.search(title: params[:title])
-    # end
-    #   searches_hits = searches.response
-    #   # binding.pry
-    #   @searches = []
-
-    #     searches_hits.each do |item|
-    #       book = item
-    #       @searches << book
-    #     end
-    #   @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(3)
+    @book = Book.find(params[:book_id])
+    # @book = Book.find(4)
   end
 
   def create
-    @summary = Summary.new(summary_params)
+    @book = Book.find(params[:book_id])
+    # @book = Book.find(4)
+    @summary = @book.summaries.build(summary_params)
+    # @summary = Summary.new(summary_params)
     if params[:back]
       render :new
     else
@@ -106,7 +95,7 @@ class SummariesController < ApplicationController
 
   private
   def summary_params
-    params.require(:summary).permit(:book_title, :book_url, :book_image, :book_author, :book_publisher)
+    params.require(:summary).permit(:book_id, :content)
   end
 
   def set_summary
