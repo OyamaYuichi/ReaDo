@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @items = []
+    @books = []
 
     @title = params[:title]
     if @title.present?
@@ -15,26 +15,26 @@ class BooksController < ApplicationController
       })
 
       results.each do |result|
-        item = Book.new(read(result))
-        @items << item
+        book = Book.new(read(result))
+        @books << book
       end
     end
-    @items = Kaminari.paginate_array(@items).page(params[:page]).per(3)
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(3)
   end
 
   def create
-    @item = Book.find_or_initialize_by(isbn: params[:isbn])
+    @book = Book.find_or_initialize_by(isbn: params[:isbn])
 
-    unless @item.persisted?
-      results = RakutenWebService::Books::Book.search(isbn: @item.isbn)
-      @item = Book.new(read(results.first))
-      @item.save
+    unless @book.persisted?
+      results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
+      @book = Book.new(read(results.first))
+      @book.save
     end
-    redirect_to @item
+    redirect_to new_book_summary_path(@book)
   end
 
   def show
-    @item = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   private
@@ -58,6 +58,6 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @item = Book.find(params[:isbn])
+    @book = Book.find(params[:isbn])
   end
 end

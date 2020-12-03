@@ -1,1 +1,21 @@
-<p><%= @summary.content %></p>
+<table>
+  <tr>
+    <td><%= @summary.book.title %></td>
+  </tr>
+  <tr>
+    <td><%= image_tag(@summary.book.image_url)%></td>
+  </tr>
+  <tr>
+    <td><%= @summary.book.author %></td>
+  </tr>
+  <tr>
+    <td><%= @summary.book.publisher %></td>
+  </tr>
+  <tr>
+    <td><%= @summary.content %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_summary_path(@summary) %>
+<%= link_to 'Destroy', @summary, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', summaries_path %>
