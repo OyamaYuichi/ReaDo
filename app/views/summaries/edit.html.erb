@@ -1,6 +1,44 @@
 <h1>Editing Article</h1>
 
-<%= render 'form', summary: @summary %>
+<%= form_with(model: @summary, local: true) do |form| %>
+  <% if @summary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@summary.errors.count, "error") %> prohibited this @summary from being saved:</h2>
+
+      <ul>
+      <% @summary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <tr>
+      <td><%= @book.title%></td>
+    </tr>
+    <tr>
+      <td><%= image_tag(@book.image_url)%></td>
+    </tr>
+    <tr>
+      <td><%= @book.author%></td>
+    </tr>
+    <tr>
+      <td><%= @book.publisher%></td>
+    </tr>
+  </table>
+
+
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @summary %> |
 <%= link_to 'Back', summaries_path %>

@@ -39,7 +39,6 @@ class SummariesController < ApplicationController
     @book = Book.find(params[:book_id])
     @summary = @book.summaries.build(summary_params)
     @summary.user_id = current_user.id
-    # @summary = Summary.new(summary_params)
     if params[:back]
       render :new
     else
@@ -56,6 +55,7 @@ class SummariesController < ApplicationController
   end
 
   def edit
+    @book = @summary.book
   end
 
   def update
