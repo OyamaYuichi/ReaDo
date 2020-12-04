@@ -19,6 +19,8 @@ class User < ApplicationRecord
     user
   end
 
-  has_many :summaries, dependent: :destroy
   mount_uploader :icon, ImageUploader
+
+  has_many :summaries, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 end
