@@ -74,3 +74,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'devise-i18n'
+
+gem 'carrierwave'
+gem 'mini_magick'
