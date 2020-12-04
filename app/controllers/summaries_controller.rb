@@ -35,8 +35,10 @@ class SummariesController < ApplicationController
   end
 
   def create
+    # @feed = current_user.feeds.build(feed_params)
     @book = Book.find(params[:book_id])
     @summary = @book.summaries.build(summary_params)
+    @summary.user_id = current_user.id
     # @summary = Summary.new(summary_params)
     if params[:back]
       render :new
