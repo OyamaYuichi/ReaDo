@@ -12,6 +12,7 @@
 
   <body>
     <% if user_signed_in? %>
+      <%= link_to current_user.name, user_path(current_user.id) %>
       <%= link_to "ブログ投稿", summaries_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
