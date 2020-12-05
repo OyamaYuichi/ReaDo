@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   end
 
   resources :summaries do
-    collection do
-      get :search
-    end
+    resources :comments
   end
+  # resources :summaries do
+  #   collection do
+  #     get :search
+  #   end
+  # end
 
   resources :users, only: [:show]
   resources :favorites, only: [:create, :destroy]

@@ -1,3 +1,6 @@
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
 <table>
   <tr>
     <td><%= @summary.book.title %></td>
@@ -23,6 +26,11 @@
     <%= link_to 'お気に入りする', favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
+
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { comments: @comments, summary: @summary } %>
+</div>
+<%= render partial: 'comments/form', locals: { comment: @comment, summary: @summary } %>
 
 <%= link_to 'Edit', edit_summary_path(@summary) %>
 <%= link_to 'Destroy', @summary, method: :delete, data: { confirm: 'Are you sure?' } %>

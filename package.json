@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "5.2.1",
-    "actiontext": "https://github.com/kobaltz/actiontext"
+    "actiontext": "https://github.com/kobaltz/actiontext",
+    "jquery": "^3.5.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"

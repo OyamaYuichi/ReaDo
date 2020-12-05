@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_130810) do
+ActiveRecord::Schema.define(version: 2020_12_05_020226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 2020_12_04_130810) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "summary_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["summary_id"], name: "index_comments_on_summary_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "summary_id"
@@ -98,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_12_04_130810) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "summaries"
   add_foreign_key "summaries", "books"
   add_foreign_key "summaries", "users"
 end

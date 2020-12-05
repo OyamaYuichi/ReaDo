@@ -52,6 +52,8 @@ class SummariesController < ApplicationController
 
   def show
     @favorite = current_user.favorites.find_by(summary_id: @summary.id)
+    @comments = @summary.comments
+    @comment = @summary.comments.build
   end
 
   def edit
