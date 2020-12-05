@@ -5,13 +5,14 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   resources :books do
-    resources :summaries, only: [:new, :create] do
-    end
+    resources :summaries, :memos, only: [:new, :create]
   end
 
   resources :summaries do
     resources :comments
   end
+
+  resources :memos, only: [:index, :edit, :show, :update, :destroy]
   # resources :summaries do
   #   collection do
   #     get :search

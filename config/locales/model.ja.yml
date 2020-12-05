@@ -6,6 +6,9 @@ ja:
     attributes:
       summary:
         content: 内容
+      memo:
+        memo: メモ
+        action_plan: アクションプラン
       user:
         title: タイトル
         name: 名前

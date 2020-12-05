@@ -8,8 +8,8 @@
     <p><%= book.title %></p>
     <%= form_tag(books_path) do %>
       <%= hidden_field_tag :isbn, book.isbn %>
-      <%= submit_tag 'save', value: params[:name] %>
-      <%= submit_tag 'save' %>
+      <%= submit_tag 'save', value: "要約" %>
+      <%= submit_tag 'save', value: "メモ" %>
     <% end %>
   <% end %>
 <% end %>

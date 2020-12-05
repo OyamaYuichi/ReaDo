@@ -1,0 +1,45 @@
+<%= form_with(model: @memo, local: true) do |form| %>
+  <% if @memo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memo.errors.count, "error") %> prohibited this @memo from being saved:</h2>
+
+      <ul>
+      <% @memo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <tr>
+      <td><%= @book.title%></td>
+    </tr>
+    <tr>
+      <td><%= image_tag(@book.image_url)%></td>
+    </tr>
+    <tr>
+      <td><%= @book.author%></td>
+    </tr>
+    <tr>
+      <td><%= @book.publisher%></td>
+    </tr>
+  </table>
+
+  <div class="field">
+    <p><%= form.label :memo %></p>
+    <p><%= form.text_area :content %></p>
+  </div>
+
+  <div class="field">
+    <p><%= form.label :action_plan %></p>
+    <p><%= form.text_area :action_plan %></p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @memo %> |
+<%= link_to 'Back', summaries_path %>

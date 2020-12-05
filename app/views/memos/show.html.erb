@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td><%= @memo.book.title %></td>
+  </tr>
+  <tr>
+    <td><%= image_tag(@memo.book.image_url)%></td>
+  </tr>
+  <tr>
+    <td><%= @memo.book.author %></td>
+  </tr>
+  <tr>
+    <td><%= @memo.book.publisher %></td>
+  </tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr>
+    <td><%= @memo.content %></td>
+  </tr>
+  <tr>
+    <td><%= @memo.action_plan %></td>
+  </tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_memo_path(@memo) %>
+<%= link_to 'Destroy', @memo, method: :delete, data: { confirm: 'Are you sure?' } %>

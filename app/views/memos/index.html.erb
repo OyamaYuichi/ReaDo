@@ -1,0 +1,11 @@
+<table>
+  <% @memos.each do |memo| %>
+      <td>
+        <p><%= memo.book.title %></p>
+        <p><%= image_tag(memo.book.image_url)%></p>
+        <p><%= memo.content %></p>
+        <p><%= memo.action_plan %></p>
+        <p><%= link_to 'Show', memo %></p>
+      </td>
+  <% end %>
+</table>
