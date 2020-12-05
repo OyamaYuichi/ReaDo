@@ -15,7 +15,16 @@
     <td><%= @summary.book.publisher %></td>
   </tr>
   <tr>
+    <td><hr></td>
+  </tr>
+  <tr>
+    <td><%= link_to @summary.user.name, user_path(@summary.user) %></td>
+  </tr>
+  <tr>
     <td><%= @summary.content %></td>
+  </tr>
+  <tr>
+    <td><hr></td>
   </tr>
 </table>
 
@@ -26,6 +35,10 @@
     <%= link_to 'お気に入りする', favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
+
+<br>
+<br>
+<br>
 
 <div id="comments_area">
   <%= render partial: 'comments/index', locals: { comments: @comments, summary: @summary } %>
