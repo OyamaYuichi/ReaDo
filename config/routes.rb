@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    collection do
+      get :following, :follower
+    end
+  end
   resources :favorites, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 end

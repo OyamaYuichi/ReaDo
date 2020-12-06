@@ -8,7 +8,14 @@
 <%= @user.profile %>
 <%= @user.level %>
 
-<%= render 'follow_form', user: @user %>
+<p>フォロー</p>
+<%= link_to @user.following.count, following_users_path(id: @user.id)%>
+<p>フォロワー</p>
+<%= link_to @user.followers.count, follower_users_path(id: @user.id)%>
+
+<% if current_user != @user%>
+  <%= render 'follow_form', user: @user %>
+<% end %>
 
 <%= link_to 'プロフィール編集', edit_user_registration_path %>
 <%= link_to 'メモ一覧', memos_path %>
