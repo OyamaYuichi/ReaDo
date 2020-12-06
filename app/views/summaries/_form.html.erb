@@ -24,6 +24,14 @@
     <tr>
       <td><%= @book.publisher%></td>
     </tr>
+    <tr>
+      <td><%= form.label :category %></td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.select :category, Summary.categories_i18n.invert, include_blank: '選択してください' %>
+      </td>
+    </tr>
   </table>
 
 

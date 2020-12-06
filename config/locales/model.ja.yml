@@ -6,6 +6,7 @@ ja:
     attributes:
       summary:
         content: 内容
+        category: カテゴリー
       memo:
         memo: メモ
         action_plan: アクションプラン

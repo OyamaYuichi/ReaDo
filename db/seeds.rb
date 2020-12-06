@@ -12,8 +12,9 @@ Faker::Config.locale = :ja
 
 100.times do |i|
   Summary.create!(
-    content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
-    user_id: rand(9..38),
+    content: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false),
+    category: rand(18),
+    user_id: rand(1..30),
     book_id: rand(1..5),
   )
 end

@@ -1,5 +1,28 @@
 ---
 ja:
+  view:
+    category: カテゴリー
+  enums:
+    summary:
+      category:
+        skill_up: スキルアップ・キャリア
+        self_help: 自己啓発・マインド
+        time_management: 生産性・時間管理
+        management: リーダーシップ・マネジメント
+        management_strategy: 経営戦略
+        entrepreneurship: 起業・イノベーション
+        human_resources: 人事
+        marketing: マーケティング
+        industry: 産業・業界
+        global: グローバル
+        economy: 政治・経済
+        finance: ファイナンス
+        technology: テクノロジー・IT
+        science: サイエンス
+        liberal_arts: リベラルアーツ
+        health: 健康・フィットネス
+        trend: トレンド
+        other: その他
   activerecord:
     errors:
       messages:

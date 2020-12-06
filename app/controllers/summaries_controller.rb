@@ -50,7 +50,7 @@ class SummariesController < ApplicationController
 
   private
   def summary_params
-    params.require(:summary).permit(:book_id, :content)
+    params.require(:summary).permit(:book_id, :content, :category)
   end
 
   def set_summary

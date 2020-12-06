@@ -79,3 +79,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'faker'
+
+gem 'enum_help'
