@@ -13,11 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :memos, only: [:index, :edit, :show, :update, :destroy]
-  # resources :summaries do
-  #   collection do
-  #     get :search
-  #   end
-  # end
 
   resources :users, only: [:index, :show] do
     collection do

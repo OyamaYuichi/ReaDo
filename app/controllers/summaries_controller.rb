@@ -1,32 +1,8 @@
 class SummariesController < ApplicationController
   before_action :set_summary, only: [:show, :edit, :update, :destroy]
-  before_action :search, only: [:index]
-
-  def search
-    if params[:title].nil?
-
-      searches = RakutenWebService::Books::Book.search(title: "Ruby")
-    else
-      searches = RakutenWebService::Books::Book.search(title: params[:title])
-      # redirect_to request.referer
-    end
-      searches_hits = searches.response
-      # binding.pry
-      @searches = []
-
-        searches_hits.each do |item|
-          book = item
-          @searches << book
-        end
-      @searches = Kaminari.paginate_array(@searches).page(params[:page]).per(3)
-
-      @hit_count = searches.response["count"]
-
-      # redirect_to request.referer
-  end
 
   def index
-    @summaries = Summary.all
+    @summaries = Summary.all.page(params[:page]).per(5)
   end
 
   def new
@@ -35,7 +11,6 @@ class SummariesController < ApplicationController
   end
 
   def create
-    # @feed = current_user.feeds.build(feed_params)
     @book = Book.find(params[:book_id])
     @summary = @book.summaries.build(summary_params)
     @summary.user_id = current_user.id
@@ -72,11 +47,6 @@ class SummariesController < ApplicationController
     @summary.destroy
     redirect_to summaries_path, notice: "削除しました！"
   end
-
-  # def confirm
-  #   @mouth = Mouth.new(mouth_params)
-  #   render :new if @mouth.invalid?
-  # end
 
   private
   def summary_params

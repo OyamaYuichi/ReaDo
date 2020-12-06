@@ -7,6 +7,7 @@
 <%= @user.email %>
 <%= @user.profile %>
 <%= @user.level %>
+<%= @user.summaries.count %>
 
 <p>フォロー</p>
 <%= link_to @user.following.count, following_users_path(id: @user.id)%>
