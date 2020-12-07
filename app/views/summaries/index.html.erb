@@ -14,5 +14,29 @@
 
 <br>
 
+<h1>youtube</h1></h1>
+<%= form_with(url:summaries_path, local: true, method: :get) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<% @youtube_data.items.each do |item| %>
+  <% snippet = item.snippet %>
+  <p><%= snippet.title %></p>
+  <p><%= snippet.published_at %><%= snippet.channel_title %></p>
+  <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<% end %>
+
+<br>
+
 <%= link_to '要約を書く', new_book_path %>
 <%= link_to 'book 一覧', books_path %>

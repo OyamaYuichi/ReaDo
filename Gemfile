@@ -81,3 +81,5 @@ gem 'mini_magick'
 gem 'faker'
 
 gem 'enum_help'
+
+gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
