@@ -74,6 +74,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'devise-i18n'
 
 gem 'carrierwave'
