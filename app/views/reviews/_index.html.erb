@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<ul>
+  <% reviews.each do |review| %>
+    <% if review.id.present? %>
+      <li>
+        <div class="review-content" id ="this_review_<%= review.id %>"></div>
+        <p><%= link_to review.user.name, user_path(review.user) %></p>
+        <p><%= review.content %></p>
+        <p><%= link_to "コメント編集", edit_book_review_path(book, review), remote: true %></p>
+        <p><%= link_to "コメント削除", book_review_path(review.book_id, review.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"} %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

@@ -3,7 +3,7 @@
 <% end %>
 <table>
   <tr>
-    <td><%= @summary.book.title %></td>
+    <td><%= link_to @summary.book.title, book_path(@summary.book) %></td>
   </tr>
   <tr>
     <td><%= image_tag(@summary.book.image_url)%></td>

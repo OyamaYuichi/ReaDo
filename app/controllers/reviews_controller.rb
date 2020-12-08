@@ -1,21 +1,21 @@
-class CommentsController < ApplicationController
-  before_action :set_summary, only: [:create, :edit, :update]
+class ReviewsController < ApplicationController
+  before_action :set_book, only: [:create, :edit, :update]
 
   def create
-    @summary = Summary.find(params[:summary_id])
-    @comment = @summary.comments.build(comment_params)
-    @comment.user_id = current_user.id
+    @book = Book.find(params[:book_id])
+    @review = @book.reviews.build(review_params)
+    @review.user_id = current_user.id
     respond_to do |format|
-      if @comment.save
+      if @review.save
         format.js { render :index }
       else
-        format.html { redirect_to summary_path(@summary), notice: '投稿できませんでした...' }
+        format.html { redirect_to book_path(@book), notice: '投稿できませんでした...' }
       end
     end
   end
 
   def edit
-    @comment = @summary.comments.find(params[:id])
+    @review = @book.reviews.find(params[:id])
     respond_to do |format|
       flash.now[:notice] = 'コメントの編集中'
       format.js { render :edit }
@@ -23,9 +23,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = @summary.comments.find(params[:id])
+    @review = @book.reviews.find(params[:id])
       respond_to do |format|
-        if @comment.update(comment_params)
+        if @review.update(review_params)
           flash.now[:notice] = 'コメントが編集されました'
           format.js { render :index }
         else
@@ -36,8 +36,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
+    @review = Review.find(params[:id])
+    @review.destroy
     respond_to do |format|
       flash.now[:notice] = 'コメントが削除されました'
       format.js { render :index }
@@ -45,11 +45,11 @@ class CommentsController < ApplicationController
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:summary_id, :content)
+  def review_params
+    params.require(:review).permit(:book_id, :content)
   end
 
-  def set_summary
-    @summary = Summary.find(params[:summary_id])
+  def set_book
+    @book = Book.find(params[:book_id])
   end
 end

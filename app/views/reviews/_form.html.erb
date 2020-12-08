@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
-
 <p><%= current_user.name %></p>
-<%= form_with(model: [summary, comment]) do |form| %>
-  <% if comment.errors.any? %>
+<%= form_with(model: [book, review]) do |form| %>
+  <% if review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
       <ul>
-      <% comment.errors.full_messages.each do |message| %>
+      <% review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

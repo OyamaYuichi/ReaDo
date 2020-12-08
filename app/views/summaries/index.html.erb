@@ -3,7 +3,7 @@
 <table>
   <% @summaries.each do |summary| %>
       <td>
-        <p><%= summary.book.title %></p>
+        <p><%= link_to summary.book.title, book_path(summary.book) %></p>
         <p><%= image_tag(summary.book.image_url)%></p>
         <p><%= link_to 'Show', summary %></p>
       </td>

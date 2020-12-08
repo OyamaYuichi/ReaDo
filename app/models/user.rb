@@ -39,6 +39,8 @@ class User < ApplicationRecord
 
   has_many :summaries, dependent: :destroy
   has_many :memos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
