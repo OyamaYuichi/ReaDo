@@ -13,7 +13,8 @@
   <body>
     <% if user_signed_in? %>
       <%= link_to current_user.name, user_path(current_user.id) %>
-      <%= link_to "ブログ投稿", summaries_path %>
+      <%= link_to "要約一覧", summaries_path %>
+      <%= link_to "要約投稿", new_book_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <li><%= link_to 'ユーザー一覧', users_path  %></li>
     <% else %>

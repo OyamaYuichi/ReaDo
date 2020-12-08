@@ -11,7 +11,6 @@ class MemosController < ApplicationController
   end
 
   def create
-    # @feed = current_user.feeds.build(feed_params)
     @book = Book.find(params[:book_id])
     @memo = @book.memos.build(memo_params)
     @memo.user_id = current_user.id
@@ -48,7 +47,7 @@ class MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:book_id, :content, :action_plan)
+    params.require(:memo).permit(:book_id, :content, :action_plan, :send)
   end
 
   def set_memo
