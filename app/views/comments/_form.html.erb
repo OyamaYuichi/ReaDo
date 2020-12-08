@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= current_user.name %></p>
 <%= form_with(model: [summary, comment]) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">

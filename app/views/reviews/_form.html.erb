@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<p><%= current_user.name %></p>
 <%= form_with(model: [book, review]) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">

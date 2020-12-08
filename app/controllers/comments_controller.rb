@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   def create
     @summary = Summary.find(params[:summary_id])
     @comment = @summary.comments.build(comment_params)
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
         format.js { render :index }
