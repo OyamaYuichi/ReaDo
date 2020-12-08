@@ -38,6 +38,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @reviews = @book.reviews
+    @review = @book.reviews.build
   end
 
   private

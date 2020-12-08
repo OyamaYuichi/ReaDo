@@ -13,5 +13,10 @@
   </tr>
 </table>
 
+<div id="reviews_area">
+  <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
+</div>
+  <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+
 <%= link_to 'book search', new_book_path %>
 <%= link_to 'Back', summaries_path %>
