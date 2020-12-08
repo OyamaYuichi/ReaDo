@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @review = @book.reviews.build(review_params)
+    @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
         format.js { render :index }
