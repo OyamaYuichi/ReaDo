@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
-          :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google)
+          :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google facebook)
 
   def self.create_unique_string
     SecureRandom.uuid
@@ -14,6 +14,22 @@ class User < ApplicationRecord
                       uid:      auth.uid,
                       password: Devise.friendly_token[0, 20],
                       )
+    end
+    user.save
+    user
+  end
+
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+    unless user
+      user = User.new(
+        email:    auth.info.email,
+        provider: auth.provider,
+        uid:      auth.uid,
+        password: Devise.friendly_token[0, 20],
+        name: auth.info.name,
+        icon: auth.info.icon
+      )
     end
     user.save
     user
