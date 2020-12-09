@@ -47,7 +47,7 @@ class MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:book_id, :content, :action_plan, :send)
+    params.require(:memo).permit(:content, :action_plan, :email_send)
   end
 
   def set_memo

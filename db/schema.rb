@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_104729) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "book_id"
-    t.boolean "send", default: false, null: false
+    t.boolean "email_send", default: false, null: false
     t.index ["book_id"], name: "index_memos_on_book_id"
     t.index ["user_id"], name: "index_memos_on_user_id"
   end

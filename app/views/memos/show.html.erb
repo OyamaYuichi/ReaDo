@@ -1,4 +1,3 @@
-<%= form_with(model: @memo, local: true) do |f| %>
 <table>
   <tr>
     <td><%= @memo.book.title %></td>
@@ -24,9 +23,14 @@
   <tr>
     <td><hr></td>
   </tr>
-  
+  <tr>
+    <% if @memo.email_send == true %>
+      <td><p>通知オン</p></td>
+    <% else %>
+      <td><p>通知オフ</p></td>
+    <% end %>
+  </tr>
 </table>
-<% end %>
 
 <%= link_to 'Edit', edit_memo_path(@memo) %>
 <%= link_to 'Destroy', @memo, method: :delete, data: { confirm: 'Are you sure?' } %>
