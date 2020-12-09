@@ -18,6 +18,7 @@ class MemosController < ApplicationController
       render :new
     else
       if @memo.save
+        UserMailer.notify_user.deliver
         redirect_to memos_path, notice: "投稿しました！"
       else
         render :new
