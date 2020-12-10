@@ -2,6 +2,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
           :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google facebook twitter)
 
+  class << self
+    def current_user=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current_user
+      Thread.current[:current_user]
+    end
+  end
+
   def self.create_unique_string
     SecureRandom.uuid
   end

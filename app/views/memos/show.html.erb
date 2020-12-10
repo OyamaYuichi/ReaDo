@@ -23,6 +23,13 @@
   <tr>
     <td><hr></td>
   </tr>
+  <tr>
+    <% if @memo.email_send == true %>
+      <td><p>通知オン</p></td>
+    <% else %>
+      <td><p>通知オフ</p></td>
+    <% end %>
+  </tr>
 </table>
 
 <%= link_to 'Edit', edit_memo_path(@memo) %>

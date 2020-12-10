@@ -1,0 +1,9 @@
+<h1>現在のアクションプランです。</h1>
+
+<% @memos.each_with_index do |memo, index|%>
+<p><%= index + 1 %>.<%= memo.book.title %></p>
+<strong><%= memo.action_plan %></strong>
+<hr>
+<% end %>
+
+

@@ -49,6 +49,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -85,3 +86,5 @@ gem 'faker'
 gem 'enum_help'
 
 gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
+
+gem 'whenever', require: false
