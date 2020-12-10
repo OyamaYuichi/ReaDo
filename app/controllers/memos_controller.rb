@@ -2,7 +2,7 @@ class MemosController < ApplicationController
   before_action :set_memo, only: [:show, :edit, :update, :destroy]
 
   def index
-    @memos = current_user.memos
+    @memos = current_user.memos.includes(:book)
   end
 
   def new
@@ -14,15 +14,11 @@ class MemosController < ApplicationController
     @book = Book.find(params[:book_id])
     @memo = @book.memos.build(memo_params)
     @memo.user_id = current_user.id
-    if params[:back]
-      render :new
+    if @memo.save
+      UserMailer.notify_user().deliver
+      redirect_to memos_path, notice: "投稿しました！"
     else
-      if @memo.save
-        UserMailer.notify_user.deliver
-        redirect_to memos_path, notice: "投稿しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -35,6 +31,7 @@ class MemosController < ApplicationController
 
   def update
     if @memo.update(memo_params)
+      UserMailer.notify_user().deliver
       redirect_to memos_path, notice: "編集しました！"
     else
       render :edit
@@ -43,6 +40,7 @@ class MemosController < ApplicationController
 
   def destroy
     @memo.destroy
+    UserMailer.notify_user().deliver
     redirect_to memos_path, notice: "削除しました！"
   end
 

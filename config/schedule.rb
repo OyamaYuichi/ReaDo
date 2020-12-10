@@ -22,7 +22,8 @@ job_type :rake, "export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init -)\
 every 1.minutes do
 # every 1.days, at: '7:00 am' do
 # Rails内のメソッド実行
-  runner "UserMailer.notify_user.deliver"
+  runner "User.all.each { |user| UserMailer.notify_user(user: user).deliver }"
+  # runner "UserMailer.notify_user.deliver"
 end
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
