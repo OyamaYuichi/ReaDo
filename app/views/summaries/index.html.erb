@@ -1,39 +1,43 @@
 <h1>Articles</h1>
+<%= search_form_for(@q, url: summaries_path) do |f| %>
+  <%= f.label :title, "タイトルを入力" %>
+  <%= f.text_field :book_title_cont %>
 
-<table>
-  <% @summaries.each do |summary| %>
-      <td>
-        <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-        <p><%= image_tag(summary.book.image_url)%></p>
-        <p><%= link_to 'Show', summary %></p>
-      </td>
-  <% end %>
-</table>
+  <%= f.label :auther, "作者を入力" %>
+  <%= f.text_field :book_author_cont %>
 
+  <%= f.label :category, "カテゴリー" %>
+  <%= f.select :category_eq, Summary.categories.map{|k, v| [Summary.categories_i18n[k], v]}, include_blank: true %>
+
+
+  <%= f.submit "検索" %>
+<% end %>
+
+<% if @summaries.present? %>
+  <table>
+    <% @summaries.each do |summary| %>
+        <td>
+          <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+          <p><%= image_tag(summary.book.image_url)%></p>
+          <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          <p><%= link_to 'Show', summary %></p>
+        </td>
+    <% end %>
+  </table>
+<% else %>
+  <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
+<% end %>
 <p><%= paginate @summaries %></p>
 
 <br>
-
 <h1>youtube</h1></h1>
-<%= form_with(url:summaries_path, local: true, method: :get) do |form| %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
+<% if false %>
 <% @youtube_data.items.each do |item| %>
   <% snippet = item.snippet %>
   <p><%= snippet.title %></p>
   <p><%= snippet.published_at %><%= snippet.channel_title %></p>
   <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<% end %>
 <% end %>
 
 <br>

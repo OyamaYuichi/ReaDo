@@ -2,12 +2,16 @@ class SummariesController < ApplicationController
   before_action :set_summary, only: [:show, :edit, :update, :destroy]
 
   def index
-    @summaries = Summary.all.page(params[:page]).per(5)
-    if params[:title].nil?
-      @youtube_data = find_videos("要約")
-    else
-      @youtube_data = find_videos(params[:title])
-    end
+    @q = Summary.ransack(params[:q])
+    @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
+    # @youtube_data = find_videos("要約")
+    # if params[:q].present?
+    #   if params[:q][:book_title_cont].present?
+    #     @youtube_data = find_videos(params[:q][:book_title_cont])
+    #   else
+    #     @youtube_data = find_videos("要約")
+    #   end
+    # end
   end
 
   def new
@@ -53,7 +57,7 @@ class SummariesController < ApplicationController
     redirect_to summaries_path, notice: "削除しました！"
   end
 
-  def find_videos(keyword, after: 5.years.ago, before: Time.now)
+  def find_videos(keyword, after: 10.years.ago, before: Time.now)
     service = Google::Apis::YoutubeV3::YouTubeService.new
     service.key = ENV["YOUTUBE_APIKEY"]
 
@@ -61,7 +65,7 @@ class SummariesController < ApplicationController
     opt = {
       q: keyword,
       type: 'video',
-      max_results: 5,
+      max_results: 1,
       order: :relevance,
       page_token: next_page_token,
       published_after: after.iso8601,
