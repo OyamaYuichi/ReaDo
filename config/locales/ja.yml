@@ -8,6 +8,9 @@ ja:
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
   view:
+    search: <i class="fas fa-search"></i>
+    index: <i class="fas fa-home"></i>
+  view:
     category: カテゴリー
   enums:
     summary:
