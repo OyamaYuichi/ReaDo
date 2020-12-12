@@ -2,9 +2,20 @@ class SummariesController < ApplicationController
   before_action :set_summary, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Summary.ransack(params[:q])
-    @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
-    # @youtube_data = find_videos("要約")
+    search
+    @summaries = @summaries.page(params[:page]).per(5)
+
+    # @q = Summary.ransack(params[:q])
+    # @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user
+    # @followes = []
+    # if params[:q].present?
+    #   if params[:q][:user_name_eq]
+    #     @q = Summary.ransack(params[:q])
+    #     @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user)
+    #     @followes = []
+    #   end
+    # end
+# @youtube_data = find_videos("要約")
     # if params[:q].present?
     #   if params[:q][:book_title_cont].present?
     #     @youtube_data = find_videos(params[:q][:book_title_cont])
@@ -12,6 +23,167 @@ class SummariesController < ApplicationController
     #     @youtube_data = find_videos("要約")
     #   end
     # end
+  end
+
+  def search
+    if params[:title].present? && params[:author].present? && params[:category].present? && params[:follow] == "true"
+      @books =  Book.get_by_title(params[:title]).get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category] && current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:title].present? && params[:author].present? && params[:category].present?
+      @books =  Book.get_by_title(params[:title]).get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category]
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+
+    elsif params[:title].present? && params[:author].present? && params[:follow] == "true"
+      @books =  Book.get_by_title(params[:title]).get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:title].present? && params[:category].present? && params[:follow] == "true"
+      @books =  Book.get_by_title(params[:title])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category] && current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:author].present? && params[:category].present? && params[:follow] == "true"
+      @books =  Book.get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category] && current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:title].present? && params[:author].present?
+      @books =  Book.get_by_title(params[:title]).get_by_author(params[:author])
+      book_sort
+      @summaries = Kaminari.paginate_array(@summaries)
+
+    elsif params[:title].present? && params[:category].present?
+      @books =  Book.get_by_title(params[:title])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category]
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+
+    elsif params[:title].present? && params[:follow] == "true"
+      @books =  Book.get_by_title(params[:title])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:author].present? && params[:category].present?
+      @books =  Book.get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if summary.category == params[:category]
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+    elsif params[:author].present? && params[:follow] == "true"
+      @books =  Book.get_by_author(params[:author])
+      book_sort
+      summaries = []
+      @summaries.each do |summary|
+        if current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:category].present? && params[:follow] == "true"
+      @summaries =  Summary.get_by_category(params[:category])
+      summaries = []
+      @summaries.each do |summary|
+        if current_user.following.ids.include?(summary.user_id)
+          summaries << summary
+        end
+      end
+      @summaries = Kaminari.paginate_array(summaries)
+      @checked_follow = true
+
+    elsif params[:title].present?
+      @books =  Book.get_by_title(params[:title])
+      book_sort
+      @summaries = Kaminari.paginate_array(@summaries)
+
+    elsif params[:author].present?
+      @books =  Book.get_by_author(params[:author])
+      book_sort
+      @summaries = Kaminari.paginate_array(@summaries)
+
+    elsif params[:category].present?
+      @summaries =  Summary.get_by_category(params[:category])
+      @summaries = Kaminari.paginate_array(@summaries)
+
+    elsif params[:follow] == "true"
+      @follow_users = current_user.following
+      @summaries = []
+      @follow_users.each do |follow_user|
+        @summaries << follow_user.summaries
+      end
+      @summaries = @summaries.flatten.sort do |a, b|
+        b[:created_at] <=> a[:created_at]
+      end
+      @summaries = Kaminari.paginate_array(@summaries)
+      @checked_follow = true
+    else
+      @summaries = Summary.all.order(created_at: :desc)
+    end
+  end
+
+  def book_sort
+    @summaries = []
+    @books.each do |book|
+      @summaries << book.summaries
+    end
+    @summaries = @summaries.flatten.sort do |a, b|
+      b[:created_at] <=> a[:created_at]
+    end
   end
 
   def new

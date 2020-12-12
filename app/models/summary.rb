@@ -12,4 +12,6 @@ class Summary < ApplicationRecord
     economy: 10, finance: 11, technology: 12, science: 13, liberal_arts:14, health: 15,
     trend: 16, other: 17
   }
+
+  scope :get_by_category, -> (category) { where(category: category)}
 end
