@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
 
   <body>
@@ -16,7 +17,27 @@
       <%= link_to "要約一覧", summaries_path %>
       <%= link_to "要約投稿", new_book_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <li><%= link_to 'ユーザー一覧', users_path  %></li>
+      <%= link_to 'ユーザー一覧', users_path  %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">検索</button>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm size" role="document">
+        <div class="modal-content">
+          <%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
+            <p><%= form.label :title, "タイトル" %></p>
+            <p><%= form.text_field :title, value: params[:title] %></p>
+            <p><%= form.label :author, "著者名" %></p>
+            <p><%= form.text_field :author, value: params[:author] %></p>
+            <p><%= form.label :category, "カテゴリー" %></p>
+            <p><%= form.select :category,Summary.categories_i18n.invert, selected: params[:category],include_blank: true %></p>
+            <p><%= form.label :follow, "フォロー" %></p>
+              <%= form.hidden_field :follow, value: false %>
+            <p><%= form.check_box :follow, { checked: @checked_follow }, true, false %></p>
+
+          <%= form.submit "検索" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>

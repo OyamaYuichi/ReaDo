@@ -10,6 +10,39 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self
  */
+
+
+body {
+  text-align: center;
+}
+table {
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.size {
+  width: 600px;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #337ab7;
+  border-radius: 30px!important;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+  cursor: pointer!important;
+}
