@@ -1,39 +1,43 @@
 <h1>Articles</h1>
+<%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
+  <p><%= form.label :title, "タイトル" %></p>
+  <p><%= form.text_field :title, value: params[:title] %></p>
+  <p><%= form.label :author, "著者名" %></p>
+  <p><%= form.text_field :author, value: params[:author] %></p>
+  <p><%= form.label :category, "カテゴリー" %></p>
+  <p><%= form.select :category,Summary.categories_i18n.invert, selected: params[:category],include_blank: true %></p>
+  <p><%= form.label :follow, "フォロー" %></p>
+    <%= form.hidden_field :follow, value: false %>
+  <p><%= form.check_box :follow, { checked: @checked_follow }, true, false %></p>
 
-<table>
-  <% @summaries.each do |summary| %>
-      <td>
-        <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-        <p><%= image_tag(summary.book.image_url)%></p>
-        <p><%= link_to 'Show', summary %></p>
-      </td>
-  <% end %>
-</table>
+<%= form.submit "検索" %>
+<% end %>
 
+<% if @summaries.present? %>
+  <table>
+    <% @summaries.each do |summary| %>
+        <td>
+          <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+          <p><%= image_tag(summary.book.image_url)%></p>
+          <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          <p><%= link_to 'Show', summary %></p>
+        </td>
+    <% end %>
+  </table>
+<% else %>
+  <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
+<% end %>
 <p><%= paginate @summaries %></p>
 
 <br>
-
 <h1>youtube</h1></h1>
-<%= form_with(url:summaries_path, local: true, method: :get) do |form| %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
+<% if false %>
 <% @youtube_data.items.each do |item| %>
   <% snippet = item.snippet %>
   <p><%= snippet.title %></p>
   <p><%= snippet.published_at %><%= snippet.channel_title %></p>
   <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<% end %>
 <% end %>
 
 <br>

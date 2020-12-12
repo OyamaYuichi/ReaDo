@@ -5,6 +5,7 @@
       <td><%= image_tag(book.image_url)%></td>
       <td><%= book.author%></td>
       <td><%= book.publisher%></td>
+      <td><%= book.summaries.count%></td>
       <td><%= link_to 'Show', book %></td>
       <td><%= link_to 'new', new_book_summary_path(book) %></td>
     </tr>
