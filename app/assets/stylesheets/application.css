@@ -16,9 +16,12 @@
  *= require_self
  */
 
-
+.container {
+  width: 1170px;
+  min-width: 1170px;
+  max-width: 1170px;
+}
 body {
-  /* text-align: center; */
   clear: both;
 }
 

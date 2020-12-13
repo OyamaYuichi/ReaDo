@@ -3,18 +3,7 @@ class SummariesController < ApplicationController
 
   def index
     search
-    @summaries = @summaries.page(params[:page]).per(5)
-
-    # @q = Summary.ransack(params[:q])
-    # @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user
-    # @followes = []
-    # if params[:q].present?
-    #   if params[:q][:user_name_eq]
-    #     @q = Summary.ransack(params[:q])
-    #     @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user)
-    #     @followes = []
-    #   end
-    # end
+    @summaries = @summaries.page(params[:page]).per(30)
 # @youtube_data = find_videos("要約")
     # if params[:q].present?
     #   if params[:q][:book_title_cont].present?

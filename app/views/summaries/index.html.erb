@@ -1,16 +1,16 @@
+<div class="container center">
 <h1>Articles</h1>
 
 <% if @summaries.present? %>
-  <table>
+  <div class="summary-table">
     <% @summaries.each do |summary| %>
-        <td>
-          <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-          <p><%= image_tag(summary.book.image_url)%></p>
-          <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
-          <p><%= link_to 'Show', summary %></p>
-        </td>
+      <div class="summary-content">
+        <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+        <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+        <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+    </div>
     <% end %>
-  </table>
+  </div>
 <% else %>
   <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
 <% end %>
@@ -31,3 +31,4 @@
 
 <%= link_to '要約を書く', new_book_path %>
 <%= link_to 'book 一覧', books_path %>
+</div>

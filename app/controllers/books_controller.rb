@@ -48,7 +48,7 @@ class BooksController < ApplicationController
     title = result['title']
     url = result['itemUrl']
     isbn = result['isbn']
-    image_url = result['mediumImageUrl'].gsub('?_ex=50x50', '')
+    image_url = result['largeImageUrl'].gsub('?_ex=150x150', '')
     author = result['author']
     publisher = result['publisherName']
 
