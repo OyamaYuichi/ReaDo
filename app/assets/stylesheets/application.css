@@ -18,10 +18,39 @@
 
 
 body {
-  text-align: center;
+  /* text-align: center; */
+  clear: both;
 }
+
+body, html {
+  font-family: 'Noto Sans JP',sans-serif;
+}
+
 table {
   width: 100%;
+  max-width: 100%;
+}
+
+
+header{
+  background-color: #bbdaf8;
+  padding: 10px 0px 5px 0px;
+  /* position: fixed;
+  z-index: 995; */
+}
+
+li {
+  list-style: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear:both;
 }
 
 .center {
@@ -30,6 +59,16 @@ table {
 
 .size {
   width: 600px;
+  padding: 20px 0 20px 0;
+  /* height: 600px; */
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
 }
 
 .pagination>li>a {
@@ -46,4 +85,88 @@ table {
 .pagination>li>a:hover {
   border-radius: 15px;
   cursor: pointer!important;
+}
+
+.brand {
+  width: 80px;
+  padding: 0 10px 0 40px;
+}
+.brand-image {
+  width: 55px;
+  height: 55px;
+  /* text-align: right!important; */
+}
+
+.brand-name {
+  text-align: left;
+  font-size: 30px;
+  /* text-align: end; */
+  font-style: italic;
+  font-weight: bold;
+}
+
+.fa-home {
+  padding: 0 20px 0 20px;
+}
+.fa-edit {
+  padding: 0 20px 0 20px;
+}
+.fa-user {
+  padding: 0 20px 0 20px;
+}
+.fa-users {
+  padding: 0 20px 0 20px;
+}
+.fa-sign-out-alt {
+  padding: 0 20px 0 20px;
+}
+
+.fa-user-plus {
+  padding: 0 20px 0 20px;
+}
+.fa-sign-in-alt {
+  padding: 0 20px 0 20px;
+}
+
+.header-content{
+  width: 180px;
+}
+
+.header-name {
+  margin: 0;
+}
+
+.login {
+  font-size: 30px;
+  color: white;
+  padding: 30px 30px 30px 10px;
+}
+
+.login-btn {
+  margin: 50px;
+  padding: 10px 0 0 5px;
+}
+
+.login-icon {
+  color: white;
+  padding: 30px 0px 20px 10px;
+}
+
+.login-message {
+  margin: 50px 0 0 0;
+  font-size: 20px;
+}
+
+.search {
+  background-color: transparent;
+  border: none;
+  color: #337ab7;
+}
+
+.search:hover {
+  color: #0d5594;
+}
+
+.search-name {
+  color: black;
 }

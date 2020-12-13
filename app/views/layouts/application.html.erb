@@ -4,6 +4,7 @@
     <title>ReaDo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,40 +12,59 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
 
+  <header class="clearfix">
+    <table class="center">
+      <td class="brand"><%= link_to image_tag("favicon.ico", class: "brand-image"), summaries_path %></td>
+      <td class="brand-name"><%= link_to "ReaDo", summaries_path %></td>
+      <% if user_signed_in? %>
+        <td class="header-content"><%= link_to fa_icon("home 2x"), summaries_path %><p class="header-name">ホーム</p></td>
+        <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-sm"><%= fa_icon("search 2x") %><p class="header-name search-name">検索</p></td>
+          <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm size" role="document">
+              <div class="modal-content center">
+                <%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
+                  <p><%= form.label :title, "タイトル", class: "label-title" %></p>
+                  <p><%= form.text_field :title, value: params[:title], class: 'search-title' %></p>
+                  <p><%= form.label :author, "著者名", class: "label-author" %></p>
+                  <p><%= form.text_field :author, value: params[:author], class: 'search-author' %></p>
+                  <p><%= form.label :category, "カテゴリー", class: "label-category" %></p>
+                  <p class="search-control"><%= form.select :category, Summary.categories_i18n.invert, selected: params[:category], include_blank: true %></p>
+                  <p><%= form.label :follow, "フォロー", class: "label-follow" %></p>
+                    <%= form.hidden_field :follow, value: false %>
+                  <p><%= form.check_box :follow, { checked: @checked_follow }, true, false %></p>
+                  <p><%= form.submit "検索", class:"search-submit" %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <td class="header-content"><%= link_to fa_icon("edit 2x"), new_book_path %><p class="header-name">投稿</p></td>
+        <td class="header-content"><%= link_to fa_icon("user 2x"), user_path(current_user.id) %><p class="header-name">プロフィール</p></td>
+        <td class="header-content"><%= link_to fa_icon("users 2x"), users_path  %><p class="header-name">読書家</p></td>
+        <td class="header-content"><%= link_to fa_icon("sign-out-alt 2x"), destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %><p class="header-name">ログアウト</p></td>
+      <% else %>
+        <td class="header-content"><%= link_to fa_icon("home 2x"), summaries_path %><p class="header-name">ホーム</p></td>
+        <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-sm"><%= fa_icon("search 2x") %><p class="header-name search-name">検索</p></td>
+          <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm size" role="document">
+              <div class="modal-content center">
+                <p class="login-message">ログインしてください</p>
+                <button  type="button" class="btn btn-danger login-btn">
+                <p>
+                  <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
+                  <%= link_to "ログイン画面へ", new_user_session_path, class: "login"%>
+                </p>
+                </button>
+              </div>
+            </div>
+          </div>
+        <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-sm"><%= fa_icon("edit 2x") %><p class="header-name search-name">投稿</p></td>
+        <td class="header-content"><%= link_to fa_icon("user-plus 2x"), new_user_registration_path %><p class="header-name">新規登録</p></td>
+        <td class="header-content"><%= link_to fa_icon("sign-in-alt 2x"), new_user_session_path %><p class="header-name">ログイン</p></td>
+      <% end %>
+    </table>
+  </header>
+
   <body>
-    <% if user_signed_in? %>
-    <%= fa_icon("home") %>
-      <%= link_to current_user.name, user_path(current_user.id) %>
-      <%= link_to "要約一覧", summaries_path %>
-      <%= link_to "要約投稿", new_book_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <%= link_to 'ユーザー一覧', users_path  %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fas fa-search"></i>　検索</button>
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-sm size" role="document">
-        <div class="modal-content">
-          <%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
-            <p><%= form.label :title, "タイトル" %></p>
-            <p><%= form.text_field :title, value: params[:title] %></p>
-            <p><%= form.label :author, "著者名" %></p>
-            <p><%= form.text_field :author, value: params[:author] %></p>
-            <p><%= form.label :category, "カテゴリー" %></p>
-            <p><%= form.select :category,Summary.categories_i18n.invert, selected: params[:category],include_blank: true %></p>
-            <p><%= form.label :follow, "フォロー" %></p>
-              <%= form.hidden_field :follow, value: false %>
-            <p><%= form.check_box :follow, { checked: @checked_follow }, true, false %></p>
-
-          <%= form.submit "検索" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-
-
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
