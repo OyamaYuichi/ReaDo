@@ -16,6 +16,9 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 .container {
   width: 1170px;
   min-width: 1170px;
