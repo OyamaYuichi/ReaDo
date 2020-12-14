@@ -1,39 +1,39 @@
 <div class="container center sign-form">
-<h2><%= t('.sign_up') %></h2>
+  <h2><%= t('.sign_up') %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-<table class="sign-table">
-  <tr class="field">
-    <td class="td-label"><%= f.label :ユーザーネーム %><br /></td>
-    <td class="td-sign"><%= f.text_field :name, class: "form-control" %></td>
-  </tr>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  <table class="sign-table">
+    <tr class="field">
+      <td class="td-label"><%= f.label :ユーザーネーム %><br /></td>
+      <td class="td-sign"><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
+    </tr>
 
-  <tr class="field">
-    <td class="td-label"><%= f.label :email %><br /></td>
-    <td class="td-sign"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
-  </tr>
+    <tr class="field">
+      <td class="td-label"><%= f.label :email %><br /></td>
+      <td class="td-sign"><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
+    </tr>
 
-  <tr class="field">
-    <td class="td-label">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-      <% end %><br />
-    </td>
-    <td class="td-sign"><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
-  </tr>
+    <tr class="field">
+      <td class="td-label">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %><br />
+      </td>
+      <td class="td-sign"><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
+    </tr>
 
-  <tr class="field">
-    <td class="td-label"><%= f.label :password_confirmation %><br /></td>
-    <td class="td-sign"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
-  </tr>
+    <tr class="field">
+      <td class="td-label"><%= f.label :password_confirmation %><br /></td>
+      <td class="td-sign"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
+    </tr>
 
-</table>
-  <p class="lead-login"><%= link_to "アカウント登録がお済みの方はこちら", new_session_path(resource_name) %><br /></p>
-  <p><%= f.submit t('.sign_up'), class: "sign-up-submit"%></p>
-<% end %>
+  </table>
+    <p class="lead-login"><%= link_to "アカウント登録がお済みの方はこちら", new_session_path(resource_name) %><br /></p>
+    <p><%= f.submit t('.sign_up'), class: "sign-up-submit"%></p>
+  <% end %>
 
-<h2 class="sns-login">SNSアカウントで登録</h2>
-<%= render "devise/shared/links" %>
+  <h2 class="sns-login">SNSアカウントで登録</h2>
+  <%= render "devise/shared/links" %>
 </div>
