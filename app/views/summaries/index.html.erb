@@ -1,41 +1,53 @@
-<div class="container center">
+  <table class="center text-movie">
+    <tr class="tab">
+      <td class="select">
+        <h1 class="book-movie"><%= fa_icon("book") %></h1>
+        <p>テキスト</p>
+      </td>
+      <td>
+        <h1 class="book-movie"><%= fa_icon("tv") %></h1>
+        <p>動画</p></td>
+    </tr>
+  </table>
+<div class="container center summary-index">
 
 
-
-<h1>Articles</h1>
-
-<% if @summaries.present? %>
-  <div class="summary-table">
-    <% @summaries.each do |summary| %>
-      <div class="summary-content">
-        <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-        <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-        <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
-    </div>
+  <div class="content">
+    <div class="summary">
+    <% if @summaries.present? %>
+      <div class="summary-table">
+        <% @summaries.each do |summary| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
     <% end %>
+    <p><%= paginate @summaries %></p>
+    </div>
+
+    <div class="summary hide">
+      <h1 >youtube</h1>
+      <% if false %>
+      <% @youtube_data.items.each do |item| %>
+        <% snippet = item.snippet %>
+        <p><%= snippet.title %></p>
+        <p><%= snippet.published_at %><%= snippet.channel_title %></p>
+        <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <% end %>
+      <% end %>
+
+      <%= link_to '要約を書く', new_book_path %>
+      <%= link_to 'book 一覧', books_path %>
+    </div>
+
   </div>
-<% else %>
-  <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
-<% end %>
-<p><%= paginate @summaries %></p>
-
-<br>
-<h1 class="youtube">youtube</h1>
-<% if false %>
-<% @youtube_data.items.each do |item| %>
-  <% snippet = item.snippet %>
-  <p><%= snippet.title %></p>
-  <p><%= snippet.published_at %><%= snippet.channel_title %></p>
-  <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-<% end %>
-<% end %>
-
-<br>
-
-<%= link_to '要約を書く', new_book_path %>
-<%= link_to 'book 一覧', books_path %>
-
 </div>
+
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">

@@ -53,6 +53,36 @@ input.search-submit:hover {
   color: white;
 }
 
+
+.text-movie {
+  table-layout: fixed;
+}
+
+.book-movie {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.summary-index {
+  margin-bottom: 340px;
+}
+
+.select {
+  background-color: white;
+}
+.tab {
+  background-color: #ddd;
+}
+.content {
+  background-color: white;
+  padding-top: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+
 img {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
@@ -75,12 +105,14 @@ img:hover {
   box-shadow: none;
 }
 
-.youtube {
-  padding-bottom: 100px;
-}
-
 .item {
   padding: 20px 0 10px 0px;
   text-align: center;
+}
+
+.carousel {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
 }
 
