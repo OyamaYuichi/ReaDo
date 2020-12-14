@@ -98,6 +98,7 @@ a:hover {
   width: 55px;
   height: 55px;
   /* text-align: right!important; */
+  box-shadow: none;
 }
 
 .brand-name {
@@ -132,7 +133,7 @@ a:hover {
 }
 
 .header-content{
-  width: 180px;
+  width: 170px;
 }
 
 .header-name {
@@ -172,4 +173,9 @@ a:hover {
 
 .search-name {
   color: black;
+}
+
+.header-notice {
+  margin-top: 10px;
+  font-size: large;
 }

@@ -37,9 +37,19 @@
               </div>
             </div>
           </div>
+
         <td class="header-content"><%= link_to fa_icon("edit 2x"), new_book_path %><p class="header-name">投稿</p></td>
-        <td class="header-content"><%= link_to fa_icon("user 2x"), user_path(current_user.id) %><p class="header-name">プロフィール</p></td>
         <td class="header-content"><%= link_to fa_icon("users 2x"), users_path  %><p class="header-name">読書家</p></td>
+        <td class="header-content"><%= link_to fa_icon("user 2x"), user_path(current_user.id) %><p class="header-name">プロフィール</p></td>
+        <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-lg"><%= fa_icon("bell 2x") %><p class="header-name search-name">通知</p></td>
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-lg size" role="document">
+            <div class="modal-content center">
+              <p class="header-notice">この機能はまだ使えません</p>
+            </div>
+          </div>
+        </div>
         <td class="header-content"><%= link_to fa_icon("sign-out-alt 2x"), destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %><p class="header-name">ログアウト</p></td>
       <% else %>
         <td class="header-content"><%= link_to fa_icon("home 2x"), summaries_path %><p class="header-name">ホーム</p></td>
