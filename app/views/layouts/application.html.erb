@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
 
+
+  <body>
+  <div id="wrapper">
   <header class="clearfix">
     <table class="center">
       <td class="brand"><%= link_to image_tag("favicon.ico", class: "brand-image"), summaries_path %></td>
@@ -74,7 +77,6 @@
     </table>
   </header>
 
-  <body>
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
@@ -83,5 +85,23 @@
     <% end %>
 
     <%= yield %>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class="footer">
+      <div class="footer-padding">
+        <table class="footer-table">
+          <td class="image-right"><%= link_to image_tag("favicon.ico", class: "footer-brand-image"), summaries_path %></td>
+          <td class="footer-brand-name"><%= link_to "ReaDo", summaries_path %></td>
+        </table>
+      </div>
+    </footer>
+  </div>
   </body>
+
 </html>
