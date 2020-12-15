@@ -1,2 +1,2 @@
-$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.summary.comments, summary: @comment.summary }) %>")
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.summary.comments.order(created_at: :desc), summary: @comment.summary }) %>")
 $("textarea").val('')

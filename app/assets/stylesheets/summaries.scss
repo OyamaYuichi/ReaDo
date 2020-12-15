@@ -5,3 +5,129 @@
 trix-editor{
   min-height: 30em;
 }
+
+input#title.search-title {
+  width: 300px;
+}
+input#author.search-author {
+  width: 300px;
+}
+
+.search-control select{
+  width: 300px;
+}
+
+input#follow {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+.label-title {
+  margin-top: 30px;
+}
+.label-author {
+  margin-top: 10px;
+}
+.label-category {
+  margin-top: 10px;
+}
+.label-follow {
+  margin-top: 10px;
+}
+
+input.search-submit {
+  background-color: #337ab7;
+  border: none;
+  border-radius: 5px;
+}
+input.search-submit:hover {
+  background-color: #084479;
+  border: none;
+  border-radius: 5px;
+}
+.search-submit {
+  margin: 30px 0 30px 0;
+  padding: 5px 20px 5px 20px;
+  font-size: 30px;
+  color: white;
+}
+
+
+.text-movie {
+  table-layout: fixed;
+}
+
+.book-movie {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.summary-index {
+  margin-bottom: 340px;
+}
+
+.select {
+  background-color: white;
+}
+.tab {
+  background-color: #ddd;
+}
+.content {
+  background-color: white;
+  padding-top: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+
+img {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.summary-table {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.summary-content{
+  width: 228px;
+  padding: 9px;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+img:hover {
+  color: #666;
+  box-shadow: none;
+}
+
+.item {
+  padding: 20px 0 10px 0px;
+  text-align: center;
+}
+
+.carousel {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+}
+
+.summary-show-content {
+  margin-bottom: 100px;
+}
+
+.summary-sentence {
+  text-align: left;
+  border-bottom: 1px solid #DBDBDB;
+  margin-bottom: 20px;
+}
+
+.summary-time {
+  margin-top: 50px;
+  text-align: right;
+}
+

@@ -1,46 +1,99 @@
-<h1>Articles</h1>
-<%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
-  <p><%= form.label :title, "タイトル" %></p>
-  <p><%= form.text_field :title, value: params[:title] %></p>
-  <p><%= form.label :author, "著者名" %></p>
-  <p><%= form.text_field :author, value: params[:author] %></p>
-  <p><%= form.label :category, "カテゴリー" %></p>
-  <p><%= form.select :category,Summary.categories_i18n.invert, selected: params[:category],include_blank: true %></p>
-  <p><%= form.label :follow, "フォロー" %></p>
-    <%= form.hidden_field :follow, value: false %>
-  <p><%= form.check_box :follow, { checked: @checked_follow }, true, false %></p>
+<table class="center text-movie">
+  <tr class="tab">
+    <td class="select">
+      <h1 class="book-movie"><%= fa_icon("book") %></h1>
+      <p>テキスト</p>
+    </td>
+    <td>
+      <h1 class="book-movie"><%= fa_icon("tv") %></h1>
+      <p>動画</p>
+    </td>
+  </tr>
+</table>
 
-<%= form.submit "検索" %>
-<% end %>
-
-<% if @summaries.present? %>
-  <table>
-    <% @summaries.each do |summary| %>
-        <td>
-          <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-          <p><%= image_tag(summary.book.image_url)%></p>
-          <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
-          <p><%= link_to 'Show', summary %></p>
-        </td>
+<div class="container center summary-index">
+  <div class="content">
+    <div class="summary">
+    <% if @summaries.present? %>
+      <div class="summary-table">
+        <% @summaries.each do |summary| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <h3>検索にヒットする要約は見つかりませんでした。</h3>
     <% end %>
-  </table>
-<% else %>
-  <h3>検索にヒットする要約記事は見つかりませんでした。</h3>
-<% end %>
-<p><%= paginate @summaries %></p>
+    <p><%= paginate @summaries %></p>
+    </div>
 
-<br>
-<h1>youtube</h1></h1>
-<% if false %>
-<% @youtube_data.items.each do |item| %>
-  <% snippet = item.snippet %>
-  <p><%= snippet.title %></p>
-  <p><%= snippet.published_at %><%= snippet.channel_title %></p>
-  <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-<% end %>
-<% end %>
+    <div class="summary hide">
+      <h1 >youtube</h1>
+      <% if false %>
+      <% @youtube_data.items.each do |item| %>
+        <% snippet = item.snippet %>
+        <p><%= snippet.title %></p>
+        <p><%= snippet.published_at %><%= snippet.channel_title %></p>
+        <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <% end %>
+      <% end %>
 
-<br>
+      <%= link_to '要約を書く', new_book_path %>
+      <%= link_to 'book 一覧', books_path %>
+    </div>
 
-<%= link_to '要約を書く', new_book_path %>
-<%= link_to 'book 一覧', books_path %>
+  </div>
+</div>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <h3><%= @summary_1.user.name %></h3>
+      <h2><%= @summary_1.book.title %></h2>
+      <p><%= link_to image_tag(@summary_1.book.image_url), @summary_1 %></p>
+    </div>
+    <div class="item">
+      <h3><%= @summary_2.user.name %></h3>
+      <h2><%= @summary_2.book.title %></h2>
+      <p><%= link_to image_tag(@summary_2.book.image_url), @summary_2 %></p>
+    </div>
+    <div class="item">
+      <h3><%= @summary_3.user.name %></h3>
+      <h2><%= @summary_3.book.title %></h2>
+      <p><%= link_to image_tag(@summary_3.book.image_url), @summary_3 %></p>
+    </div>
+    <div class="item">
+      <h3><%= @summary_4.user.name %></h3>
+      <h2><%= @summary_4.book.title %></h2>
+      <p><%= link_to image_tag(@summary_4.book.image_url), @summary_4 %></p>
+    </div>
+    <div class="item">
+      <h3><%= @summary_5.user.name %></h3>
+      <h2><%= @summary_5.book.title %></h2>
+      <p><%= link_to image_tag(@summary_5.book.image_url), @summary_5 %></p>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

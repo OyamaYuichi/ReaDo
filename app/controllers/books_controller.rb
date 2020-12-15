@@ -6,19 +6,24 @@ class BooksController < ApplicationController
   def new
     @books = []
 
-    @title = params[:title]
-    if @title.present?
-      results = RakutenWebService::Books::Book.search({
-        title: @title,
-        hits: 20,
-      })
+    if params[:book_title].present?
+      @title = params[:book_title]
+      if @title.present?
+        results = RakutenWebService::Books::Book.search({
+          title: @title,
+          hits: 20,
+        })
 
-      results.each do |result|
-        book = Book.new(read(result))
-        @books << book
+        results.each do |result|
+          book = Book.new(read(result))
+          @books << book
+        end
       end
+    else
+      @books = Book.all
     end
-    @books = Kaminari.paginate_array(@books).page(params[:page]).per(3)
+
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
   end
 
   def create
@@ -38,8 +43,38 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @reviews = @book.reviews
+    @reviews = @book.reviews.order(created_at: :desc)
     @review = @book.reviews.build
+    @summaries = @book.summaries.order(created_at: :desc).page(params[:page]).per(20)
+    #@youtube_data = find_videos(@book.title)
+    category = @book.summaries.pluck(:category)
+    if category.count < 2
+      @category_1 = @book.summaries.first.category_i18n
+    elsif category.count < 3
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+    else
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+      @category_3 = @book.summaries.third.category_i18n
+    end
+  end
+
+  def find_videos(keyword, after: 10.years.ago, before: Time.now)
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.key = ENV["YOUTUBE_APIKEY"]
+
+    next_page_token = nil
+    opt = {
+      q: keyword,
+      type: 'video',
+      max_results: 1,
+      order: :relevance,
+      page_token: next_page_token,
+      published_after: after.iso8601,
+      published_before: before.iso8601
+    }
+    service.list_searches(:snippet, opt)
   end
 
   private
@@ -48,7 +83,7 @@ class BooksController < ApplicationController
     title = result['title']
     url = result['itemUrl']
     isbn = result['isbn']
-    image_url = result['mediumImageUrl'].gsub('?_ex=50x50', '')
+    image_url = result['largeImageUrl'].gsub('?_ex=150x150', '')
     author = result['author']
     publisher = result['publisherName']
 

@@ -3,19 +3,13 @@ class SummariesController < ApplicationController
 
   def index
     search
-    @summaries = @summaries.page(params[:page]).per(5)
-
-    # @q = Summary.ransack(params[:q])
-    # @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user
-    # @followes = []
-    # if params[:q].present?
-    #   if params[:q][:user_name_eq]
-    #     @q = Summary.ransack(params[:q])
-    #     @summaries = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5).includes(:book, :user)
-    #     @followes = []
-    #   end
-    # end
-# @youtube_data = find_videos("要約")
+    @summaries = @summaries.page(params[:page]).per(10)
+    @summary_1 = Summary.find(rand(1..(Summary.count)))
+    @summary_2 = Summary.find(rand(1..(Summary.count)))
+    @summary_3 = Summary.find(rand(1..(Summary.count)))
+    @summary_4 = Summary.find(rand(1..(Summary.count)))
+    @summary_5 = Summary.find(rand(1..(Summary.count)))
+    # @youtube_data = find_videos("要約")
     # if params[:q].present?
     #   if params[:q][:book_title_cont].present?
     #     @youtube_data = find_videos(params[:q][:book_title_cont])
@@ -208,7 +202,7 @@ class SummariesController < ApplicationController
 
   def show
     @favorite = current_user.favorites.find_by(summary_id: @summary.id)
-    @comments = @summary.comments
+    @comments = @summary.comments.order(created_at: :desc)
     @comment = @summary.comments.build
   end
 

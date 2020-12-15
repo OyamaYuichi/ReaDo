@@ -10,6 +10,223 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
+ *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self
  */
+
+/* @import "font-awesome-sprockets"; */
+@import "font-awesome";
+
+.container {
+  width: 1170px;
+  min-width: 1170px;
+  max-width: 1170px;
+}
+body {
+  clear: both;
+  /* height: 2000px; */
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Noto Sans JP',sans-serif;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+
+header{
+  background-color: #bbdaf8;
+  padding: 10px 0px 5px 0px;
+  /* position: fixed;
+  z-index: 995; */
+}
+
+li {
+  list-style: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear:both;
+}
+
+.center {
+  text-align: center;
+}
+
+.size {
+  width: 600px;
+  padding: 20px 0 20px 0;
+  /* height: 600px; */
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #337ab7;
+  border-radius: 30px!important;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+  cursor: pointer!important;
+}
+
+.brand {
+  width: 80px;
+  padding: 0 10px 0 40px;
+}
+.brand-image {
+  width: 55px;
+  height: 55px;
+  box-shadow: none;
+}
+
+.brand-name {
+  text-align: left;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.footer-brand-name {
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.fa-home {
+  padding: 0 20px 0 20px;
+}
+.fa-edit {
+  padding: 0 20px 0 20px;
+}
+.fa-user {
+  padding: 0 20px 0 20px;
+}
+.fa-users {
+  padding: 0 20px 0 20px;
+}
+.fa-sign-out-alt {
+  padding: 0 20px 0 20px;
+}
+
+.fa-user-plus {
+  padding: 0 20px 0 20px;
+}
+.fa-sign-in-alt {
+  padding: 0 20px 0 20px;
+}
+
+.header-content{
+  width: 170px;
+}
+
+.header-name {
+  margin: 0;
+}
+
+.login {
+  font-size: 30px;
+  color: white;
+  padding: 30px 30px 30px 10px;
+}
+
+.login-btn {
+  margin: 50px;
+  padding: 10px 0 0 5px;
+}
+
+.login-icon {
+  color: white;
+  padding: 30px 0px 20px 10px;
+}
+
+.login-message {
+  margin: 50px 0 0 0;
+  font-size: 20px;
+}
+
+.search {
+  background-color: transparent;
+  border: none;
+  color: #337ab7;
+}
+
+.search:hover {
+  color: #0d5594;
+}
+
+.search-name {
+  color: black;
+}
+
+.header-notice {
+  margin-top: 10px;
+  font-size: large;
+}
+
+
+#wrapper {
+  width: 100%;
+  position:relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  margin-top: 100px;
+  background-color: #f5f5f5;
+  }
+
+
+
+  .footer-brand-name {
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .footer-brand-image {
+    width: 55px;
+    height: 55px;
+    box-shadow: none;
+  }
+  .footer-table {
+    table-layout: fixed;
+  }
+
+  .image-right {
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .footer-padding {
+    padding-top: 15px;
+  }

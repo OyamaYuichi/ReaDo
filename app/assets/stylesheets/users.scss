@@ -1,3 +1,24 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-update {
+  margin-top: 30px;
+}
+
+.edit-cancel {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.cancel-account:hover {
+  background-color: #b60f0a;
+}
+.cancel-account {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  font-size: large;
+  margin: 20px 0 50px 0;
+}
+.cancel-message {
+  margin-top: 80px;
+}

@@ -1,26 +1,98 @@
-<table>
-  <tr>
-    <td><%= @book.title%></td>
-  </tr>
-  <tr>
-    <td><%= image_tag(@book.image_url)%></td>
-  </tr>
-  <tr>
-    <td><%= @book.author%></td>
-  </tr>
-  <tr>
-    <td><%= @book.publisher%></td>
-  </tr>
-  <tr>
-    <td>要約数</td>
-    <td><%= @book.summaries.count%></td>
+<table class="book-show-table">
+  <tr class="book-detail">
+    <td class="book-image">
+      <%= link_to image_tag(@book.image_url), @book.url%>
+    </td>
+    <td class="book-desc">
+      <p>
+        <span class="book-title">タイトル　</span>
+        <span class="book-ex"><%= @book.title %></span>
+      </p>
+      <p>
+        <span class="book-title">ジャンル　</span>
+        <span class="book-ex">
+            <%= @category_1 %>,
+          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+            <%= @category_2 %>,
+          <% end %>
+          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+            <%= @category_3 %>
+          <% end %>
+        </span>
+      </p>
+      <p>
+        <span class="book-title">著者　　　</span>
+        <span class="book-ex"><%= @book.author%></span>
+      </p>
+      <p>
+        <span class="book-title">出版社　　</span>
+        <span class="book-ex"><%= @book.publisher %></span>
+      </p>
+      <p>
+        <span class="book-title">要約数　　</span>
+        <span class="book-ex"><%= @book.summaries.count %></span>
+      </p>
+    </td>
   </tr>
 </table>
 
-<div id="reviews_area">
-  <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
-</div>
-  <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+<table class="center text-movie">
+  <tr class="tab book-tab">
+    <td class="select">
+      <h1 class="book-movie"><%= fa_icon("comment-dots") %></h1>
+      <p>レビュー</p>
+    </td>
+    <td class="select-text">
+      <h1 class="book-movie"><%= fa_icon("book") %></h1>
+      <p>テキスト</p>
+    </td>
+    <td>
+      <h1 class="book-movie"><%= fa_icon("tv") %></h1>
+      <p>動画</p>
+    </td>
+  </tr>
+</table>
 
-<%= link_to 'book search', new_book_path %>
-<%= link_to 'Back', summaries_path %>
+<div class="container center book-form">
+<div class="book-show-content">
+
+  <div class="book">
+      <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+    <div id="reviews_area">
+      <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
+    </div>
+  </div>
+
+  <div class="book hide">
+    <% if @summaries.present? %>
+      <div class="summary-table">
+        <% @summaries.each do |summary| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <h3>検索にヒットする要約は見つかりませんでした。</h3>
+    <% end %>
+    <p><%= paginate @summaries %></p>
+  </div>
+
+  <div class="book hide">
+    <h1 >youtube</h1>
+    <% if false %>
+      <% @youtube_data.items.each do |item| %>
+        <% snippet = item.snippet %>
+        <p><%= snippet.title %></p>
+        <p><%= snippet.published_at %><%= snippet.channel_title %></p>
+        <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <% end %>
+    <% end %>
+
+  </div>
+    <%= link_to 'book search', new_book_path %>
+    <%= link_to 'Back', summaries_path %>
+</div>
+</div>

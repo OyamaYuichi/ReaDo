@@ -10,11 +10,16 @@ Faker::Config.locale = :ja
 #   user.save!
 # end
 
-100.times do |i|
-  Summary.create!(
-    content: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false),
-    category: rand(18),
-    user_id: rand(1..30),
-    book_id: rand(1..5),
-  )
-end
+# 100.times do |i|
+#   Summary.create!(
+#     content: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false),
+#     category: rand(18),
+#     user_id: rand(1..30),
+#     book_id: rand(1..15),
+#   )
+# end
+
+# User.all.each do |user|
+#   calc_level = user.summaries.count * 0.6 + user.memos.count * 0.2
+#   user.level = calc_level.floor
+# end

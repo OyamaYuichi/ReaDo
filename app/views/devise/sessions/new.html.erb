@@ -1,26 +1,27 @@
-<h2><%= t('.sign_in') %></h2>
+<div class="container center sign-form">
+  <h2><%= t('.sign_in') %></h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <table class="sign-table">
+    <tr class="field">
+      <td class="td-label"><%= f.label :email %><br /></td>
+      <td class="td-sign"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <tr class="field">
+      <td class="td-label"><%= f.label :password %><br /></td>
+      <td class="td-sign"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+    </tr>
+  </table>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+    <p class="lead-login"><%= link_to "アカウント登録がまだの方はこちら", new_registration_path(resource_name) %><br /></p>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <p class="lead-login"><%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %><br /></p>
+    <% end %>
+
+    <p><%= f.submit t('.sign_in'), class: "sign-up-submit"%></p>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <h2 class="sns-login">SNSアカウントでログイン</h2>
+  <%= render "devise/shared/links" %>
+</div>

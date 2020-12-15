@@ -89,4 +89,5 @@ gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 
 gem 'whenever', require: false
 
-gem 'ransack'
+gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.8.1'

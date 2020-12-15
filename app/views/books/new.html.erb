@@ -1,17 +1,26 @@
-<%= form_tag(new_book_path, method: :get, class: 'form-inline') do %>
-  <%= text_field_tag :title, @title, class: 'form-control', placeholder:'書籍タイトル', size: 40 %>
-  <%= submit_tag '商品を検索', class: 'btn'%>
-<% end %>
-<% if @books %>
-  <% @books.each do |book| %>
-    <img src="<%= book.image_url %>" alt="">
-    <p><%= book.title %></p>
-    <%= form_tag(books_path) do %>
-      <%= hidden_field_tag :isbn, book.isbn %>
-      <%= submit_tag 'save', value: "要約" %>
-      <%= submit_tag 'save', value: "メモ" %>
-    <% end %>
+<div class="container center book-form">
+
+  <%= form_tag(new_book_path, method: :get, class: 'form-inline') do %>
+    <%= text_field_tag :book_title, @title, class: 'form-control', placeholder:'書籍タイトル', size: 40 %>
+    <%= submit_tag '書籍を検索', class: 'btn'%>
   <% end %>
-<% end %>
-<p><%= paginate @books %></p>
-<%= link_to 'Back', summaries_path %>
+
+  <% if @books.present? %>
+    <div class="book-table">
+      <% @books.each do |book| %>
+      <div class="book-content">
+        <p><%= image_tag(book.image_url) %></p>
+        <p><%= book.title %></p>
+        <%= form_tag(books_path) do %>
+          <%= hidden_field_tag :isbn, book.isbn %>
+          <%= submit_tag 'save', value: "要約" %>
+          <%= submit_tag 'save', value: "メモ" %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <p><%= paginate @books %></p>
+
+</div>
