@@ -4,6 +4,10 @@ class BooksController < ApplicationController
   end
 
   def new
+    RakutenWebService.configure do |c|
+      c.application_id = ENV['APPLICATION_ID']
+      c.affiliate_id = ENV['AFFILIATE_ID']
+    end
     @books = []
 
     if params[:book_title].present?
@@ -27,6 +31,10 @@ class BooksController < ApplicationController
   end
 
   def create
+    RakutenWebService.configure do |c|
+      c.application_id = ENV['APPLICATION_ID']
+      c.affiliate_id = ENV['AFFILIATE_ID']
+    end
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
 
     unless @book.persisted?
