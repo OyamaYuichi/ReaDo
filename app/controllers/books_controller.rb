@@ -6,19 +6,24 @@ class BooksController < ApplicationController
   def new
     @books = []
 
-    @title = params[:title]
-    if @title.present?
-      results = RakutenWebService::Books::Book.search({
-        title: @title,
-        hits: 20,
-      })
+    if params[:book_title].present?
+      @title = params[:book_title]
+      if @title.present?
+        results = RakutenWebService::Books::Book.search({
+          title: @title,
+          hits: 20,
+        })
 
-      results.each do |result|
-        book = Book.new(read(result))
-        @books << book
+        results.each do |result|
+          book = Book.new(read(result))
+          @books << book
+        end
       end
+    else
+      @books = Book.all
     end
-    @books = Kaminari.paginate_array(@books).page(params[:page]).per(3)
+
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
   end
 
   def create
