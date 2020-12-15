@@ -4,11 +4,13 @@ class SummariesController < ApplicationController
   def index
     search
     @summaries = @summaries.page(params[:page]).per(10)
-    @summary_1 = Summary.find(rand(1..(Summary.count)))
-    @summary_2 = Summary.find(rand(1..(Summary.count)))
-    @summary_3 = Summary.find(rand(1..(Summary.count)))
-    @summary_4 = Summary.find(rand(1..(Summary.count)))
-    @summary_5 = Summary.find(rand(1..(Summary.count)))
+    if Summary.count > 4
+      @summary_1 = Summary.find(rand(1..(Summary.count)))
+      @summary_2 = Summary.find(rand(1..(Summary.count)))
+      @summary_3 = Summary.find(rand(1..(Summary.count)))
+      @summary_4 = Summary.find(rand(1..(Summary.count)))
+      @summary_5 = Summary.find(rand(1..(Summary.count)))
+    end
     # @youtube_data = find_videos("要約")
     # if params[:q].present?
     #   if params[:q][:book_title_cont].present?
