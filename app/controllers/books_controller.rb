@@ -43,8 +43,38 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @reviews = @book.reviews
+    @reviews = @book.reviews.order(created_at: :desc)
     @review = @book.reviews.build
+    @summaries = @book.summaries.order(created_at: :desc).page(params[:page]).per(20)
+    #@youtube_data = find_videos(@book.title)
+    category = @book.summaries.pluck(:category)
+    if category.count < 2
+      @category_1 = @book.summaries.first.category_i18n
+    elsif category.count < 3
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+    else
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+      @category_3 = @book.summaries.third.category_i18n
+    end
+  end
+
+  def find_videos(keyword, after: 10.years.ago, before: Time.now)
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.key = ENV["YOUTUBE_APIKEY"]
+
+    next_page_token = nil
+    opt = {
+      q: keyword,
+      type: 'video',
+      max_results: 1,
+      order: :relevance,
+      page_token: next_page_token,
+      published_after: after.iso8601,
+      published_before: before.iso8601
+    }
+    service.list_searches(:snippet, opt)
   end
 
   private

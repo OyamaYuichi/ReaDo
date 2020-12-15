@@ -1,2 +1,2 @@
-$("#reviews_area").html("<%= j(render 'reviews/index', { reviews: @review.book.reviews, book: @review.book }) %>")
+$("#reviews_area").html("<%= j(render 'reviews/index', { reviews: @review.book.reviews.order(created_at: :desc), book: @review.book }) %>")
 $("textarea").val('')

@@ -1,7 +1,7 @@
 .book-form {
   margin-top: 30px;
+  margin-bottom: 100px;
 }
-
 .book-table {
   width: 100%;
   display: flex;
@@ -15,3 +15,46 @@
   padding: 9px;
   border-bottom: 1px solid #DBDBDB;
 }
+
+.book-detail {
+  font-size: 20px;
+}
+
+.book-image{
+  text-align: right;
+}
+
+.book-image img {
+  margin-right: 100px;
+  // width: 180px;
+}
+
+.book-desc {
+  text-align: left;
+}
+td.book-desc {
+  padding: 0;
+}
+.book-ex {
+  font-weight: bold;
+}
+
+.book-title {
+  color: gray;
+}
+
+.book-show-table {
+  table-layout: fixed;
+  margin: 30px 0 40px 0;
+}
+
+.book-tab {
+  border-top: solid 1px gainsboro;
+  border-bottom: solid 1px gainsboro;
+}
+
+.select-text {
+  border-left: solid 1px rgb(201, 199, 199);
+  border-right: solid 1px rgb(201, 199, 199);
+}
+
