@@ -12,10 +12,10 @@
         <span class="book-title">ジャンル　</span>
         <span class="book-ex">
             <%= @category_1 %>,
-          <% if @category_2 %>
+          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
             <%= @category_2 %>,
           <% end %>
-          <% if @category_3 %>
+          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
             <%= @category_3 %>
           <% end %>
         </span>
