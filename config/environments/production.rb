@@ -92,8 +92,3 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
-
-RakutenWebService.configure do |c|
-  c.application_id = ENV['APPLICATION_ID']
-  c.affiliate_id = ENV['AFFILIATE_ID']
-end
