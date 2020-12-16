@@ -59,6 +59,7 @@ GEM
       io-like (~> 0.3.0)
     arel (9.0.0)
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -123,6 +124,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.9.0)
@@ -391,6 +393,7 @@ PLATFORMS
 
 DEPENDENCIES
   actiontext!
+  bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   byebug
   capistrano (= 3.6.0)
@@ -405,6 +408,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  ed25519
   enum_help
   faker
   fog-aws
