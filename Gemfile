@@ -55,6 +55,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
   gem 'letter_opener_web'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
@@ -100,5 +102,3 @@ gem 'font-awesome-sass', '~> 5.8.1'
 gem 'fog-aws'
 gem 'unicorn'
 gem 'mini_racer', platforms: :ruby
-gem 'ed25519'
-gem 'bcrypt_pbkdf'
