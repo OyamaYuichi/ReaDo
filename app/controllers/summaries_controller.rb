@@ -191,16 +191,15 @@ class SummariesController < ApplicationController
     @book = Book.find(params[:book_id])
     @summary = @book.summaries.build(summary_params)
     @summary.user_id = current_user.id
-    if params[:back]
-      render :new
+    if @summary.save
+      calc_level
+      current_user.update(level: @read_level.floor)
+      redirect_to summaries_path, notice: "投稿しました！"
     else
-      if @summary.save
-        redirect_to summaries_path, notice: "投稿しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
+
 
   def show
     @favorite = current_user.favorites.find_by(summary_id: @summary.id)
@@ -222,7 +221,16 @@ class SummariesController < ApplicationController
 
   def destroy
     @summary.destroy
+    calc_level
+    current_user.update(level: @read_level.floor)
     redirect_to summaries_path, notice: "削除しました！"
+  end
+
+  def calc_level
+    @read_level = current_user.summaries.count * 0.6
+                  + current_user.memos.count * 0.2
+                  + current_user.reviews.count * 0.1
+                  + current_user.comments.count * 0.1
   end
 
   def find_videos(keyword, after: 10.years.ago, before: Time.now)

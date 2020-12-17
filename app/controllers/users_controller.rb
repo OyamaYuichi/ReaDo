@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-    # @users = User.all.includes(:active_relationships, :passive_relationships, :following, :followers)
+    @users = User.all.order(level: :desc).limit(10)
   end
 
   def show
