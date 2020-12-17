@@ -49,7 +49,7 @@ class BooksController < ApplicationController
     #@youtube_data = find_videos(@book.title)
     category = @book.summaries.pluck(:category)
     if category.count < 1
-      @category_1 = @memo.book.summaries.categories_i18n.first[1]
+      @category_1 = @book.summaries.categories_i18n.first[1]
     elsif category.count < 2
       @category_1 = @book.summaries.first.category_i18n
     elsif category.count < 3

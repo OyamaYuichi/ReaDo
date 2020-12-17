@@ -50,3 +50,38 @@
   font-size: large;
   font-weight: bold;
 }
+
+.notice {
+  margin-top: 15px;
+}
+
+input#memo_email_send {
+  width: 20px;
+  height: 20px;
+}
+
+.memo__element1{
+  display: table-cell;
+  // overflow: hidden;
+  padding: 10px;
+  font-size: 18px;
+}
+.memo__element2{
+  width: 30px;
+  display: table-cell;
+}
+.memo__element3{
+  display: table-cell;
+  // overflow: hidden;
+  padding: 0 10px 10px 10px;
+  font-size: 18px;
+}
+
+textarea#memo_content {
+  width: 550px;
+  height: 300px;
+}
+textarea#memo_action_plan {
+  width: 550px;
+  height: 300px;
+}

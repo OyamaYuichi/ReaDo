@@ -8,6 +8,19 @@ class MemosController < ApplicationController
   def new
     @memo = Memo.new
     @book = Book.find(params[:book_id])
+    category = @book.summaries.pluck(:category)
+    if category.count < 1
+      @category_1 = @book.summaries.categories_i18n.first[1]
+    elsif category.count < 2
+      @category_1 = @book.summaries.first.category_i18n
+    elsif category.count < 3
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+    else
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+      @category_3 = @book.summaries.third.category_i18n
+    end
   end
 
   def create
@@ -72,7 +85,7 @@ class MemosController < ApplicationController
     UserMailer.notify_user().deliver
     calc_level
     current_user.update(level: @read_level.floor)
-    redirect_to memos_path, notice: "削除しました！"
+    redirect_to user_path(current_user), notice: "削除しました！"
   end
 
   def calc_level
