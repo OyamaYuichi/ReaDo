@@ -1,6 +1,25 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
-          :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google facebook twitter)
+  :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google facebook twitter)
+
+  mount_uploader :icon, ImageUploader
+
+  has_many :summaries, dependent: :destroy
+  has_many :memos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_summaries, through: :favorites, source: :summary
+
+  has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
+  has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  validates :name,  presence: true, length: { maximum: 30 }
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  before_validation { email.downcase! }
+  validates :password, presence: true, length: { minimum: 6 }
 
   class << self
     def current_user=(user)
@@ -45,19 +64,6 @@ class User < ApplicationRecord
     user
   end
 
-  mount_uploader :icon, ImageUploader
-
-  has_many :summaries, dependent: :destroy
-  has_many :memos, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :reviews, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :favorite_summaries, through: :favorites, source: :summary
-
-  has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
-  has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
 
   def follow!(other_user)
     active_relationships.create!(followed_id: other_user.id)
