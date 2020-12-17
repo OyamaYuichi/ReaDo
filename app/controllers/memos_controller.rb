@@ -16,7 +16,7 @@ class MemosController < ApplicationController
     @memo.user_id = current_user.id
     if @memo.save
       UserMailer.notify_user().deliver
-      redirect_to memos_path, notice: "投稿しました！"
+      redirect_to summaries_path, notice: "投稿しました！"
     else
       render :new
     end

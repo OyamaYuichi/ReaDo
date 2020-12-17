@@ -1,24 +1,113 @@
-<% if @user.icon? %>
-  <%= image_tag(@user.icon.url) %>
-<% else %>
-  <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" >
-<% end %>
-<%= @user.name %>
-<%= @user.email %>
-<%= @user.profile %>
-<%= "読書レベル" %>
-<%= @level %>
-<%= @user.summaries.count %>
+<div class="block">
+  <div class="block__avator image-right">
+    <% if @user.icon? %>
+      <%= image_tag(@user.icon.url, :size =>'180x180')  %>
+    <% else %>
+      <img src="/assets/favicon.ico" class="icon" alt="ユーザーアイコン" width="180" height="180" >
+    <% end %>
+  </div>
+  <div class="block__text">
+    <p class="user-name"><%= @user.name %></p>
+    <p class="user-profile"><%= @user.profile %></p>
+  </div>
+  <div class="block__control">
+    <% if current_user != @user%>
+      <%= render 'follow_form', user: @user %>
+    <% elsif %>
+      <p><%= link_to 'プロフィール編集', edit_user_registration_path, class: "profile-edit" %></p>
+    <% end %>
+  </div>
+</div>
 
-<p>フォロー</p>
-<%= link_to @user.following.count, following_users_path(id: @user.id)%>
-<p>フォロワー</p>
-<%= link_to @user.followers.count, follower_users_path(id: @user.id)%>
+<table class="center text-movie user-table">
+  <tr class="">
+    <td class="">
+      <h3 class="book-movie"><%= @level %></h3>
+      <p>読書レベル</p>
+    </td>
+    <td class="">
+      <h3 class="book-movie"><%= @user.summaries.count %></h3>
+      <p>投稿数</p></p>
+    </td>
+    <td>
+      <h3 class="book-movie"><%= @user.summaries.count + @favorites.count %></h3>
+      <p>読書数</p>
+    </td>
+    <td>
+      <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id)%></h3>
+      <p>フォロー</p>
+    </td>
+    <td>
+      <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id)%></h3>
+      <p>フォロワー</p></p>
+    </td>
+  </tr>
+</table>
 
-<% if current_user != @user%>
-  <%= render 'follow_form', user: @user %>
-<% end %>
+<table class="center text-movie">
+  <tr class="tab book-tab">
+    <td class="select">
+      <h2 class="book-movie"><%= fa_icon("book") %></h2>
+      <p>投稿</p>
+    </td>
+    <td class="select-text">
+      <h2 class="book-movie"><%= fa_icon("pencil-alt") %></h2>
+      <p>メモ</p></p>
+    </td>
+    <td>
+      <h2 class="book-movie"><%= fa_icon("star") %></h2>
+      <p>お気に入り</p>
+    </td>
+  </tr>
+</table>
 
-<%= link_to 'プロフィール編集', edit_user_registration_path %>
-<%= link_to 'メモ一覧', memos_path %>
-<%= link_to 'Back', summaries_path %>
+
+<div class="container center book-form">
+<div class="book-show-content">
+
+  <div class="book">
+    <% if @summaries.present? %>
+      <div class="summary-table">
+        <% @summaries.each do |summary| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
+            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <p><%= paginate @summaries %></p>
+  </div>
+
+  <div class="book hide">
+    <% if @memos.present? %>
+      <div class="summary-table">
+        <% @memos.each do |memo| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(memo.book.image_url), memo, class: "summary-image"%></p>
+            <p><%= link_to memo.book.title, book_path(memo.book) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <p><%= paginate @memos %></p>
+  </div>
+
+  <div class="book hide">
+    <% if @favorites.present? %>
+      <div class="summary-table">
+        <% @favorites.each do |favorite| %>
+          <div class="summary-content">
+            <p><%= link_to image_tag(favorite.book.image_url), favorite, class: "summary-image"%></p>
+            <p><%= link_to favorite.book.title, book_path(favorite.book) %></p>
+            <p>要約者:<%= link_to favorite.user.name, user_path(favorite.user) %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <p><%= paginate @favorites %></p>
+  </div>
+</div>
+</div>
+

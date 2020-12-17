@@ -6,11 +6,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    calc_level = @user.summaries.count * 0.6
-               + @user.memos.count * 0.2
-               + @user.reviews.count * 0.1
-               + @user.comments.count * 0.1
-    @level = calc_level.floor
+    calc_level
+    @level = @read_level.floor
+    @summaries = @user.summaries.order(created_at: :desc).page(params[:page]).per(20)
+    @memos = @user.memos.order(created_at: :desc).page(params[:page]).per(20)
+    # binding.pry
+    @favorites = @user.favorite_summaries.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  def calc_level
+    @read_level = @user.summaries.count * 0.6
+                  + @user.memos.count * 0.2
+                  + @user.reviews.count * 0.1
+                  + @user.comments.count * 0.1
   end
 
   def following

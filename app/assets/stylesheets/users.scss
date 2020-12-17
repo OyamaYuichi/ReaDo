@@ -22,3 +22,79 @@
 .cancel-message {
   margin-top: 80px;
 }
+
+.user-table {
+  border-top: 1px solid #DBDBDB;
+}
+
+.profile-table {
+  margin: 60px 0 60px 0;
+}
+
+.image-right img {
+  box-shadow: none;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-profile {
+  font-size: 16px;
+}
+
+.block{
+  display: table;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.block .block__avator{
+  vertical-align: top;
+  display: table-cell;
+  width: 460px;
+}
+
+.block .block__text{
+  vertical-align: top;
+  display: table-cell;
+  padding: 10px 0 10px 10px;
+}
+
+.block .block__control{
+  vertical-align: top;
+  display: table-cell;
+  width: 440px;
+  padding: 0px 10px 10px 10px;
+}
+
+.profile-edit {
+  background-color: #337ab7;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+.profile-edit:hover {
+  background-color: #084479;
+  color: white;
+}
+
+.profile-edit a:hover {
+  color: white;
+}
+
+
+.follow-btn {
+  background-color: #337ab7;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.follow-btn:hover {
+  background-color: #084479;
+}
