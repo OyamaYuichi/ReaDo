@@ -63,6 +63,12 @@
   display: table-cell;
   padding: 10px 0 10px 10px;
 }
+.block .block__text__follow{
+  vertical-align: top;
+  display: table-cell;
+  padding: 0px 0 10px 10px;
+}
+
 
 .block .block__control{
   vertical-align: top;
@@ -97,4 +103,16 @@
 
 .follow-btn:hover {
   background-color: #084479;
+}
+
+.follow-block {
+  border-bottom: solid 1px gainsboro;
+  padding-bottom: 20px;
+}
+
+.follow-profile {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
