@@ -3,22 +3,18 @@ class SummariesController < ApplicationController
 
   def index
     search
-    @summaries = @summaries.page(params[:page]).per(10)
+    @summaries = @summaries.page(params[:page]).per(30)
     if Summary.count > 4
-      @summary_1 = Summary.find(rand(1..(Summary.count)))
-      @summary_2 = Summary.find(rand(1..(Summary.count)))
-      @summary_3 = Summary.find(rand(1..(Summary.count)))
-      @summary_4 = Summary.find(rand(1..(Summary.count)))
-      @summary_5 = Summary.find(rand(1..(Summary.count)))
+      @summary_1 = Summary.all.sample
+      @summary_2 = Summary.all.sample
+      @summary_3 = Summary.all.sample
+      @summary_4 = Summary.all.sample
+      @summary_5 = Summary.all.sample
     end
-    # @youtube_data = find_videos("要約")
-    # if params[:q].present?
-    #   if params[:q][:book_title_cont].present?
-    #     @youtube_data = find_videos(params[:q][:book_title_cont])
-    #   else
-    #     @youtube_data = find_videos("要約")
-    #   end
-    # end
+    @youtube_data = find_videos("要約")
+    if params[:title].present?
+      @youtube_data = find_videos(params[:title])
+    end
   end
 
   def search
@@ -241,7 +237,7 @@ class SummariesController < ApplicationController
     opt = {
       q: keyword,
       type: 'video',
-      max_results: 1,
+      max_results: 10,
       order: :relevance,
       page_token: next_page_token,
       published_after: after.iso8601,

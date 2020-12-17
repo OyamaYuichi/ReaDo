@@ -46,7 +46,7 @@ class BooksController < ApplicationController
     @reviews = @book.reviews.order(created_at: :desc)
     @review = @book.reviews.build
     @summaries = @book.summaries.order(created_at: :desc).page(params[:page]).per(20)
-    #@youtube_data = find_videos(@book.title)
+    @youtube_data = find_videos(@book.title)
     category = @book.summaries.pluck(:category)
     if category.count < 1
       @category_1 = @book.summaries.categories_i18n.first[1]
@@ -70,7 +70,7 @@ class BooksController < ApplicationController
     opt = {
       q: keyword,
       type: 'video',
-      max_results: 1,
+      max_results: 10,
       order: :relevance,
       page_token: next_page_token,
       published_after: after.iso8601,

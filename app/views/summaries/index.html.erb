@@ -31,18 +31,15 @@
     </div>
 
     <div class="summary hide">
-      <h1 >youtube</h1>
-      <% if false %>
-      <% @youtube_data.items.each do |item| %>
-        <% snippet = item.snippet %>
-        <p><%= snippet.title %></p>
-        <p><%= snippet.published_at %><%= snippet.channel_title %></p>
-        <div><iframe width="300" height="200" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <% if @youtube_data %>
+        <% @youtube_data.items.each do |item| %>
+          <% snippet = item.snippet %>
+          <h3><%= snippet.title %></h3>
+          <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <% end %>
+      <% elsif %>
+        <h3>本日は動画が表示できません。</h3>
       <% end %>
-      <% end %>
-
-      <%= link_to '要約を書く', new_book_path %>
-      <%= link_to 'book 一覧', books_path %>
     </div>
 
   </div>
