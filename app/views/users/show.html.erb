@@ -87,6 +87,13 @@
           <div class="summary-content">
             <p><%= link_to image_tag(memo.book.image_url), memo, class: "summary-image"%></p>
             <p><%= link_to memo.book.title, book_path(memo.book) %></p>
+            <% if current_user == memo.user %>
+            <% if memo.email_send == true %>
+              <p>通知:　ON</p>
+            <% else %>
+              <p>通知:　OFF</p>
+            <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>

@@ -11,41 +11,83 @@
     </div>
   <% end %>
 
-  <table>
-    <tr>
-      <td><%= @book.title%></td>
-    </tr>
-    <tr>
-      <td><%= image_tag(@book.image_url)%></td>
-    </tr>
-    <tr>
-      <td><%= @book.author%></td>
-    </tr>
-    <tr>
-      <td><%= @book.publisher%></td>
+  <table class="book-show-table">
+  <tr class="book-detail">
+    <td class="book-image">
+      <%= image_tag(@book.image_url) %>
+    </td>
+    <td class="book-desc">
+      <p>
+        <span class="book-title">タイトル　</span>
+        <span class="book-ex"><%= @book.title %></span>
+      </p>
+      <p>
+        <span class="book-title">ジャンル　</span>
+        <span class="book-ex">
+            <%= @category_1 %>
+          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+            ,　<%= @category_2 %>
+          <% end %>
+          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+            ,　<%= @category_3 %>
+          <% end %>
+        </span>
+      </p>
+      <p>
+        <span class="book-title">著者　　　</span>
+        <span class="book-ex"><%= @book.author %></span>
+      </p>
+      <p>
+        <span class="book-title">出版社　　</span>
+        <span class="book-ex"><%= @book.publisher %></span>
+      </p>
+      <p class="notice">
+        <span><%= form.label :email_send, "通知" %>　　　</span>
+        <span>
+          <%= form.hidden_field :email_send, value: false %>
+          <%= form.check_box :email_send, {}, true, false %>
+        </span>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<div class="container">
+  <table class="memo-table center">
+    <tr class="">
+      <td>
+        <p class="title-memo">メモ</p>
+      </td>
+      <td>
+        <p class="title-action-plan">アクションプラン</p>
+      </td>
     </tr>
   </table>
 
-  <div class="field">
-    <p><%= form.label :memo %></p>
-    <p><%= form.text_area :content %></p>
-  </div>
 
-  <div class="field">
-    <p><%= form.label :action_plan %></p>
-    <p><%= form.text_area :action_plan %></p>
-  </div>
+  <div class="memo-block">
+    <div class="memo__element1">
+      <%= form.text_area :content %>
+    </div>
 
-  <div class="field">
-    <p><%= form.label :email_send, "通知" %></p>
-      <%= form.hidden_field :email_send, value: false %>
-    <p><%= form.check_box :email_send, {}, true, false %></p>
-  </div>
+    <div class="memo__element2">
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="memo__element3">
+      <%= form.text_area :action_plan %>
+    </div>
   </div>
+</div>
+
+<hr>
+
+<div class="center">
+  <%= form.submit "更新", class:"search-submit" %>
+</div>
+
+<br>
+<br>
+
 <% end %>
-
-<%= link_to 'Show', @memo %> |
-<%= link_to 'Back', summaries_path %>
