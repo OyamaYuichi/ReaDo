@@ -1,36 +1,84 @@
-<table>
-  <tr>
-    <td><%= @memo.book.title %></td>
-  </tr>
-  <tr>
-    <td><%= image_tag(@memo.book.image_url)%></td>
-  </tr>
-  <tr>
-    <td><%= @memo.book.author %></td>
-  </tr>
-  <tr>
-    <td><%= @memo.book.publisher %></td>
-  </tr>
-  <tr>
-    <td><hr></td>
-  </tr>
-  <tr>
-    <td><%= @memo.content %></td>
-  </tr>
-  <tr>
-    <td><%= @memo.action_plan %></td>
-  </tr>
-  <tr>
-    <td><hr></td>
-  </tr>
-  <tr>
-    <% if @memo.email_send == true %>
-      <td><p>通知オン</p></td>
-    <% else %>
-      <td><p>通知オフ</p></td>
-    <% end %>
+<table class="book-show-table">
+  <tr class="book-detail">
+    <td class="book-image">
+      <%= link_to image_tag(@memo.book.image_url), book_path(@memo.book)%>
+    </td>
+    <td class="book-desc">
+      <p>
+        <span class="book-title">タイトル　</span>
+        <span class="book-ex"><%= link_to @memo.book.title, book_path(@memo.book) %></span>
+      </p>
+      <p>
+        <span class="book-title">ジャンル　</span>
+        <span class="book-ex">
+            <%= @category_1 %>
+          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+            ,　<%= @category_2 %>
+          <% end %>
+          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+            ,　<%= @category_3 %>
+          <% end %>
+        </span>
+      </p>
+      <p>
+        <span class="book-title">著者　　　</span>
+        <span class="book-ex"><%= @memo.book.author %></span>
+      </p>
+      <p>
+        <span class="book-title">出版社　　</span>
+        <span class="book-ex"><%= @memo.book.publisher %></span>
+      </p>
+      <p>
+        <span class="book-title">ユーザー　</span>
+        <span class="book-ex"><%= link_to @memo.user.name, user_path(@memo.user) %></span>
+      </p>
+      <% if current_user == @memo.user%>
+      <p>
+        <span class="book-title">通知　　　</span>
+        <span class="book-ex">
+          <% if @memo.email_send == true %>
+            <%= "ON" %>
+          <% else %>
+            <%= "OFF" %>
+          <% end %>
+        </span>
+      </p>
+      <% end %>
+    </td>
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_memo_path(@memo) %>
-<%= link_to 'Destroy', @memo, method: :delete, data: { confirm: 'Are you sure?' } %>
+<hr>
+
+<div class="container book-form">
+  <table class="memo-table center">
+    <tr class="">
+      <td>
+        <p class="title-memo">メモ</p>
+      </td>
+      <td>
+        <p class="title-action-plan">アクションプラン</p>
+      </td>
+    </tr>
+  </table>
+
+  <div class="memo-block">
+    <div class="block__element1">
+      <%= @memo.content %>
+    </div>
+
+    <div class="block__element2">
+    </div>
+
+    <div class="block__element3">
+      <%= @memo.action_plan %>
+    </div>
+  </div>
+
+  <% if @memo.user_id == current_user.id%>
+    <div class="right-review">
+      <%= link_to fa_icon("edit 2x"), edit_memo_path(@memo) %>　
+      <%= link_to fa_icon("trash-alt 2x"), @memo, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</div>

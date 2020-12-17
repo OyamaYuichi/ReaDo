@@ -1,3 +1,52 @@
-// Place all the styles related to the memos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.table-fixed {
+  table-layout: fixed;
+  padding-top: 50px;
+}
+
+.memo-content {
+  border: solid 1px gainsboro;
+  padding: 20px;
+  word-break: break-all;
+}
+
+.memo-actionplan {
+  border: solid 1px gainsboro;
+  padding-left: 20px;
+  padding-right: 20px;
+  word-break: break-all;
+}
+
+.memo-block{
+  display: table;
+  table-layout: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.block__element1{
+  display: table-cell;
+  border: 1px solid #ccc;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 10px;
+  font-size: 18px;
+}
+.block__element2{
+  width: 30px;
+  display: table-cell;
+}
+.block__element3{
+  display: table-cell;
+  border: 1px solid #ccc;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 0 10px 10px 10px;
+  font-size: 18px;
+}
+
+.memo-table {
+  table-layout: fixed;
+  font-size: large;
+  font-weight: bold;
+}

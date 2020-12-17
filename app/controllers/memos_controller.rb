@@ -26,16 +26,42 @@ class MemosController < ApplicationController
 
 
   def show
+    category = @memo.book.summaries.pluck(:category)
+    if category.count < 1
+      @category_1 = @memo.book.summaries.categories_i18n.first[1]
+    elsif category.count < 2
+      @category_1 = @memo.book.summaries.first.category_i18n
+    elsif category.count < 3
+      @category_1 = @memo.book.summaries.first.category_i18n
+      @category_2 = @memo.book.summaries.second.category_i18n
+    else
+      @category_1 = @memo.book.summaries.first.category_i18n
+      @category_2 = @memo.book.summaries.second.category_i18n
+      @category_3 = @memo.book.summaries.third.category_i18n
+    end
   end
 
   def edit
     @book = @memo.book
+    category = @book.summaries.pluck(:category)
+    if category.count < 1
+      @category_1 = @book.summaries.categories_i18n.first[1]
+    elsif category.count < 2
+      @category_1 = @book.summaries.first.category_i18n
+    elsif category.count < 3
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+    else
+      @category_1 = @book.summaries.first.category_i18n
+      @category_2 = @book.summaries.second.category_i18n
+      @category_3 = @book.summaries.third.category_i18n
+    end
   end
 
   def update
     if @memo.update(memo_params)
       UserMailer.notify_user().deliver
-      redirect_to memos_path, notice: "編集しました！"
+      redirect_to memo_path(@memo), notice: "編集しました！"
     else
       render :edit
     end
