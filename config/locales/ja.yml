@@ -51,6 +51,7 @@ ja:
     login: ログイン
     action_plan: アクションプラン
     create_review: レビューを書く
+    create_comment: コメントを書く
     please_select: 選択してください
     text: テキスト
     not_find: 検索にヒットする要約は見つかりませんでした。
@@ -64,6 +65,9 @@ ja:
     read_count: 読書数
     read_level: 読書レベル
     edit_profile: プロフィール編集
+    create_notice: 投稿しました
+    edit_notice: 編集しました
+    destroy_notice: 削除しました
 
   enums:
     summary:

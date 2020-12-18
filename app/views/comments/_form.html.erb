@@ -1,16 +1,13 @@
 <%= form_with(model: [summary, comment]) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
       <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <h3><%= message %></h3>
       <% end %>
-      </ul>
     </div>
   <% end %>
   <div class="review-text-area">
-    <p><%= form.text_area :content, class: 'form-control', placeholder:'コメントする' %></p>
+    <p><%= form.text_area :content, class: 'form-control', placeholder:t('view.create_comment') %></p>
   </div>
   <div class="actions right-submit">
     <p class="review-submit"><%= form.submit value=t('view.submit') %></p>

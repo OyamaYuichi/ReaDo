@@ -8,7 +8,7 @@ ja:
         content: 内容
         category: カテゴリー
       memo:
-        memo: メモ
+        content: メモ
         action_plan: アクションプラン
       user:
         title: タイトル

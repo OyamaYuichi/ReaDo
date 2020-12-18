@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
         current_user.update(level: @read_level.floor)
         format.js { render :index }
       else
-        format.html { redirect_to summary_path(@summary), notice: '投稿できませんでした...' }
+        format.html { redirect_to summary_path(@summary) }
       end
     end
   end
@@ -20,7 +20,6 @@ class CommentsController < ApplicationController
   def edit
     @comment = @summary.comments.find(params[:id])
     respond_to do |format|
-      flash.now[:notice] = 'コメントの編集中'
       format.js { render :edit }
     end
   end
@@ -29,10 +28,8 @@ class CommentsController < ApplicationController
     @comment = @summary.comments.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
-        flash.now[:notice] = 'コメントが編集されました'
         format.js { render :index }
       else
-        flash.now[:notice] = 'コメントの編集に失敗しました'
         format.js { render :edit_error }
       end
     end
@@ -44,7 +41,6 @@ class CommentsController < ApplicationController
     calc_level
     current_user.update(level: @read_level.floor)
     respond_to do |format|
-      flash.now[:notice] = 'コメントが削除されました'
       format.js { render :index }
     end
   end

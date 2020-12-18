@@ -1,13 +1,9 @@
 <%= form_with(model: [book, summary], local: true) do |form| %>
   <% if summary.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(summary.errors.count, "error") %> prohibited this summary from being saved:</h2>
-
-      <ul>
       <% summary.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <h4><%= message %></h4>
       <% end %>
-      </ul>
     </div>
   <% end %>
 

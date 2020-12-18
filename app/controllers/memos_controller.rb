@@ -27,7 +27,7 @@ class MemosController < ApplicationController
       UserMailer.notify_user().deliver
       calc_level
       current_user.update(level: @read_level.floor)
-      redirect_to summaries_path, notice: "投稿しました！"
+      redirect_to summaries_path, notice: t('view.create_notice')
     else
       render :new
     end
@@ -70,8 +70,9 @@ class MemosController < ApplicationController
   def update
     if @memo.update(memo_params)
       UserMailer.notify_user().deliver
-      redirect_to memo_path(@memo), notice: "編集しました！"
+      redirect_to memo_path(@memo), notice: t('view.edit_notice')
     else
+      @book = @memo.book
       render :edit
     end
   end
@@ -81,7 +82,7 @@ class MemosController < ApplicationController
     UserMailer.notify_user().deliver
     calc_level
     current_user.update(level: @read_level.floor)
-    redirect_to user_path(current_user), notice: "削除しました！"
+    redirect_to user_path(current_user), notice: t('view.destroy_notice')
   end
 
   def calc_level

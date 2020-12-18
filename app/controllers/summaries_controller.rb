@@ -191,7 +191,7 @@ class SummariesController < ApplicationController
     if @summary.save
       calc_level
       current_user.update(level: @read_level.floor)
-      redirect_to summaries_path, notice: "投稿しました！"
+      redirect_to summaries_path, notice: t('view.create_notice')
     else
       render :new
     end
@@ -210,8 +210,9 @@ class SummariesController < ApplicationController
 
   def update
     if @summary.update(summary_params)
-      redirect_to summaries_path, notice: "編集しました！"
+      redirect_to summaries_path, notice: t('view.edit_notice')
     else
+      @book = @summary.book
       render :edit
     end
   end
@@ -220,7 +221,7 @@ class SummariesController < ApplicationController
     @summary.destroy
     calc_level
     current_user.update(level: @read_level.floor)
-    redirect_to summaries_path, notice: "削除しました！"
+    redirect_to summaries_path, notice: t('view.destroy_notice')
   end
 
   def calc_level

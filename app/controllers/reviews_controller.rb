@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
         current_user.update(level: @read_level.floor)
         format.js { render :index }
       else
-        format.html { redirect_to book_path(@book), notice: '投稿できませんでした...' }
+        format.html { redirect_to book_path(@book) }
       end
     end
   end
@@ -19,7 +19,6 @@ class ReviewsController < ApplicationController
   def edit
     @review = @book.reviews.find(params[:id])
     respond_to do |format|
-      flash.now[:notice] = 'コメントの編集中'
       format.js { render :edit }
     end
   end
@@ -28,10 +27,8 @@ class ReviewsController < ApplicationController
     @review = @book.reviews.find(params[:id])
       respond_to do |format|
         if @review.update(review_params)
-          flash.now[:notice] = 'コメントが編集されました'
           format.js { render :index }
         else
-          flash.now[:notice] = 'コメントの編集に失敗しました'
           format.js { render :edit_error }
         end
       end
@@ -43,7 +40,6 @@ class ReviewsController < ApplicationController
     calc_level
     current_user.update(level: @read_level.floor)
     respond_to do |format|
-      flash.now[:notice] = 'コメントが削除されました'
       format.js { render :index }
     end
   end

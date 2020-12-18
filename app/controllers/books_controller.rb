@@ -34,7 +34,7 @@ class BooksController < ApplicationController
       @book = Book.new(read(results.first))
       @book.save
     end
-    if params[:commit] == "要約"
+    if params[:commit] == t('view.summary')
       redirect_to new_book_summary_path(@book)
     else
       redirect_to new_book_memo_path(@book)
