@@ -1,8 +1,8 @@
 <div class="container center book-form">
 
   <%= form_tag(new_book_path, method: :get, class: 'form-inline') do %>
-    <%= text_field_tag :book_title, @title, class: 'form-control', placeholder:'書籍タイトル', size: 40 %>
-    <%= submit_tag '書籍を検索', class: 'btn'%>
+    <%= text_field_tag :book_title, @title, class: 'form-control', placeholder:t('view.summary_title'), size: 40 %>
+    <%= submit_tag t('view.search_summary'), class: 'btn'%>
   <% end %>
 
   <% if @books.present? %>
@@ -13,8 +13,8 @@
         <p><%= book.title %></p>
         <%= form_tag(books_path) do %>
           <%= hidden_field_tag :isbn, book.isbn %>
-          <%= submit_tag 'save', value: "要約" %>
-          <%= submit_tag 'save', value: "メモ" %>
+          <%= submit_tag 'save', value: t('view.summary') %>
+          <%= submit_tag 'save', value: t('view.memo') %>
         <% end %>
       </div>
       <% end %>

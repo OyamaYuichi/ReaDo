@@ -8,7 +8,63 @@ ja:
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
   view:
+    summary_title: 書籍タイトル
+    search_summary: 書籍を検索
+    summary: 要約
+    memo: メモ
+    title: タイトル
+    genre: ジャンル
+    author: 著者
+    publisher: 出版社
+    summary_count: 要約数
+    review: レビュー
+    movie: 動画
+    summary_user: 要約者
+    not_summary: この書籍の要約はありません。
+    not_movie: 本日は動画が表示できません。
     category: カテゴリー
+    submit: 投稿
+    update: 更新
+    are_you_sure: 本当に削除しますか？
+    profile_image: プロフィール画像
+    user: ユーザー
+    user_name: ユーザーネーム
+    profile: 自己紹介
+    cancel: キャンセル
+    to_login: アカウント登録がお済みの方はこちら
+    to_registration: アカウント登録がまだの方はこちら
+    sns_login: SNSアカウントでログイン
+    sns_registration: SNSアカウントで登録
+    forget_password: パスワードを忘れた方はこちら
+    home: ホーム
+    search: 検索
+    follow: フォロー
+    reader: 読書家
+    profile: プロフィール
+    notice: 通知
+    not_use: この機能はまだ使えません。
+    logout: ログアウト
+    logout_confirm: ログアウトしますか？
+    login_message: ログインしてください
+    to_login_screen: ログイン画面へ
+    registration: 新規登録
+    login: ログイン
+    action_plan: アクションプラン
+    create_review: レビューを書く
+    please_select: 選択してください
+    text: テキスト
+    not_find: 検索にヒットする要約は見つかりませんでした。
+    not_search: 本日は動画の検索ができません。
+    comment: コメント
+    favorite: お気に入り
+    not_favorite: お気に入り解除
+    not_follow: フォローを解除
+    follower: フォロワー
+    submit_count: 投稿数
+    read_count: 読書数
+    read_level: 読書レベル
+    edit_profile: プロフィール編集
+
   enums:
     summary:
       category:

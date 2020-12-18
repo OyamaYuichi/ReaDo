@@ -5,11 +5,11 @@
     </td>
     <td class="book-desc">
       <p>
-        <span class="book-title">タイトル　</span>
+        <span class="book-title"><%= t('view.title') %>　</span>
         <span class="book-ex"><%= @book.title %></span>
       </p>
       <p>
-        <span class="book-title">ジャンル　</span>
+        <span class="book-title"><%= t('view.genre') %>　</span>
         <span class="book-ex">
             <%= @category_1 %>
           <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
@@ -21,15 +21,15 @@
         </span>
       </p>
       <p>
-        <span class="book-title">著者　　　</span>
+        <span class="book-title"><%= t('view.author') %>　　　</span>
         <span class="book-ex"><%= @book.author%></span>
       </p>
       <p>
-        <span class="book-title">出版社　　</span>
+        <span class="book-title"><%= t('view.publisher') %>　　</span>
         <span class="book-ex"><%= @book.publisher %></span>
       </p>
       <p>
-        <span class="book-title">要約数　　</span>
+        <span class="book-title"><%= t('view.summary_count') %>　　</span>
         <span class="book-ex"><%= @book.summaries.count %></span>
       </p>
     </td>
@@ -40,15 +40,15 @@
   <tr class="tab book-tab">
     <td class="select">
       <h1 class="book-movie"><%= fa_icon("comment-dots") %></h1>
-      <p>レビュー</p>
+      <p><%= t('view.review') %></p>
     </td>
     <td class="select-text">
       <h1 class="book-movie"><%= fa_icon("book") %></h1>
-      <p>テキスト</p>
+      <p><%= t('view.summary') %></p>
     </td>
     <td>
       <h1 class="book-movie"><%= fa_icon("tv") %></h1>
-      <p>動画</p>
+      <p><%= t('view.movie') %></p>
     </td>
   </tr>
 </table>
@@ -70,12 +70,12 @@
           <div class="summary-content">
             <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
             <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+            <p><%= t('view.summary_user') %>:<%= link_to summary.user.name, user_path(summary.user) %></p>
           </div>
         <% end %>
       </div>
     <% else %>
-      <h3>この書籍の要約はありません。</h3>
+      <h3><%= t('view.not_summary') %></h3>
     <% end %>
     <p><%= paginate @summaries %></p>
   </div>
@@ -88,7 +88,7 @@
         <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
       <% end %>
     <% elsif %>
-      <h3>本日は動画が表示できません。</h3>
+      <h3><%= t('view.not_movie') %></h3>
     <% end %>
   </div>
 </div>

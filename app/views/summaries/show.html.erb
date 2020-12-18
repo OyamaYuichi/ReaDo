@@ -5,25 +5,25 @@
     </td>
     <td class="book-desc">
       <p>
-        <span class="book-title">タイトル　</span>
+        <span class="book-title"><%= t('view.title') %>　</span>
         <span class="book-ex"><%= link_to @summary.book.title, book_path(@summary.book) %></span>
       </p>
       <p>
-        <span class="book-title">ジャンル　</span>
+        <span class="book-title"><%= t('view.genre') %>　</span>
         <span class="book-ex">
             <%= @summary.category_i18n %>
         </span>
       </p>
       <p>
-        <span class="book-title">著者　　　</span>
+        <span class="book-title"><%= t('view.author') %>　　　</span>
         <span class="book-ex"><%= @summary.book.author %></span>
       </p>
       <p>
-        <span class="book-title">出版社　　</span>
+        <span class="book-title"><%= t('view.publisher') %>　　</span>
         <span class="book-ex"><%= @summary.book.publisher %></span>
       </p>
       <p>
-        <span class="book-title">要約者　　</span>
+        <span class="book-title"><%= t('view.summary_user') %>　　</span>
         <span class="book-ex"><%= link_to @summary.user.name, user_path(@summary.user) %></span>
       </p>
     </td>
@@ -34,17 +34,14 @@
   <tr class="tab book-tab">
     <td class="select select-text">
       <h1 class="book-movie"><%= fa_icon("book") %></h1>
-      <p>要約</p>
+      <p><%= t('view.summary') %></p>
     </td>
     <td>
       <h1 class="book-movie"><%= fa_icon("comment-dots") %></h1>
-      <p>コメント</p>
+      <p><%= t('view.comment') %></p>
     </td>
   </tr>
 </table>
-
-
-
 
 <div class="container center summary-show-content">
   <div class="content">
@@ -66,9 +63,9 @@
 
       <% unless @summary.user_id == current_user.id %>
         <% if @favorite.present? %>
-          <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+          <%= link_to t('view.not_favorite'), favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
         <% else %>
-          <%= link_to 'お気に入り', favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
+          <%= link_to t('view.favorite'), favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
         <% end %>
       <% end %>
     </div>

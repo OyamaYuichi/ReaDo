@@ -15,6 +15,7 @@ class SummariesController < ApplicationController
     if params[:title].present?
       @youtube_data = find_videos(params[:title])
     end
+    @youtube_data_2 = ["N-fT1KjtGGA", "21aJYzS_Sxc", "cEj48QKHl3A", "SnG8OxmZOKU", "1h8vTIRJpdc", "wn9xelq7bLg", "KcUyFrb5cf4", "uWHH8PpnJtU", "7ZZwjUJdcoY", "ZsSZtKWgFmI"]
   end
 
   def search
@@ -243,7 +244,10 @@ class SummariesController < ApplicationController
       published_after: after.iso8601,
       published_before: before.iso8601
     }
-    service.list_searches(:snippet, opt)
+    begin
+      service.list_searches(:snippet, opt)
+    rescue
+    end
   end
 
   private

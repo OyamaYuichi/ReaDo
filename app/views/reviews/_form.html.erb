@@ -10,9 +10,9 @@
     </div>
   <% end %>
   <div class="review-text-area">
-    <p><%= form.text_area :content, class: 'form-control', placeholder:'レビューを書く' %></p>
+    <p><%= form.text_area :content, class: 'form-control', placeholder: t('view.create_review') %></p>
   </div>
   <div class="actions right-submit">
-    <p class="review-submit"><%= form.submit value="投稿" %></p>
+    <p class="review-submit"><%= form.submit value=t('view.submit') %></p>
   </div>
 <% end %>

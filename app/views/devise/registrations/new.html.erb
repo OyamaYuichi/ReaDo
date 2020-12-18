@@ -6,7 +6,7 @@
 
   <table class="sign-table">
     <tr class="field">
-      <td class="td-label"><%= f.label :ユーザーネーム %><br /></td>
+      <td class="td-label"><%= f.label :name %><br /></td>
       <td class="td-sign"><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
     </tr>
 
@@ -31,10 +31,10 @@
     </tr>
 
   </table>
-    <p class="lead-login"><%= link_to "アカウント登録がお済みの方はこちら", new_session_path(resource_name) %><br /></p>
+    <p class="lead-login"><%= link_to t('view.to_login'), new_session_path(resource_name) %><br /></p>
     <p><%= f.submit t('.sign_up'), class: "sign-up-submit"%></p>
   <% end %>
 
-  <h2 class="sns-login">SNSアカウントで登録</h2>
+  <h2 class="sns-login"><%= t('view.sns_registration') %></h2>
   <%= render "devise/shared/links" %>
 </div>

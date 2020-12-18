@@ -6,17 +6,17 @@
 
 <table class="sign-table">
   <tr class="field">
-    <td class="td-label"><%= f.label :プロフィール画像 %></td>
+    <td class="td-label"><%= f.label :icon %></td>
     <td class="td-sign"><%= f.file_field :icon %></td>
   </tr>
 
   <tr class="field">
-    <td class="td-label"><%= f.label :ユーザーネーム %><br /></td>
+    <td class="td-label"><%= f.label :name %><br /></td>
     <td class="td-sign"><%= f.text_field :name, autofocus: true, class: "form-control" %></t>
   </tr>
 
   <tr class="field">
-    <td class="td-label"><%= f.label :自己紹介 %><br /></td>
+    <td class="td-label"><%= f.label :profile %><br /></td>
     <td class="td-sign"><%= f.text_area :profile, autofocus: true, class: "form-control" %></td>
   </tr>
 
@@ -26,7 +26,7 @@
   </tr>
 </table>
 
-<p class="edit-cancel"><%= link_to "キャンセル", user_path(current_user.id) %></p>
+<p class="edit-cancel"><%= link_to t('view.cancel'), user_path(current_user.id) %></p>
 <p><%= f.submit t('.update'), class: "sign-up-submit user-update"%></p>
 
 <% end %>

@@ -2,11 +2,11 @@
   <tr class="tab">
     <td class="select">
       <h1 class="book-movie"><%= fa_icon("book") %></h1>
-      <p>テキスト</p>
+      <p><%= t('view.text') %></p>
     </td>
     <td>
       <h1 class="book-movie"><%= fa_icon("tv") %></h1>
-      <p>動画</p>
+      <p><%= t('view.movie') %></p>
     </td>
   </tr>
 </table>
@@ -25,7 +25,7 @@
         <% end %>
       </div>
     <% else %>
-      <h3>検索にヒットする要約は見つかりませんでした。</h3>
+      <h3><%= t('view.not_find') %></h3>
     <% end %>
     <p><%= paginate @summaries %></p>
     </div>
@@ -38,7 +38,10 @@
           <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <% end %>
       <% elsif %>
-        <h3>本日は動画が表示できません。</h3>
+        <h4 class="movie-message"><%= t('view.not_search') %></h4>
+        <% @youtube_data_2.each do |item| %>
+          <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <% end %>
       <% end %>
     </div>
 

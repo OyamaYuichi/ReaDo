@@ -18,21 +18,21 @@
     </td>
     <td class="book-desc">
       <p>
-        <span class="book-title">タイトル　</span>
+        <span class="book-title"><%= t('view.title') %>　</span>
         <span class="book-ex"><%= @book.title%></span>
       </p>
       <p>
-        <span class="book-title">著者　　　</span>
+        <span class="book-title"><%= t('view.author') %>　　　</span>
         <span class="book-ex"><%= @book.author%></span>
       </p>
       <p>
-        <span class="book-title">出版社　　</span>
+        <span class="book-title"><%= t('view.publisher') %>　　</span>
         <span class="book-ex"><%= @book.publisher%></span>
       </p>
       <p class="create-category">
-        <span class="book-title">ジャンル　</span>
+        <span class="book-title"><%= t('view.genre') %>　</span>
         <span>
-          <%= form.select :category, Summary.categories_i18n.invert, include_blank: '選択してください' %>
+          <%= form.select :category, Summary.categories_i18n.invert, include_blank: t('view.please_select') %>
         </span>
       </p>
     </td>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="center">
-      <%= form.submit "更新", class:"search-submit" %>
+      <%= form.submit t('view.update'), class:"search-submit" %>
     </div>
   </div>
 <% end %>

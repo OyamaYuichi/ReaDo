@@ -76,7 +76,10 @@ class BooksController < ApplicationController
       published_after: after.iso8601,
       published_before: before.iso8601
     }
-    service.list_searches(:snippet, opt)
+    begin
+      service.list_searches(:snippet, opt)
+    rescue
+    end
   end
 
   private

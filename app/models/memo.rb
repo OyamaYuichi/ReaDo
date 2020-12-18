@@ -4,5 +4,5 @@ class Memo < ApplicationRecord
 
   validates :content, presence: true
   validates :action_plan, presence: true
-  validates :email_send, presence: true
+  validates :email_send, inclusion: [true, false]
 end

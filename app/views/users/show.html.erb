@@ -3,7 +3,7 @@
     <% if @user.icon? %>
       <%= image_tag(@user.icon.url, :size =>'180x180')  %>
     <% else %>
-      <img src="/assets/favicon.ico" class="icon" alt="ユーザーアイコン" width="180" height="180" >
+      <img src="/assets/favicon.ico" class="icon" width="180" height="180" >
     <% end %>
   </div>
   <div class="block__text">
@@ -14,7 +14,7 @@
     <% if current_user != @user%>
       <%= render 'follow_form', user: @user %>
     <% elsif %>
-      <p><%= link_to 'プロフィール編集', edit_user_registration_path, class: "profile-edit" %></p>
+      <p><%= link_to t('view.edit_profile'), edit_user_registration_path, class: "profile-edit" %></p>
     <% end %>
   </div>
 </div>
@@ -23,23 +23,23 @@
   <tr class="">
     <td class="">
       <h3 class="book-movie"><%= @level %></h3>
-      <p>読書レベル</p>
+      <p><%= t('view.read_level') %></p>
     </td>
     <td class="">
       <h3 class="book-movie"><%= @user.summaries.count %></h3>
-      <p>投稿数</p></p>
+      <p><%= t('view.submit_count') %></p></p>
     </td>
     <td>
       <h3 class="book-movie"><%= @user.summaries.count + @favorites.count %></h3>
-      <p>読書数</p>
+      <p><%= t('view.read_count') %></p>
     </td>
     <td>
       <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id)%></h3>
-      <p>フォロー</p>
+      <p><%= t('view.follow') %></p>
     </td>
     <td>
       <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id)%></h3>
-      <p>フォロワー</p></p>
+      <p><%= t('view.follower') %></p></p>
     </td>
   </tr>
 </table>
@@ -48,15 +48,15 @@
   <tr class="tab book-tab">
     <td class="select">
       <h2 class="book-movie"><%= fa_icon("book") %></h2>
-      <p>投稿</p>
+      <p><%= t('view.submit') %></p>
     </td>
     <td class="select-text">
       <h2 class="book-movie"><%= fa_icon("pencil-alt") %></h2>
-      <p>メモ</p></p>
+      <p><%= t('view.memo') %></p></p>
     </td>
     <td>
       <h2 class="book-movie"><%= fa_icon("star") %></h2>
-      <p>お気に入り</p>
+      <p><%= t('view.favorite') %></p>
     </td>
   </tr>
 </table>
@@ -89,9 +89,9 @@
             <p><%= link_to memo.book.title, book_path(memo.book) %></p>
             <% if current_user == memo.user %>
             <% if memo.email_send == true %>
-              <p>通知:　ON</p>
+              <p><%= t('view.notice') %>:　ON</p>
             <% else %>
-              <p>通知:　OFF</p>
+              <p><%= t('view.notice') %>:　OFF</p>
             <% end %>
             <% end %>
           </div>
@@ -108,7 +108,7 @@
           <div class="summary-content">
             <p><%= link_to image_tag(favorite.book.image_url), favorite, class: "summary-image"%></p>
             <p><%= link_to favorite.book.title, book_path(favorite.book) %></p>
-            <p>要約者:<%= link_to favorite.user.name, user_path(favorite.user) %></p>
+            <p><%= t('view.summary_user') %>:<%= link_to favorite.user.name, user_path(favorite.user) %></p>
           </div>
         <% end %>
       </div>

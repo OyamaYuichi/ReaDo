@@ -5,11 +5,11 @@
     </td>
     <td class="book-desc">
       <p>
-        <span class="book-title">タイトル　</span>
+        <span class="book-title"><%= t('view.title') %>　</span>
         <span class="book-ex"><%= link_to @memo.book.title, book_path(@memo.book) %></span>
       </p>
       <p>
-        <span class="book-title">ジャンル　</span>
+        <span class="book-title"><%= t('view.genre') %>　</span>
         <span class="book-ex">
             <%= @category_1 %>
           <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
@@ -21,20 +21,16 @@
         </span>
       </p>
       <p>
-        <span class="book-title">著者　　　</span>
+        <span class="book-title"><%= t('view.author') %>　　　</span>
         <span class="book-ex"><%= @memo.book.author %></span>
       </p>
       <p>
-        <span class="book-title">出版社　　</span>
+        <span class="book-title"><%= t('view.publisher') %>　　</span>
         <span class="book-ex"><%= @memo.book.publisher %></span>
-      </p>
-      <p>
-        <span class="book-title">ユーザー　</span>
-        <span class="book-ex"><%= link_to @memo.user.name, user_path(@memo.user) %></span>
       </p>
       <% if current_user == @memo.user%>
       <p>
-        <span class="book-title">通知　　　</span>
+        <span class="book-title"><%= t('view.notice') %>　　　</span>
         <span class="book-ex">
           <% if @memo.email_send == true %>
             <%= "ON" %>
@@ -54,10 +50,10 @@
   <table class="memo-table center">
     <tr class="">
       <td>
-        <p class="title-memo">メモ</p>
+        <p class="title-memo"><%= t('view.memo') %></p>
       </td>
       <td>
-        <p class="title-action-plan">アクションプラン</p>
+        <p class="title-action-plan"><%= t('view.action_plan') %></p>
       </td>
     </tr>
   </table>
@@ -78,7 +74,7 @@
   <% if @memo.user_id == current_user.id%>
     <div class="right-review">
       <%= link_to fa_icon("edit 2x"), edit_memo_path(@memo) %>　
-      <%= link_to fa_icon("trash-alt 2x"), @memo, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to fa_icon("trash-alt 2x"), @memo, method: :delete, data: { confirm: t('view.are_you_sure') } %>
     </div>
   <% end %>
 </div>

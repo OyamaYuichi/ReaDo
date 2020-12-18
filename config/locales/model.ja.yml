@@ -12,9 +12,12 @@ ja:
         action_plan: アクションプラン
       user:
         title: タイトル
-        name: 名前
+        name: ユーザーネーム
         email: メールアドレス
         current_password: 現在のパスワード
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+        icon: プロフィール画像
+        profile: 自己紹介
+        cancel: キャンセル
