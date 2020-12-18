@@ -1,3 +1,4 @@
+<% if current_user %>
 <div class="block">
   <div class="block__avator image-right">
     <% if @user.icon? %>
@@ -117,4 +118,15 @@
   </div>
 </div>
 </div>
+<% else %>
+<div class="center">
+  <p class="login-message"><%= t('view.login_message') %></p>
+  <button  type="button" class="btn btn-danger login-btn">
+  <p>
+    <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
+    <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
+  </p>
+  </button>
+</div>
+<% end %>
 

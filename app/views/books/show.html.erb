@@ -57,10 +57,22 @@
 <div class="book-show-content">
 
   <div class="book">
-      <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
-    <div id="reviews_area">
-      <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
-    </div>
+    <% if current_user %>
+        <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+      <div id="reviews_area">
+        <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
+      </div>
+    <% else %>
+      <div class="center">
+        <p class="login-message"><%= t('view.login_message') %></p>
+        <button  type="button" class="btn btn-danger login-btn">
+        <p>
+          <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
+          <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
+        </p>
+        </button>
+      </div>
+    <% end %>
   </div>
 
   <div class="book hide">
