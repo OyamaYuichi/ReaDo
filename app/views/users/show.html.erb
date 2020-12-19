@@ -72,8 +72,17 @@
         <% @summaries.each do |summary| %>
           <div class="summary-content">
             <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+            <p class="summary-book-title"><%= summary.book.title %></p>
+            <p class="summary-user-name small-icon">
+              <%= icon('far', 'user') %>　
+            <% if summary.user.icon? %>
+              <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+            <% else %>
+              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+            <% end %>
+              <%= link_to summary.user.name, user_path(summary.user) %>
+            </p>
+            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
           </div>
         <% end %>
       </div>
@@ -87,12 +96,12 @@
         <% @memos.each do |memo| %>
           <div class="summary-content">
             <p><%= link_to image_tag(memo.book.image_url), memo, class: "summary-image"%></p>
-            <p><%= link_to memo.book.title, book_path(memo.book) %></p>
+            <p class="summary-book-title"><%= memo.book.title %></p>
             <% if current_user == memo.user %>
             <% if memo.email_send == true %>
-              <p><%= t('view.notice') %>:　ON</p>
+              <p class="summary-favorite"><%= icon('far', 'bell') %>　ON</p>
             <% else %>
-              <p><%= t('view.notice') %>:　OFF</p>
+              <p class="summary-favorite"><%= icon('far', 'bell') %>　OFF</p>
             <% end %>
             <% end %>
           </div>
@@ -108,8 +117,16 @@
         <% @favorites.each do |favorite| %>
           <div class="summary-content">
             <p><%= link_to image_tag(favorite.book.image_url), favorite, class: "summary-image"%></p>
-            <p><%= link_to favorite.book.title, book_path(favorite.book) %></p>
-            <p><%= t('view.summary_user') %>:<%= link_to favorite.user.name, user_path(favorite.user) %></p>
+            <p class="summary-book-title"><%= favorite.book.title %></p>
+            <p class="summary-user-name small-icon"><%= icon('far', 'user') %>　
+            <% if favorite.user.icon? %>
+              <%= image_tag(favorite.user.icon.url, :size =>'20x20')  %>
+            <% else %>
+              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+            <% end %>
+            <%= link_to favorite.user.name, user_path(favorite.user) %>
+            </p>
+            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= favorite.favorites.count %></p>
           </div>
         <% end %>
       </div>

@@ -19,8 +19,17 @@
         <% @summaries.each do |summary| %>
           <div class="summary-content">
             <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-            <p><%= link_to summary.book.title, book_path(summary.book) %></p>
-            <p>要約者:<%= link_to summary.user.name, user_path(summary.user) %></p>
+            <p class="summary-book-title"><%= summary.book.title %></p>
+            <p class="summary-user-name small-icon">
+              <%= icon('far', 'user') %>　
+            <% if summary.user.icon? %>
+              <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+            <% else %>
+              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+            <% end %>
+              <%= link_to summary.user.name, user_path(summary.user) %>
+            </p>
+            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
           </div>
         <% end %>
       </div>

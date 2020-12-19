@@ -16,10 +16,10 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  validates :name,  presence: true, length: { maximum: 30 }
+  validates :name,  presence: true, length: { maximum: 15 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   before_validation { email.downcase! }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   class << self
     def current_user=(user)

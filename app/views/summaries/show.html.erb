@@ -24,7 +24,14 @@
       </p>
       <p>
         <span class="book-title"><%= t('view.summary_user') %>　　</span>
-        <span class="book-ex"><%= link_to @summary.user.name, user_path(@summary.user) %></span>
+        <span class="book-ex small-icon">
+          <% if @summary.user.icon? %>
+            <%= image_tag(@summary.user.icon.url, :size =>'30x30')  %>
+          <% else %>
+            <img src="/assets/favicon.ico" class="icon" width="30" height="30" >
+          <% end %>
+          <%= link_to @summary.user.name, user_path(@summary.user) %>
+        </span>
       </p>
     </td>
   </tr>

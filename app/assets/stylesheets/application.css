@@ -234,3 +234,18 @@ a:hover {
   .footer-padding {
     padding-top: 15px;
   }
+
+  .notice-action-plan {
+    text-align: left;
+    list-style: inside;
+    margin-left: 95px;
+  }
+
+  i.far.fa-user {
+    padding-left: 2px;
+    padding-right: 0;
+  }
+
+  i.far.fa-star {
+    padding-right: 8px;
+  }

@@ -58,3 +58,26 @@ td.book-desc {
   border-right: solid 1px rgb(201, 199, 199);
 }
 
+.create-summary {
+  color: white;
+  background-color: #337ab7;
+  border: none;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+}
+.create-summary:hover {
+  background-color: #084479;
+}
+
+.create-memo {
+  color: white;
+  background-color: #dd4b39;
+  border: none;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+}
+
+.create-memo:hover {
+  background-color: #cc3926;
+}
+

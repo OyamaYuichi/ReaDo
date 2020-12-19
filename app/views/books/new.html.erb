@@ -10,11 +10,11 @@
       <% @books.each do |book| %>
       <div class="book-content">
         <p><%= image_tag(book.image_url) %></p>
-        <p><%= book.title %></p>
+        <p class="summary-book-title"><%= book.title %></p>
         <%= form_tag(books_path) do %>
           <%= hidden_field_tag :isbn, book.isbn %>
-          <%= submit_tag 'save', value: t('view.summary') %>
-          <%= submit_tag 'save', value: t('view.memo') %>
+          <p><%= submit_tag 'save', value: t('view.create_summary'), class: "create-summary" %></p>
+          <p><%= submit_tag 'save', value: t('view.create_memo'), class: "create-memo" %></p>
         <% end %>
       </div>
       <% end %>
