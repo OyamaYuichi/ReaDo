@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show, :following, :follower]
   def index
     @users = User.all.order(level: :desc).limit(10)
   end

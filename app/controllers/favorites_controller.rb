@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
   def create
     favorite = current_user.favorites.create(summary_id: params[:summary_id])
     redirect_to summary_path(params[:summary_id])

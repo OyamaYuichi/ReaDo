@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_summary, only: [:create, :edit, :update]
+  before_action :authenticate_user!
 
   def create
     @summary = Summary.find(params[:summary_id])
