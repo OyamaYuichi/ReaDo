@@ -35,11 +35,11 @@
       <p><%= t('view.read_count') %></p>
     </td>
     <td>
-      <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id)%></h3>
+      <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id), id: "follow" %></h3>
       <p><%= t('view.follow') %></p>
     </td>
     <td>
-      <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id)%></h3>
+      <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id), id: "follower" %></h3>
       <p><%= t('view.follower') %></p></p>
     </td>
   </tr>

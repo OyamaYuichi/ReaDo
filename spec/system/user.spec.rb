@@ -60,4 +60,43 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
       end
     end
   end
+
+
+  describe 'フォロー機能のテスト' do
+    before do
+      @user1 = FactoryBot.create(:user)
+      @user2 = FactoryBot.create(:user2)
+      @user3 = FactoryBot.create(:user3)
+      user_login
+    end
+    context '自分以外のユーザーデータがあり、ログインしている状態' do
+      it '自分以外のユーザーのプロフィールには、フォローボタンが表示される' do
+        visit user_path(2)
+        expect(page).to have_content 'フォロー'
+        visit user_path(3)
+        expect(page).to have_content 'フォロー'
+      end
+    end
+    context 'user1がuser2をフォローしている状態' do
+      it 'user1のフォロー一覧にuser2が表示される' do
+        visit user_path(2)
+        expect(page).to have_content 'フォロー'
+        click_on 'フォロー'
+        profile_btn = all('.user')
+        profile_btn[0].click
+        follow_btn = all('#follow')
+        follow_btn[0].click
+        expect(page).to have_content 'user2'
+      end
+      it 'user2のフォロワー一覧にuser1が表示される' do
+        visit user_path(2)
+        expect(page).to have_content 'フォロー'
+        click_on 'フォロー'
+        follow_btn = all('#follower')
+        follow_btn[0].click
+        expect(page).to have_content 'user1'
+      end
+    end
+  end
+
 end
