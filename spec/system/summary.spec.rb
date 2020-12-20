@@ -176,10 +176,35 @@ RSpec.describe '要約機能', type: :system do
 
         click_on '投稿'
         expect(page).to have_content '幸せになる勇気のコメント'
-        end
       end
     end
+  end
 
+
+  describe 'お気に入り機能' do
+    context '任意の要約をお気に入りした場合' do
+      it 'お気に入りを解除できるボタンが表示される' do
+        user_login
+        images = all('.summary-image')
+        images[1].click
+        expect(page).to have_content '幸せになる勇気の要約'
+        click_on 'お気に入り'
+        expect(page).to have_content 'お気に入り解除'
+      end
+      it 'お気に入りした投稿がプロフィールのお気に入り一覧に表示される' do
+        user_login
+        images = all('.summary-image')
+        images[1].click
+        expect(page).to have_content '幸せになる勇気の要約'
+        click_on 'お気に入り'
+        profile_btn = all('.user')
+        profile_btn[0].click
+        favorite_btn = all('.fa-star')
+        favorite_btn[0].click
+        expect(page).to have_content '幸せになる勇気'
+      end
+    end
+  end
 
 end
 
