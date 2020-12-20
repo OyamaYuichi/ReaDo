@@ -161,5 +161,25 @@ RSpec.describe '要約機能', type: :system do
     end
   end
 
+  describe 'コメント作成機能' do
+    context 'コメントを投稿した場合' do
+      it '作成したコメントが表示される' do
+        user_login
+
+        images = all('.summary-image')
+        images[1].click
+        expect(page).to have_content '幸せになる勇気の要約'
+        comment_btn = all('.book-movie')
+        comment_btn[1].click
+
+        fill_in "comment_content",	with: "幸せになる勇気のコメント"
+
+        click_on '投稿'
+        expect(page).to have_content '幸せになる勇気のコメント'
+        end
+      end
+    end
+
+
 end
 
