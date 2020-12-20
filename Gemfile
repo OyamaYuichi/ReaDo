@@ -48,6 +48,7 @@ end
 group :test do
   gem 'webdrivers'
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

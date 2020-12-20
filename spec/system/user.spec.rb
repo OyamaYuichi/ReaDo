@@ -3,8 +3,8 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
 
   def user_login
     visit new_user_session_path
-    fill_in 'メールアドレス', with: 'sample@dic.com'
-    fill_in 'パスワード', with: 'samplesample'
+    fill_in 'メールアドレス', with: 'user1@sample.com'
+    fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
   end
 
@@ -17,8 +17,8 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
         fill_in "パスワード",	with: "password"
         fill_in "確認用パスワード",	with: "password"
         click_button 'アカウント登録'
-        profile_btns = all('.user')
-        profile_btns[0].click
+        profile_btn = all('.user')
+        profile_btn[0].click
         expect(page).to have_content 'user1'
       end
 
