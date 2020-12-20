@@ -130,3 +130,10 @@
   box-shadow: none;
   border-radius: 50%;
 }
+.small-icon {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
