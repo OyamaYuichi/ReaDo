@@ -72,11 +72,11 @@ end
 # end
 
 
-# User.all.each do |user|
-#   calc_level = user.summaries.count * 0.6
-#               + user.memos.count * 0.2
-#               + user.comments.count * 0.1
-#               + user.reviews.count * 0.1
-#   user.update(level: calc_level.floor)
+User.all.each do |user|
+  calc_level = user.summaries.count * 0.6
+              + user.memos.count * 0.2
+              + user.comments.count * 0.1
+              + user.reviews.count * 0.1
+  user.update(level: calc_level.floor)
 
-# end
+end
