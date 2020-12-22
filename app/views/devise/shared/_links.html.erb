@@ -10,11 +10,11 @@
   <table>
     <%- resource_class.omniauth_providers.each do |provider| %>
       <% if provider == :google%>
-        <td><%= link_to icon('fab', 'google-plus-square'), omniauth_authorize_path(resource_name, provider), class: "provider-google" %><br /></td>
+        <td class="sns-icon"><%= link_to icon('fab', 'google-plus-square'), omniauth_authorize_path(resource_name, provider), class: "provider-google" %><br /></td>
       <% elsif provider == :twitter%>
-        <td><%= link_to icon('fab', 'twitter-square'), omniauth_authorize_path(resource_name, provider), class: "provider-twitter" %><br /></td>
+        <td class="sns-icon"><%= link_to icon('fab', 'twitter-square'), omniauth_authorize_path(resource_name, provider), class: "provider-twitter" %><br /></td>
       <% else provider == :facebook%>
-        <td><%= link_to icon('fab', 'facebook-square'), omniauth_authorize_path(resource_name, provider), class: "provider-facebook" %><br /></td>
+        <td class="sns-icon"><%= link_to icon('fab', 'facebook-square'), omniauth_authorize_path(resource_name, provider), class: "provider-facebook" %><br /></td>
       <% end %>
     <% end %>
   </table>

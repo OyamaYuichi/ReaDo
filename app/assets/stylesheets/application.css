@@ -23,9 +23,13 @@
   width: 1170px;
   min-width: 1170px;
   max-width: 1170px;
+  background-color: #fff;
+  /* padding: 0; */
 }
 body {
   clear: both;
+  /* background-color: rgb(151, 147, 147); */
+  background-color: #DBDBDB;
 }
 
 body, html {
@@ -40,10 +44,10 @@ table {
 
 
 header{
-  background-color: #bbdaf8;
+  background-color: black;
   padding: 10px 0px 5px 0px;
-  /* position: fixed;
-  z-index: 995; */
+  /* position: fixed; */
+  width: 100%;
 }
 
 li {
@@ -106,6 +110,12 @@ a:hover {
   width: 55px;
   height: 55px;
   box-shadow: none;
+  background-color: #DBDBDB;
+  border-radius: 50%;
+}
+.favicon {
+  background-color: #DBDBDB;
+  border-radius: 50%;
 }
 
 .brand-name {
@@ -150,6 +160,7 @@ a:hover {
 
 .header-name {
   margin: 0;
+  color: #DBDBDB;
 }
 
 .login {
@@ -176,15 +187,15 @@ a:hover {
 .search {
   background-color: transparent;
   border: none;
-  color: #337ab7;
+  color: #DBDBDB;
 }
 
 .search:hover {
-  color: #0d5594;
+  color: gray;
 }
 
 .search-name {
-  color: black;
+  color: #DBDBDB;
 }
 
 .header-notice {
@@ -205,7 +216,7 @@ a:hover {
   width: 100%;
   height: 80px;
   margin-top: 100px;
-  background-color: #f5f5f5;
+  background-color: black;
   }
 
 
@@ -220,6 +231,8 @@ a:hover {
     width: 55px;
     height: 55px;
     box-shadow: none;
+    background-color: #DBDBDB;
+    border-radius: 50%;
   }
   .footer-table {
     table-layout: fixed;
@@ -247,4 +260,36 @@ a:hover {
 
   i.far.fa-star {
     padding-right: 8px;
+  }
+
+  .fa-home, .fa-users, .fa-sign-out-alt, .fa-user-plus, .fa-sign-in-alt{
+    color: #DBDBDB;
+  }
+  .fa-home:hover, .fa-users:hover, .fa-sign-out-alt:hover, .fa-user-plus:hover, .fa-sign-in-alt:hover{
+    color: gray;
+  }
+
+  .fa-home:hover{
+    /* color: rgb(105, 105, 105); */
+    color: gray;
+  }
+  .brand-name a, .footer-brand-name a{
+    color: #DBDBDB;
+  }
+  .brand-name a:hover, .footer-brand-name a:hover{
+    color: gray;
+  }
+
+  .header-user, .header-edit {
+    color: #DBDBDB;
+  }
+  .header-user:hover, .header-edit:hover {
+    color: gray;
+  }
+
+  .alert {
+    text-align: center;
+    background-color: rgb(214, 250, 160);
+    margin: 0;
+    color: gray;
   }

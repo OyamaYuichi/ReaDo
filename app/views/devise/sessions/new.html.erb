@@ -1,8 +1,8 @@
-<div class="container center sign-form">
+<div class="container center">
   <h2><%= t('.sign_in') %></h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <table class="sign-table">
+  <table class="sign-table sign-form">
     <tr class="field">
       <td class="td-label"><%= f.label :email %><br /></td>
       <td class="td-sign"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>

@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with(model: [book, summary], local: true) do |form| %>
   <% if summary.errors.any? %>
     <div id="error_explanation">
@@ -36,8 +37,6 @@
   </table>
 
   <hr>
-
-  <div class="container  summary-create-content">
     <div>
       <%= form.rich_text_area :content %>
     </div>

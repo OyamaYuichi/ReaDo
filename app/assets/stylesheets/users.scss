@@ -5,6 +5,7 @@
 .edit-cancel {
   margin-top: 10px;
   text-align: right;
+  margin-right: 120px;
 }
 
 .cancel-account:hover {
@@ -55,13 +56,14 @@
 .block .block__avator{
   vertical-align: top;
   display: table-cell;
-  width: 460px;
+  width: 300px;
 }
 
 .block .block__text{
   vertical-align: top;
   display: table-cell;
   padding: 10px 0 10px 10px;
+  text-align: left;
 }
 .block .block__text__follow{
   vertical-align: top;
@@ -73,8 +75,9 @@
 .block .block__control{
   vertical-align: top;
   display: table-cell;
-  width: 440px;
+  width: 200px;
   padding: 0px 10px 10px 10px;
+  text-align: left;
 }
 
 .profile-edit {
@@ -140,4 +143,8 @@
 .medium-icon img {
   box-shadow: none;
   border-radius: 50%;
+}
+
+.follow-icon img {
+  margin-right: 50px;
 }

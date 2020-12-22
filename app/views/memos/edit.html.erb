@@ -1,3 +1,5 @@
+
+<div class="container">
 <%= form_with(model: @memo, local: true) do |form| %>
   <% if @memo.errors.any? %>
     <div id="error_explanation">
@@ -49,8 +51,6 @@
 </table>
 
 <hr>
-
-<div class="container">
   <table class="memo-table center">
     <tr class="">
       <td>
@@ -65,18 +65,16 @@
 
   <div class="memo-block">
     <div class="memo__element1">
-      <%= form.text_area :content %>
+      <%= form.text_area :content, id: "content" %>
     </div>
 
     <div class="memo__element2">
     </div>
 
     <div class="memo__element3">
-      <%= form.text_area :action_plan %>
+      <%= form.text_area :action_plan, id: "action_plan" %>
     </div>
   </div>
-</div>
-
 <hr>
 
 <div class="center">
@@ -85,5 +83,7 @@
 
 <br>
 <br>
+<br>
 
 <% end %>
+</div>

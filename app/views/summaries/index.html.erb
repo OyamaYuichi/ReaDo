@@ -1,11 +1,11 @@
 <div class="container center summary-index margin-top">
-<table class="center text-movie">
+<table class="center text-movie index-tab">
   <tr class="tab">
     <td class="select">
       <h1 class="book-movie"><%= fa_icon("book") %></h1>
       <p><%= t('view.text') %></p>
     </td>
-    <td>
+    <td class="td">
       <h1 class="book-movie"><%= fa_icon("tv") %></h1>
       <p><%= t('view.movie') %></p>
     </td>
@@ -43,19 +43,18 @@
         <% @youtube_data.items.each do |item| %>
           <% snippet = item.snippet %>
           <h3><%= snippet.title %></h3>
-          <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="movie-line"><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <% end %>
       <% elsif %>
         <h4 class="movie-message"><%= t('view.not_search') %></h4>
         <% @youtube_data_2.each do |item| %>
-          <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="movie-line"><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <% end %>
       <% end %>
     </div>
 
   </div>
 </div>
-
 <% if @summary_1 %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

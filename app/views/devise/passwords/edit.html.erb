@@ -1,10 +1,10 @@
-<div class="container center sign-form">
+<div class="container center">
 <h2><%= t('.change_your_password') %></h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
-<table class="sign-table">
+<table class="sign-table sign-form">
   <tr class="field">
     <td class="td-label">
       <%= f.label :password, t('.new_password') %><br />

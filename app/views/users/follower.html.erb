@@ -1,6 +1,7 @@
+<div class="container">
 <% @users.each do |user| %>
 <div class="block follow-block">
-  <div class="block__avator image-right">
+  <div class="block__avator image-right follow-icon">
     <% if user.icon? %>
       <%= image_tag(user.icon.url, :size =>'80x80')  %>
     <% else %>
@@ -18,3 +19,4 @@
   </div>
 </div>
 <% end %>
+</div>

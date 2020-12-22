@@ -1,10 +1,10 @@
-<div class="container center sign-form">
+<div class="container center">
   <h2><%= t('.sign_up') %></h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-  <table class="sign-table">
+  <table class="sign-table sign-form">
     <tr class="field">
       <td class="td-label"><%= f.label :name %><br /></td>
       <td class="td-sign"><%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %></td>
