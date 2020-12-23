@@ -20,6 +20,7 @@
     <% end %>
 
     <p><%= f.submit t('.sign_in'), class: "sign-up-submit"%></p>
+    <p class="guest-btn"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "sign-up-guest"%></p>
   <% end %>
 
   <h2 class="sns-login"><%= t('view.sns_login') %></h2>

@@ -33,6 +33,7 @@
   </table>
     <p class="lead-login"><%= link_to t('view.to_login'), new_session_path(resource_name) %><br /></p>
     <p><%= f.submit t('.sign_up'), class: "sign-up-submit"%></p>
+    <p class="guest-btn"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "sign-up-guest"%></p>
   <% end %>
 
   <h2 class="sns-login"><%= t('view.sns_registration') %></h2>

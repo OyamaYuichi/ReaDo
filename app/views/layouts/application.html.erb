@@ -67,6 +67,7 @@
         </div>
         <td class="header-content"><%= link_to fa_icon("sign-out-alt 2x"), destroy_user_session_path, method: :delete, class: "delete_button", data: { confirm: t('view.logout_confirm') } %><p class="header-name"><%= t('view.logout') %></p></td>
       <% else %>
+        <td><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "header-guest"%></td>
         <td class="header-content"><%= link_to fa_icon("home 2x"), summaries_path %><p class="header-name"><%= t('view.home') %></p></td>
         <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-sm"><%= fa_icon("search 2x") %><p class="header-name search-name"><%= t('view.search') %></p></td>
           <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">

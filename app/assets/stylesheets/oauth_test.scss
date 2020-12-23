@@ -70,3 +70,29 @@
 .sns-icon {
   padding-bottom: 20px;
 }
+
+.sign-up-guest {
+  background-color: rgb(101, 247, 101);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 20px 30px 20px 30px;
+  font-size: large;
+  margin-top: 30px;
+}
+.sign-up-guest:hover {
+  background-color: rgb(46, 204, 46);
+}
+.header-guest {
+  background-color: rgb(101, 247, 101);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+}
+.header-guest:hover {
+  background-color: rgb(46, 204, 46);
+}
+.guest-btn {
+  margin-top: 80px;
+}
