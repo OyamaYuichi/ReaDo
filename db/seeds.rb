@@ -41,7 +41,7 @@ end
   )
 end
 
-10000.times do |i|
+1000.times do |i|
   Comment.create(
     content: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
     user_id: rand(1..100),
