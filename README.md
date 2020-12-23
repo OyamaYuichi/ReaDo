@@ -2,11 +2,13 @@
 
 ## 読書管理アプリ ReaDo
 
+### リンク
+https://powerful-taiga-65863.herokuapp.com/
 ### 概要
 書籍の要約を読むことで知識をインプットしたり、
 要約を投稿して知識をアプトプットするアプリケーションです。
-要約の閲覧・投稿だけでなく、学んだことをメモしたり
-自分の書籍を執筆し販売することができます。
+また要約の閲覧・投稿だけでなく、設定したアクションプランを通知することで、
+読書で得られた知識を実生活の行動へと促します。
 
 ### コンセプト
 知識のインプットとアウトプット
@@ -53,3 +55,17 @@ https://docs.google.com/spreadsheets/d/1w4HLXDFA7pTI2Phagpl5Zo66wMWw5V6S1hU6T7eg
 - mini_magick
 - devise
 - ransack
+- kaminari
+- actiontext
+- image_processing
+- webpacker
+- omniauth
+- omniauth-google-oauth2
+- omniauth-facebook
+- omniauth-twitter
+- devise-i18n
+- enum_help
+- font-awesome-rails
+- font-awesome-sass
+- rakuten_web_service
+- google-api-client
