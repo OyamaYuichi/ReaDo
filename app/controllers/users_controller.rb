@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @level = @read_level.floor
     @summaries = @user.summaries.order(created_at: :desc).page(params[:page]).per(20)
     @memos = @user.memos.order(created_at: :desc).page(params[:page]).per(20)
-    # binding.pry
     @favorites = @user.favorite_summaries.order(created_at: :desc).page(params[:page]).per(20)
   end
 

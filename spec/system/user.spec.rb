@@ -45,7 +45,6 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能', type: :
     context 'ユーザーがログインしている状態' do
       it '自分の詳細画面（マイページ）に飛べること' do
         visit summaries_path
-        # binding.pry
         profile_btn = all('.user')
         profile_btn[0].click
 

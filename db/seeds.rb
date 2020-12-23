@@ -41,7 +41,7 @@ end
   )
 end
 
-1000.times do |i|
+10000.times do |i|
   Comment.create(
     content: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
     user_id: rand(1..100),
@@ -64,19 +64,18 @@ end
   )
 end
 
-# 1000.times do |i|
-#   Relationship.create(
-#     follower_id: rand(1..100),
-#     followed_id: rand(1..100),
-#   )
-# end
-
-
-User.all.each do |user|
-  calc_level = user.summaries.count * 0.6
-              + user.memos.count * 0.2
-              + user.comments.count * 0.1
-              + user.reviews.count * 0.1
-  user.update(level: calc_level.floor)
-
+1000.times do |i|
+  Relationship.create(
+    follower_id: rand(1..100),
+    followed_id: rand(1..100),
+  )
 end
+
+
+# User.all.each do |user|
+#   calc_level = user.summaries.count * 0.6
+#               + user.memos.count * 0.2
+#               + user.comments.count * 0.1
+#               + user.reviews.count * 0.1
+#   user.update(level: calc_level.floor)
+# end
