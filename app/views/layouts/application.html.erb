@@ -50,7 +50,7 @@
           <div class="modal-dialog modal-lg size" role="document">
             <div class="modal-content center">
               <p class="header-notice">
-                <% notice_plan = current_user.memos.where(email_send: true) %>
+                <% notice_plan = current_user.memos.where(email_send: true).order(created_at: :desc) %>
                 <% if notice_plan.present? %>
                   <h3><%= t('view.notice_action_plan') %></h3>
                   <% notice_plan.each_with_index do |memo, index|%>

@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   def notify_user(user: User.current_user)
-    @memos = user.memos.where(email_send: true)
+    @memos = user.memos.where(email_send: true).order(created_at: :desc)
     # @users = User.all.select do |user|
     #   user.memos.where(email_send: true).present?
     # end
