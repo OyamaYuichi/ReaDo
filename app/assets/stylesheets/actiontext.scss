@@ -39,3 +39,14 @@
   font-size: 18px;
   line-height: 35px;
 }
+
+trix-editor{
+  min-height: 30em;
+}
+
+trix-editor#memo_content{
+  min-height: 15em;
+}
+trix-editor#memo_action_plan{
+  min-height: 15em;
+}
