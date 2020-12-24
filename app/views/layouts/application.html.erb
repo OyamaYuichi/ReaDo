@@ -89,12 +89,15 @@
       <% end %>
     </table>
   </header>
-
     <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
+      <div id="fadeout">
+        <p class="alert alert-notice"><%= notice %></p>
+      </div>
     <% end %>
     <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
+      <div id="fadeout">
+        <p class="alert alert-error"><%= alert %></p>
+      </div>
     <% end %>
 
     <%= yield %>
