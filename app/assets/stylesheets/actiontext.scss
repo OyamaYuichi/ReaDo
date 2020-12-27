@@ -40,8 +40,10 @@
   line-height: 35px;
 }
 
-trix-editor{
+trix-editor {
   min-height: 30em;
+  max-height: 30em;
+  overflow-y: auto;
 }
 
 trix-editor#memo_content{
