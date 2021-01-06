@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        calc_level
-        current_user.update(level: @read_level.floor)
+        read_level = Comment.calc_level(current_user)
+        current_user.update(level: read_level.floor)
         format.js { render :index }
       else
         format.html { redirect_to summary_path(@summary) }
@@ -39,18 +39,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    calc_level
-    current_user.update(level: @read_level.floor)
+    read_level = Comment.calc_level(current_user)
+    current_user.update(level: read_level.floor)
     respond_to do |format|
       format.js { render :index }
     end
-  end
-
-  def calc_level
-    @read_level = current_user.summaries.count * 0.6
-                  + current_user.memos.count * 0.2
-                  + current_user.reviews.count * 0.1
-                  + current_user.comments.count * 0.1
   end
 
   private
