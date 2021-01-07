@@ -84,4 +84,11 @@ class User < ApplicationRecord
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
     end
   end
+
+  def self.calc_level(user)
+    read_level = user.summaries.count * 0.6
+                  + user.memos.count * 0.2
+                  + user.reviews.count * 0.1
+                  + user.comments.count * 0.1
+  end
 end
