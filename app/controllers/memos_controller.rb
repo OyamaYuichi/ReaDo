@@ -26,8 +26,8 @@ class MemosController < ApplicationController
     @memo.user_id = current_user.id
     if @memo.save
       UserMailer.notify_user().deliver
-      calc_level
-      current_user.update(level: @read_level.floor)
+      read_level = Memo.calc_level(current_user)
+      current_user.update(level: read_level.floor)
       redirect_to summaries_path, notice: t('view.create_notice')
     else
       render :new
@@ -81,16 +81,9 @@ class MemosController < ApplicationController
   def destroy
     @memo.destroy
     UserMailer.notify_user().deliver
-    calc_level
-    current_user.update(level: @read_level.floor)
+    read_level = Memo.calc_level(current_user)
+    current_user.update(level: read_level.floor)
     redirect_to user_path(current_user), notice: t('view.destroy_notice')
-  end
-
-  def calc_level
-    @read_level = current_user.summaries.count * 0.6
-                  + current_user.memos.count * 0.2
-                  + current_user.reviews.count * 0.1
-                  + current_user.comments.count * 0.1
   end
 
   private
