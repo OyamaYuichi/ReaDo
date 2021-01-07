@@ -8,8 +8,8 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
-        calc_level
-        current_user.update(level: @read_level.floor)
+        read_level = Review.calc_level(current_user)
+        current_user.update(level: read_level.floor)
         format.js { render :index }
       else
         format.html { redirect_to book_path(@book) }
@@ -38,18 +38,11 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    calc_level
-    current_user.update(level: @read_level.floor)
+    read_level = Review.calc_level(current_user)
+    current_user.update(level: read_level.floor)
     respond_to do |format|
       format.js { render :index }
     end
-  end
-
-  def calc_level
-    @read_level = current_user.summaries.count * 0.6
-                  + current_user.memos.count * 0.2
-                  + current_user.reviews.count * 0.1
-                  + current_user.comments.count * 0.1
   end
 
   private
