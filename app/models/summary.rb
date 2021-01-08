@@ -17,4 +17,32 @@ class Summary < ApplicationRecord
   }
 
   scope :get_by_category, -> (category) { where(category: category)}
+
+  def self.calc_level(current_user)
+    read_level = current_user.summaries.count * 0.6
+                  + current_user.memos.count * 0.2
+                  + current_user.reviews.count * 0.1
+                  + current_user.comments.count * 0.1
+  end
+
+  def self.find_videos(keyword, after: 10.years.ago, before: Time.now)
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.key = ENV["YOUTUBE_APIKEY"]
+
+    next_page_token = nil
+    opt = {
+      q: keyword,
+      type: 'video',
+      max_results: 10,
+      order: :relevance,
+      page_token: next_page_token,
+      published_after: after.iso8601,
+      published_before: before.iso8601
+    }
+    begin
+      service.list_searches(:snippet, opt)
+    rescue
+    end
+  end
+
 end

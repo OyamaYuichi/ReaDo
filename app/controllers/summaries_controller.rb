@@ -12,9 +12,9 @@ class SummariesController < ApplicationController
       @summary_4 = Summary.all.sample
       @summary_5 = Summary.all.sample
     end
-    @youtube_data = find_videos("要約")
+    @youtube_data = Summary.find_videos("要約")
     if params[:title].present?
-      @youtube_data = find_videos(params[:title])
+      @youtube_data = Summary.find_videos(params[:title])
     end
     @youtube_data_2 = ["N-fT1KjtGGA", "21aJYzS_Sxc", "cEj48QKHl3A", "SnG8OxmZOKU", "1h8vTIRJpdc", "wn9xelq7bLg", "KcUyFrb5cf4", "uWHH8PpnJtU", "7ZZwjUJdcoY", "ZsSZtKWgFmI"]
   end
@@ -190,8 +190,8 @@ class SummariesController < ApplicationController
     @summary = @book.summaries.build(summary_params)
     @summary.user_id = current_user.id
     if @summary.save
-      calc_level
-      current_user.update(level: @read_level.floor)
+      read_level = Summary.calc_level(current_user)
+      current_user.update(level: read_level.floor)
       redirect_to summaries_path, notice: t('view.create_notice')
     else
       render :new
@@ -222,36 +222,9 @@ class SummariesController < ApplicationController
 
   def destroy
     @summary.destroy
-    calc_level
-    current_user.update(level: @read_level.floor)
+    read_level = Summary.calc_level(current_user)
+    current_user.update(level: read_level.floor)
     redirect_to summaries_path, notice: t('view.destroy_notice')
-  end
-
-  def calc_level
-    @read_level = current_user.summaries.count * 0.6
-                  + current_user.memos.count * 0.2
-                  + current_user.reviews.count * 0.1
-                  + current_user.comments.count * 0.1
-  end
-
-  def find_videos(keyword, after: 10.years.ago, before: Time.now)
-    service = Google::Apis::YoutubeV3::YouTubeService.new
-    service.key = ENV["YOUTUBE_APIKEY"]
-
-    next_page_token = nil
-    opt = {
-      q: keyword,
-      type: 'video',
-      max_results: 10,
-      order: :relevance,
-      page_token: next_page_token,
-      published_after: after.iso8601,
-      published_before: before.iso8601
-    }
-    begin
-      service.list_searches(:snippet, opt)
-    rescue
-    end
   end
 
   private
