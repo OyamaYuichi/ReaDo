@@ -44,7 +44,6 @@ class SummariesController < ApplicationController
     end
   end
 
-
   def show
     if current_user
       @favorite = current_user.favorites.find_by(summary_id: @summary.id)

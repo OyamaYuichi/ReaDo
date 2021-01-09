@@ -145,6 +145,7 @@ class Summary < ApplicationRecord
           summaries << summary
         end
       end
+      summaries
     end
 
     def search_category(category, books)
@@ -155,6 +156,7 @@ class Summary < ApplicationRecord
           summaries << summary
         end
       end
+      summaries
     end
 
     def search_follow(current_user, search_summaries)
@@ -164,6 +166,7 @@ class Summary < ApplicationRecord
           summaries << summary
         end
       end
+      summaries
     end
 
     def book_sort(books)
