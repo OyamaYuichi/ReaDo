@@ -26,6 +26,7 @@
             <div class="modal-dialog modal-sm size" role="document">
               <div class="modal-content center">
                 <%= form_with( url:summaries_path, local: true, method: :get ) do |form| %>
+                  <%= form.hidden_field :search, value: 'true' %>
                   <p><%= form.label :title, t('view.title'), class: "label-title" %></p>
                   <p><%= form.text_field :title, value: params[:title], class: 'search-title' %></p>
                   <p><%= form.label :author, t('view.author'), class: "label-author" %></p>
