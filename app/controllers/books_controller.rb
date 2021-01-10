@@ -6,7 +6,6 @@ class BooksController < ApplicationController
 
   def new
     @books = []
-
     if params[:book_title].present?
       @title = params[:book_title]
       if @title.present?
@@ -14,7 +13,6 @@ class BooksController < ApplicationController
           title: @title,
           hits: 20,
         })
-
         results.each do |result|
           book = Book.new(read(result))
           @books << book
@@ -23,13 +21,11 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
     @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
   end
 
   def create
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
-
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
       @book = Book.new(read(results.first))
@@ -72,7 +68,6 @@ class BooksController < ApplicationController
     image_url = result['largeImageUrl'].gsub('?_ex=150x150', '')
     author = result['author']
     publisher = result['publisherName']
-
     {
       title: title,
       url: url,
