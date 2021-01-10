@@ -1,89 +1,88 @@
-
 <div class="container">
-<%= form_with(model: @memo, local: true) do |form| %>
-  <% if @memo.errors.any? %>
-    <div id="error_explanation">
-      <% @memo.errors.full_messages.each do |message| %>
-        <h4><%= message %></h4>
-      <% end %>
+  <%= form_with(model: @memo, local: true) do |form| %>
+    <% if @memo.errors.any? %>
+      <div id="error_explanation">
+        <% @memo.errors.full_messages.each do |message| %>
+          <h4><%= message %></h4>
+        <% end %>
+      </div>
+    <% end %>
+
+    <table class="book-show-table">
+      <tr class="book-detail">
+        <td class="book-image">
+          <%= image_tag(@book.image_url) %>
+        </td>
+        <td class="book-desc">
+          <p>
+            <span class="book-title"><%= t('view.title') %>　</span>
+            <span class="book-ex"><%= @book.title %></span>
+          </p>
+          <p>
+            <span class="book-title"><%= t('view.genre') %>　</span>
+            <span class="book-ex">
+                <%= @category_1 %>
+              <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+                ,　<%= @category_2 %>
+              <% end %>
+              <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+                ,　<%= @category_3 %>
+              <% end %>
+            </span>
+          </p>
+          <p>
+            <span class="book-title"><%= t('view.author') %>　　　</span>
+            <span class="book-ex"><%= @book.author %></span>
+          </p>
+          <p>
+            <span class="book-title"><%= t('view.publisher') %>　　</span>
+            <span class="book-ex"><%= @book.publisher %></span>
+          </p>
+          <p class="notice">
+            <span><%= form.label :email_send, "通知" %>　　　</span>
+            <span>
+              <%= form.hidden_field :email_send, value: false %>
+              <%= form.check_box :email_send, {}, true, false %>
+            </span>
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <table class="memo-table center">
+      <tr class="">
+        <td>
+          <p class="title-memo"><%= t('view.memo') %></p>
+        </td>
+        <td>
+          <p class="title-action-plan"><%= t('view.action_plan') %></p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="memo-block">
+      <div class="memo__element1">
+        <%= form.rich_text_area :content %>
+      </div>
+
+      <div class="memo__element2">
+      </div>
+
+      <div class="memo__element3">
+        <%= form.rich_text_area :action_plan %>
+      </div>
     </div>
+
+    <hr>
+
+    <div class="center">
+      <%= form.submit t('view.update'), class:"search-submit" %>
+    </div>
+
+    <br>
+    <br>
+    <br>
   <% end %>
-
-  <table class="book-show-table">
-  <tr class="book-detail">
-    <td class="book-image">
-      <%= image_tag(@book.image_url) %>
-    </td>
-    <td class="book-desc">
-      <p>
-        <span class="book-title"><%= t('view.title') %>　</span>
-        <span class="book-ex"><%= @book.title %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.genre') %>　</span>
-        <span class="book-ex">
-            <%= @category_1 %>
-          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
-            ,　<%= @category_2 %>
-          <% end %>
-          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
-            ,　<%= @category_3 %>
-          <% end %>
-        </span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.author') %>　　　</span>
-        <span class="book-ex"><%= @book.author %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.publisher') %>　　</span>
-        <span class="book-ex"><%= @book.publisher %></span>
-      </p>
-      <p class="notice">
-        <span><%= form.label :email_send, "通知" %>　　　</span>
-        <span>
-          <%= form.hidden_field :email_send, value: false %>
-          <%= form.check_box :email_send, {}, true, false %>
-        </span>
-      </p>
-    </td>
-  </tr>
-</table>
-
-<hr>
-  <table class="memo-table center">
-    <tr class="">
-      <td>
-        <p class="title-memo"><%= t('view.memo') %></p>
-      </td>
-      <td>
-        <p class="title-action-plan"><%= t('view.action_plan') %></p>
-      </td>
-    </tr>
-  </table>
-
-
-  <div class="memo-block">
-    <div class="memo__element1">
-      <%= form.rich_text_area :content %>
-    </div>
-
-    <div class="memo__element2">
-    </div>
-
-    <div class="memo__element3">
-      <%= form.rich_text_area :action_plan %>
-    </div>
-  </div>
-<hr>
-
-<div class="center">
-  <%= form.submit t('view.update'), class:"search-submit" %>
-</div>
-
-<br>
-<br>
-<br>
-
-<% end %>
 </div>

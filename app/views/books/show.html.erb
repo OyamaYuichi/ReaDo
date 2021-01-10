@@ -1,116 +1,115 @@
 <div class="container center">
-<table class="book-show-table">
-  <tr class="book-detail">
-    <td class="book-image">
-      <%= link_to image_tag(@book.image_url), @book.url%>
-    </td>
-    <td class="book-desc">
-      <p>
-        <span class="book-title"><%= t('view.title') %>　</span>
-        <span class="book-ex"><%= @book.title %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.genre') %>　</span>
-        <span class="book-ex">
-            <%= @category_1 %>
-          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
-            ,　<%= @category_2 %>
-          <% end %>
-          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
-            ,　<%= @category_3 %>
-          <% end %>
-        </span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.author') %>　　　</span>
-        <span class="book-ex"><%= @book.author%></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.publisher') %>　　</span>
-        <span class="book-ex"><%= @book.publisher %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.summary_count') %>　　</span>
-        <span class="book-ex"><%= @book.summaries.count %></span>
-      </p>
-    </td>
-  </tr>
-</table>
-
-<table class="center text-movie">
-  <tr class="tab book-tab">
-    <td class="select">
-      <h1 class="book-movie"><%= fa_icon("comment-dots") %></h1>
-      <p><%= t('view.review') %></p>
-    </td>
-    <td class="select-text">
-      <h1 class="book-movie"><%= fa_icon("book") %></h1>
-      <p><%= t('view.summary') %></p>
-    </td>
-    <td>
-      <h1 class="book-movie"><%= fa_icon("tv") %></h1>
-      <p><%= t('view.movie') %></p>
-    </td>
-  </tr>
-</table>
-
-<div class="book-show-content">
-
-  <div class="book">
-    <% if current_user %>
-        <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
-      <div id="reviews_area">
-        <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
-      </div>
-    <% else %>
-      <div class="center">
-        <p class="login-message"><%= t('view.login_message') %></p>
-        <button  type="button" class="btn btn-danger login-btn">
+  <table class="book-show-table">
+    <tr class="book-detail">
+      <td class="book-image">
+        <%= link_to image_tag(@book.image_url), @book.url%>
+      </td>
+      <td class="book-desc">
         <p>
-          <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
-          <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
+          <span class="book-title"><%= t('view.title') %>　</span>
+          <span class="book-ex"><%= @book.title %></span>
         </p>
-        </button>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="book hide">
-    <% if @summaries.present? %>
-      <div class="summary-table">
-        <% @summaries.each do |summary| %>
-          <div class="summary-content">
-            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-            <p class="summary-book-title"><%= summary.book.title %></p>
-            <p class="summary-user-name small-icon">
-              <%= icon('far', 'user') %>　
-            <% if summary.user.icon? %>
-              <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
-            <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+        <p>
+          <span class="book-title"><%= t('view.genre') %>　</span>
+          <span class="book-ex">
+              <%= @category_1 %>
+            <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+              ,　<%= @category_2 %>
             <% end %>
-              <%= link_to summary.user.name, user_path(summary.user) %>
-            </p>
-            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <h3><%= t('view.not_summary') %></h3>
-    <% end %>
-    <p><%= paginate @summaries %></p>
-  </div>
+            <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+              ,　<%= @category_3 %>
+            <% end %>
+          </span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.author') %>　　　</span>
+          <span class="book-ex"><%= @book.author%></span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.publisher') %>　　</span>
+          <span class="book-ex"><%= @book.publisher %></span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.summary_count') %>　　</span>
+          <span class="book-ex"><%= @book.summaries.count %></span>
+        </p>
+      </td>
+    </tr>
+  </table>
 
-  <div class="book hide">
-    <% if @youtube_data %>
-      <% @youtube_data.items.each do |item| %>
-        <% snippet = item.snippet %>
-        <h3><%= snippet.title %></h3>
-        <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  <table class="center text-movie">
+    <tr class="tab book-tab">
+      <td class="select">
+        <h1 class="book-movie"><%= fa_icon("comment-dots") %></h1>
+        <p><%= t('view.review') %></p>
+      </td>
+      <td class="select-text">
+        <h1 class="book-movie"><%= fa_icon("book") %></h1>
+        <p><%= t('view.summary') %></p>
+      </td>
+      <td>
+        <h1 class="book-movie"><%= fa_icon("tv") %></h1>
+        <p><%= t('view.movie') %></p>
+      </td>
+    </tr>
+  </table>
+
+  <div class="book-show-content">
+    <div class="book">
+      <% if current_user %>
+          <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+        <div id="reviews_area">
+          <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
+        </div>
+      <% else %>
+        <div class="center">
+          <p class="login-message"><%= t('view.login_message') %></p>
+          <button  type="button" class="btn btn-danger login-btn">
+          <p>
+            <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
+            <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
+          </p>
+          </button>
+        </div>
       <% end %>
-    <% elsif %>
-      <h3 class="not-movie"><%= t('view.not_movie') %></h3>
-    <% end %>
+    </div>
+
+    <div class="book hide">
+      <% if @summaries.present? %>
+        <div class="summary-table">
+          <% @summaries.each do |summary| %>
+            <div class="summary-content">
+              <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+              <p class="summary-book-title"><%= summary.book.title %></p>
+              <p class="summary-user-name small-icon">
+                <%= icon('far', 'user') %>　
+              <% if summary.user.icon? %>
+                <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+              <% else %>
+                <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+              <% end %>
+                <%= link_to summary.user.name, user_path(summary.user) %>
+              </p>
+              <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <h3><%= t('view.not_summary') %></h3>
+      <% end %>
+      <p><%= paginate @summaries %></p>
+    </div>
+
+    <div class="book hide">
+      <% if @youtube_data %>
+        <% @youtube_data.items.each do |item| %>
+          <% snippet = item.snippet %>
+          <h3><%= snippet.title %></h3>
+          <div><iframe width="800" height="450" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <% end %>
+      <% elsif %>
+        <h3 class="not-movie"><%= t('view.not_movie') %></h3>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>

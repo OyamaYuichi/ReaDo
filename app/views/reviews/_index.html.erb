@@ -1,22 +1,22 @@
-  <% reviews.each do |review| %>
-    <% if review.id.present? %>
-      <div class="review-range">
-        <div class="left-review">
-          <p class="review-user small-icon">
-            <% if review.user.icon? %>
-              <%= image_tag(review.user.icon.url, :size =>'30x30')  %>
-            <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="30" height="30" >
-            <% end %>
-            <%= link_to review.user.name, user_path(review.user) %>
-          </p>
-          <p class="review-user-content"><%= review.content %></p>
-        </div>
-          <div class="review-content" id ="this_review_<%= review.id %>"></div>
-        <div class="right-review">
-          <%= link_to fa_icon("edit lg"), edit_book_review_path(book, review), remote: true %>　
-          <%= link_to fa_icon("trash-alt lg"), book_review_path(review.book_id, review.id), method: :delete, remote: true, data: { confirm: t('view.are_you_sure')} %>
-        </div>
+<% reviews.each do |review| %>
+  <% if review.id.present? %>
+    <div class="review-range">
+      <div class="left-review">
+        <p class="review-user small-icon">
+          <% if review.user.icon? %>
+            <%= image_tag(review.user.icon.url, :size =>'30x30')  %>
+          <% else %>
+            <img src="/assets/favicon.ico" class="icon" width="30" height="30" >
+          <% end %>
+          <%= link_to review.user.name, user_path(review.user) %>
+        </p>
+        <p class="review-user-content"><%= review.content %></p>
       </div>
-    <% end %>
+        <div class="review-content" id ="this_review_<%= review.id %>"></div>
+      <div class="right-review">
+        <%= link_to fa_icon("edit lg"), edit_book_review_path(book, review), remote: true %>　
+        <%= link_to fa_icon("trash-alt lg"), book_review_path(review.book_id, review.id), method: :delete, remote: true, data: { confirm: t('view.are_you_sure')} %>
+      </div>
+    </div>
   <% end %>
+<% end %>

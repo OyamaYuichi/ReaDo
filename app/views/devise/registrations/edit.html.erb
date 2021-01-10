@@ -1,38 +1,37 @@
 <div class="container center">
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+  <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<table class="sign-table sign-form">
-  <tr class="field">
-    <td class="td-label"><%= f.label :icon %></td>
-    <td class="td-sign"><%= f.file_field :icon %></td>
-  </tr>
+    <table class="sign-table sign-form">
+      <tr class="field">
+        <td class="td-label"><%= f.label :icon %></td>
+        <td class="td-sign"><%= f.file_field :icon %></td>
+      </tr>
 
-  <tr class="field">
-    <td class="td-label"><%= f.label :name %><br /></td>
-    <td class="td-sign"><%= f.text_field :name, autofocus: true, class: "form-control" %></t>
-  </tr>
+      <tr class="field">
+        <td class="td-label"><%= f.label :name %><br /></td>
+        <td class="td-sign"><%= f.text_field :name, autofocus: true, class: "form-control" %></t>
+      </tr>
 
-  <tr class="field">
-    <td class="td-label"><%= f.label :profile %><br /></td>
-    <td class="td-sign"><%= f.text_area :profile, autofocus: true, class: "form-control" %></td>
-  </tr>
+      <tr class="field">
+        <td class="td-label"><%= f.label :profile %><br /></td>
+        <td class="td-sign"><%= f.text_area :profile, autofocus: true, class: "form-control" %></td>
+      </tr>
 
-  <tr class="field">
-    <td class="td-label"><%= f.label :email %><br /></td>
-    <td class="td-sign"><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
-  </tr>
-</table>
+      <tr class="field">
+        <td class="td-label"><%= f.label :email %><br /></td>
+        <td class="td-sign"><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
+      </tr>
+    </table>
 
-<p class="edit-cancel"><%= link_to t('view.cancel'), user_path(current_user.id) %></p>
-<p><%= f.submit t('.update'), class: "sign-up-submit user-update"%></p>
+    <p class="edit-cancel"><%= link_to t('view.cancel'), user_path(current_user.id) %></p>
+    <p><%= f.submit t('.update'), class: "sign-up-submit user-update"%></p>
 
-<% end %>
+  <% end %>
 
-<h3 class="cancel-message"><%= t('.cancel_my_account') %></h3>
+  <h3 class="cancel-message"><%= t('.cancel_my_account') %></h3>
 
-<p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "cancel-account" %></p>
-
+  <p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "cancel-account" %></p>
 </div>

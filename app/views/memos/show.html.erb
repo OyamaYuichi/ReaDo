@@ -1,51 +1,51 @@
 <div class="container">
-<table class="book-show-table">
-  <tr class="book-detail">
-    <td class="book-image">
-      <%= link_to image_tag(@memo.book.image_url), book_path(@memo.book)%>
-    </td>
-    <td class="book-desc">
-      <p>
-        <span class="book-title"><%= t('view.title') %>　</span>
-        <span class="book-ex"><%= link_to @memo.book.title, book_path(@memo.book) %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.genre') %>　</span>
-        <span class="book-ex">
-            <%= @category_1 %>
-          <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
-            ,　<%= @category_2 %>
-          <% end %>
-          <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
-            ,　<%= @category_3 %>
-          <% end %>
-        </span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.author') %>　　　</span>
-        <span class="book-ex"><%= @memo.book.author %></span>
-      </p>
-      <p>
-        <span class="book-title"><%= t('view.publisher') %>　　</span>
-        <span class="book-ex"><%= @memo.book.publisher %></span>
-      </p>
-      <% if current_user == @memo.user%>
-      <p>
-        <span class="book-title"><%= t('view.notice') %>　　　</span>
-        <span class="book-ex">
-          <% if @memo.email_send == true %>
-            <%= "ON" %>
-          <% else %>
-            <%= "OFF" %>
-          <% end %>
-        </span>
-      </p>
-      <% end %>
-    </td>
-  </tr>
-</table>
+  <table class="book-show-table">
+    <tr class="book-detail">
+      <td class="book-image">
+        <%= link_to image_tag(@memo.book.image_url), book_path(@memo.book)%>
+      </td>
+      <td class="book-desc">
+        <p>
+          <span class="book-title"><%= t('view.title') %>　</span>
+          <span class="book-ex"><%= link_to @memo.book.title, book_path(@memo.book) %></span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.genre') %>　</span>
+          <span class="book-ex">
+              <%= @category_1 %>
+            <% if @category_2 && @category_1 != @category_2 &&  @category_2 != @category_3%>
+              ,　<%= @category_2 %>
+            <% end %>
+            <% if @category_3 && @category_1 != @category_3 &&  @category_2 != @category_3 %>
+              ,　<%= @category_3 %>
+            <% end %>
+          </span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.author') %>　　　</span>
+          <span class="book-ex"><%= @memo.book.author %></span>
+        </p>
+        <p>
+          <span class="book-title"><%= t('view.publisher') %>　　</span>
+          <span class="book-ex"><%= @memo.book.publisher %></span>
+        </p>
+        <% if current_user == @memo.user%>
+        <p>
+          <span class="book-title"><%= t('view.notice') %>　　　</span>
+          <span class="book-ex">
+            <% if @memo.email_send == true %>
+              <%= "ON" %>
+            <% else %>
+              <%= "OFF" %>
+            <% end %>
+          </span>
+        </p>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 
-<hr>
+  <hr>
 
   <table class="memo-table center">
     <tr class="">

@@ -1,5 +1,4 @@
 <div class="container center">
-
   <%= form_tag(new_book_path, method: :get, class: 'form-inline') do %>
     <%= text_field_tag :book_title, @title, class: 'form-control', placeholder:t('view.summary_title'), size: 40 %>
     <%= submit_tag t('view.search_summary'), class: 'btn'%>
@@ -22,5 +21,4 @@
   <% end %>
 
   <p><%= paginate @books %></p>
-
 </div>

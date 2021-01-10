@@ -1,149 +1,147 @@
 <% if current_user %>
-
-
-<div class="container center">
-<div class="block">
-  <div class="block__avator image-right">
-    <% if @user.icon? %>
-      <%= image_tag(@user.icon.url, :size =>'180x180')  %>
-    <% else %>
-      <img src="/assets/favicon.ico" class="icon" width="180" height="180" >
-    <% end %>
-  </div>
-  <div class="block__text">
-    <p class="user-name"><%= @user.name %></p>
-    <p class="user-profile"><%= @user.profile %></p>
-  </div>
-  <div class="block__control">
-    <% if current_user != @user%>
-      <%= render 'follow_form', user: @user %>
-    <% elsif %>
-      <p><%= link_to t('view.edit_profile'), edit_user_registration_path, class: "profile-edit" %></p>
-    <% end %>
-  </div>
-</div>
-
-<table class="center text-movie user-table">
-  <tr class="">
-    <td class="">
-      <h3 class="book-movie"><%= @user.level %></h3>
-      <p><%= t('view.read_level') %></p>
-    </td>
-    <td class="">
-      <h3 class="book-movie"><%= @user.summaries.count %></h3>
-      <p><%= t('view.submit_count') %></p></p>
-    </td>
-    <td>
-      <h3 class="book-movie"><%= @user.summaries.count + @favorites.count %></h3>
-      <p><%= t('view.read_count') %></p>
-    </td>
-    <td>
-      <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id), id: "follow" %></h3>
-      <p><%= t('view.follow') %></p>
-    </td>
-    <td>
-      <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id), id: "follower" %></h3>
-      <p><%= t('view.follower') %></p></p>
-    </td>
-  </tr>
-</table>
-
-<table class="center text-movie">
-  <tr class="tab book-tab">
-    <td class="select">
-      <h2 class="book-movie"><%= fa_icon("book") %></h2>
-      <p><%= t('view.submit') %></p>
-    </td>
-    <td class="select-text">
-      <h2 class="book-movie"><%= fa_icon("pencil-alt") %></h2>
-      <p><%= t('view.memo') %></p></p>
-    </td>
-    <td>
-      <h2 class="book-movie"><%= fa_icon("star") %></h2>
-      <p><%= t('view.favorite') %></p>
-    </td>
-  </tr>
-</table>
-<div class="book-show-content">
-
-  <div class="book">
-    <% if @summaries.present? %>
-      <div class="summary-table">
-        <% @summaries.each do |summary| %>
-          <div class="summary-content">
-            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-            <p class="summary-book-title"><%= summary.book.title %></p>
-            <p class="summary-user-name small-icon">
-              <%= icon('far', 'user') %>　
-            <% if summary.user.icon? %>
-              <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
-            <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
-            <% end %>
-              <%= link_to summary.user.name, user_path(summary.user) %>
-            </p>
-            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
-          </div>
+  <div class="container center">
+    <div class="block">
+      <div class="block__avator image-right">
+        <% if @user.icon? %>
+          <%= image_tag(@user.icon.url, :size =>'180x180')  %>
+        <% else %>
+          <img src="/assets/favicon.ico" class="icon" width="180" height="180" >
         <% end %>
       </div>
-    <% end %>
-    <p><%= paginate @summaries %></p>
-  </div>
+      <div class="block__text">
+        <p class="user-name"><%= @user.name %></p>
+        <p class="user-profile"><%= @user.profile %></p>
+      </div>
+      <div class="block__control">
+        <% if current_user != @user%>
+          <%= render 'follow_form', user: @user %>
+        <% elsif %>
+          <p><%= link_to t('view.edit_profile'), edit_user_registration_path, class: "profile-edit" %></p>
+        <% end %>
+      </div>
+    </div>
 
-  <div class="book hide">
-    <% if @memos.present? %>
-      <div class="summary-table">
-        <% @memos.each do |memo| %>
-          <div class="summary-content">
-            <p><%= link_to image_tag(memo.book.image_url), memo, class: "summary-image"%></p>
-            <p class="summary-book-title"><%= memo.book.title %></p>
-            <% if current_user == memo.user %>
-            <% if memo.email_send == true %>
-              <p class="summary-favorite"><%= icon('far', 'bell') %>　ON</p>
-            <% else %>
-              <p class="summary-favorite"><%= icon('far', 'bell') %>　OFF</p>
-            <% end %>
+    <table class="center text-movie user-table">
+      <tr class="">
+        <td class="">
+          <h3 class="book-movie"><%= @user.level %></h3>
+          <p><%= t('view.read_level') %></p>
+        </td>
+        <td class="">
+          <h3 class="book-movie"><%= @user.summaries.count %></h3>
+          <p><%= t('view.submit_count') %></p></p>
+        </td>
+        <td>
+          <h3 class="book-movie"><%= @user.summaries.count + @favorites.count %></h3>
+          <p><%= t('view.read_count') %></p>
+        </td>
+        <td>
+          <h3 class="book-movie"><%= link_to @user.following.count, following_users_path(id: @user.id), id: "follow" %></h3>
+          <p><%= t('view.follow') %></p>
+        </td>
+        <td>
+          <h3 class="book-movie"><%= link_to @user.followers.count, follower_users_path(id: @user.id), id: "follower" %></h3>
+          <p><%= t('view.follower') %></p></p>
+        </td>
+      </tr>
+    </table>
+
+    <table class="center text-movie">
+      <tr class="tab book-tab">
+        <td class="select">
+          <h2 class="book-movie"><%= fa_icon("book") %></h2>
+          <p><%= t('view.submit') %></p>
+        </td>
+        <td class="select-text">
+          <h2 class="book-movie"><%= fa_icon("pencil-alt") %></h2>
+          <p><%= t('view.memo') %></p></p>
+        </td>
+        <td>
+          <h2 class="book-movie"><%= fa_icon("star") %></h2>
+          <p><%= t('view.favorite') %></p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="book-show-content">
+      <div class="book">
+        <% if @summaries.present? %>
+          <div class="summary-table">
+            <% @summaries.each do |summary| %>
+              <div class="summary-content">
+                <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+                <p class="summary-book-title"><%= summary.book.title %></p>
+                <p class="summary-user-name small-icon">
+                  <%= icon('far', 'user') %>　
+                <% if summary.user.icon? %>
+                  <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+                <% else %>
+                  <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+                <% end %>
+                  <%= link_to summary.user.name, user_path(summary.user) %>
+                </p>
+                <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
+              </div>
             <% end %>
           </div>
         <% end %>
+        <p><%= paginate @summaries %></p>
       </div>
-    <% end %>
-    <p><%= paginate @memos %></p>
-  </div>
 
-  <div class="book hide">
-    <% if @favorites.present? %>
-      <div class="summary-table">
-        <% @favorites.each do |favorite| %>
-          <div class="summary-content">
-            <p><%= link_to image_tag(favorite.book.image_url), favorite, class: "summary-image"%></p>
-            <p class="summary-book-title"><%= favorite.book.title %></p>
-            <p class="summary-user-name small-icon"><%= icon('far', 'user') %>　
-            <% if favorite.user.icon? %>
-              <%= image_tag(favorite.user.icon.url, :size =>'20x20')  %>
-            <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+      <div class="book hide">
+        <% if @memos.present? %>
+          <div class="summary-table">
+            <% @memos.each do |memo| %>
+              <div class="summary-content">
+                <p><%= link_to image_tag(memo.book.image_url), memo, class: "summary-image"%></p>
+                <p class="summary-book-title"><%= memo.book.title %></p>
+                <% if current_user == memo.user %>
+                <% if memo.email_send == true %>
+                  <p class="summary-favorite"><%= icon('far', 'bell') %>　ON</p>
+                <% else %>
+                  <p class="summary-favorite"><%= icon('far', 'bell') %>　OFF</p>
+                <% end %>
+                <% end %>
+              </div>
             <% end %>
-            <%= link_to favorite.user.name, user_path(favorite.user) %>
-            </p>
-            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= favorite.favorites.count %></p>
           </div>
         <% end %>
+        <p><%= paginate @memos %></p>
       </div>
-    <% end %>
-    <p><%= paginate @favorites %></p>
+
+      <div class="book hide">
+        <% if @favorites.present? %>
+          <div class="summary-table">
+            <% @favorites.each do |favorite| %>
+              <div class="summary-content">
+                <p><%= link_to image_tag(favorite.book.image_url), favorite, class: "summary-image"%></p>
+                <p class="summary-book-title"><%= favorite.book.title %></p>
+                <p class="summary-user-name small-icon"><%= icon('far', 'user') %>　
+                <% if favorite.user.icon? %>
+                  <%= image_tag(favorite.user.icon.url, :size =>'20x20')  %>
+                <% else %>
+                  <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+                <% end %>
+                <%= link_to favorite.user.name, user_path(favorite.user) %>
+                </p>
+                <p class="summary-favorite"><%= icon('far', 'star') %>　<%= favorite.favorites.count %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <p><%= paginate @favorites %></p>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 <% else %>
-<div class="center">
-  <p class="login-message"><%= t('view.login_message') %></p>
-  <button  type="button" class="btn btn-danger login-btn">
-  <p>
-    <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
-    <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
-  </p>
-  </button>
-</div>
+  <div class="center">
+    <p class="login-message"><%= t('view.login_message') %></p>
+    <button  type="button" class="btn btn-danger login-btn">
+    <p>
+      <%= link_to fa_icon("sign-in-alt 3x"), new_user_session_path, class: "login-icon"%>
+      <%= link_to t('view.to_login_screen'), new_user_session_path, class: "login"%>
+    </p>
+    </button>
+  </div>
 <% end %>
 

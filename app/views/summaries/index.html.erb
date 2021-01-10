@@ -1,41 +1,42 @@
 <div class="container center summary-index margin-top">
-<table class="center text-movie index-tab">
-  <tr class="tab">
-    <td class="select">
-      <h1 class="book-movie"><%= fa_icon("book") %></h1>
-      <p><%= t('view.text') %></p>
-    </td>
-    <td class="td">
-      <h1 class="book-movie"><%= fa_icon("tv") %></h1>
-      <p><%= t('view.movie') %></p>
-    </td>
-  </tr>
-</table>
+  <table class="center text-movie index-tab">
+    <tr class="tab">
+      <td class="select">
+        <h1 class="book-movie"><%= fa_icon("book") %></h1>
+        <p><%= t('view.text') %></p>
+      </td>
+      <td class="td">
+        <h1 class="book-movie"><%= fa_icon("tv") %></h1>
+        <p><%= t('view.movie') %></p>
+      </td>
+    </tr>
+  </table>
+
   <div class="content">
     <div class="summary">
-    <% if @summaries.present? %>
-      <div class="summary-table">
-        <% @summaries.each do |summary| %>
-          <div class="summary-content">
-            <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
-            <p class="summary-book-title"><%= summary.book.title %></p>
-            <p class="summary-user-name small-icon">
-              <%= icon('far', 'user') %>　
-            <% if summary.user.icon? %>
-              <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
-            <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
-            <% end %>
-              <%= link_to summary.user.name, user_path(summary.user) %>
-            </p>
-            <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <h3><%= t('view.not_find') %></h3>
-    <% end %>
-    <p><%= paginate @summaries %></p>
+      <% if @summaries.present? %>
+        <div class="summary-table">
+          <% @summaries.each do |summary| %>
+            <div class="summary-content">
+              <p><%= link_to image_tag(summary.book.image_url), summary, class: "summary-image"%></p>
+              <p class="summary-book-title"><%= summary.book.title %></p>
+              <p class="summary-user-name small-icon">
+                <%= icon('far', 'user') %>　
+              <% if summary.user.icon? %>
+                <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+              <% else %>
+                <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+              <% end %>
+                <%= link_to summary.user.name, user_path(summary.user) %>
+              </p>
+              <p class="summary-favorite"><%= icon('far', 'star') %>　<%= summary.favorites.count %></p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <h3><%= t('view.not_find') %></h3>
+      <% end %>
+      <p><%= paginate @summaries %></p>
     </div>
 
     <div class="summary hide">
@@ -52,57 +53,57 @@
         <% end %>
       <% end %>
     </div>
-
   </div>
 </div>
+
 <% if @summary_1 %>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-  </ol>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <h3><%= @summary_1.user.name %></h3>
-      <h2><%= @summary_1.book.title %></h2>
-      <p><%= link_to image_tag(@summary_1.book.image_url), @summary_1 %></p>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <h3><%= @summary_1.user.name %></h3>
+        <h2><%= @summary_1.book.title %></h2>
+        <p><%= link_to image_tag(@summary_1.book.image_url), @summary_1 %></p>
+      </div>
+      <div class="item">
+        <h3><%= @summary_2.user.name %></h3>
+        <h2><%= @summary_2.book.title %></h2>
+        <p><%= link_to image_tag(@summary_2.book.image_url), @summary_2 %></p>
+      </div>
+      <div class="item">
+        <h3><%= @summary_3.user.name %></h3>
+        <h2><%= @summary_3.book.title %></h2>
+        <p><%= link_to image_tag(@summary_3.book.image_url), @summary_3 %></p>
+      </div>
+      <div class="item">
+        <h3><%= @summary_4.user.name %></h3>
+        <h2><%= @summary_4.book.title %></h2>
+        <p><%= link_to image_tag(@summary_4.book.image_url), @summary_4 %></p>
+      </div>
+      <div class="item">
+        <h3><%= @summary_5.user.name %></h3>
+        <h2><%= @summary_5.book.title %></h2>
+        <p><%= link_to image_tag(@summary_5.book.image_url), @summary_5 %></p>
+      </div>
     </div>
-    <div class="item">
-      <h3><%= @summary_2.user.name %></h3>
-      <h2><%= @summary_2.book.title %></h2>
-      <p><%= link_to image_tag(@summary_2.book.image_url), @summary_2 %></p>
-    </div>
-    <div class="item">
-      <h3><%= @summary_3.user.name %></h3>
-      <h2><%= @summary_3.book.title %></h2>
-      <p><%= link_to image_tag(@summary_3.book.image_url), @summary_3 %></p>
-    </div>
-    <div class="item">
-      <h3><%= @summary_4.user.name %></h3>
-      <h2><%= @summary_4.book.title %></h2>
-      <p><%= link_to image_tag(@summary_4.book.image_url), @summary_4 %></p>
-    </div>
-    <div class="item">
-      <h3><%= @summary_5.user.name %></h3>
-      <h2><%= @summary_5.book.title %></h2>
-      <p><%= link_to image_tag(@summary_5.book.image_url), @summary_5 %></p>
-    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 <% end %>

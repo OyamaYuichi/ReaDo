@@ -1,22 +1,22 @@
 <div class="container">
-<% @users.each do |user| %>
-<div class="block follow-block">
-  <div class="block__avator image-right follow-icon">
-    <% if user.icon? %>
-      <%= image_tag(user.icon.url, :size =>'80x80')  %>
-    <% else %>
-      <img src="/assets/favicon.ico" class="icon"  width="80" height="80" >
-    <% end %>
-  </div>
-  <div class="block__text__follow">
-    <p class="user-name"><%= link_to "#{user.name}", user_path(user) %></p>
-    <p class="user-profile follow-profile"><%= user.profile %></p>
-  </div>
-  <div class="block__control">
-    <% if current_user != user%>
-      <%= render 'follow_form', user: user %>
-    <% end %>
-  </div>
-</div>
-<% end %>
+  <% @users.each do |user| %>
+    <div class="block follow-block">
+      <div class="block__avator image-right follow-icon">
+        <% if user.icon? %>
+          <%= image_tag(user.icon.url, :size =>'80x80')  %>
+        <% else %>
+          <img src="/assets/favicon.ico" class="icon"  width="80" height="80" >
+        <% end %>
+      </div>
+      <div class="block__text__follow">
+        <p class="user-name"><%= link_to "#{user.name}", user_path(user) %></p>
+        <p class="user-profile follow-profile"><%= user.profile %></p>
+      </div>
+      <div class="block__control">
+        <% if current_user != user%>
+          <%= render 'follow_form', user: user %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
