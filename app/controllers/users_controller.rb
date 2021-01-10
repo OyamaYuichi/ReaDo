@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    read_level = User.calc_level(@user)
-    @level = read_level.floor
     @summaries = @user.summaries.order(created_at: :desc).page(params[:page]).per(20)
     @memos = @user.memos.order(created_at: :desc).page(params[:page]).per(20)
     @favorites = @user.favorite_summaries.order(created_at: :desc).page(params[:page]).per(20)

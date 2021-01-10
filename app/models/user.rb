@@ -83,11 +83,4 @@ class User < ApplicationRecord
       user.name = "test"
     end
   end
-
-  def self.calc_level(user)
-    read_level = user.summaries.count * 0.6
-                  + user.memos.count * 0.2
-                  + user.reviews.count * 0.1
-                  + user.comments.count * 0.1
-  end
 end
