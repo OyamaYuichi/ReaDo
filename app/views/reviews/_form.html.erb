@@ -12,7 +12,7 @@
   <div class="review-text-area">
     <p><%= form.text_area :content, class: 'form-control', placeholder: t('view.create_review') %></p>
   </div>
-  <div class="actions right-submit">
-    <p class="review-submit"><%= form.submit value=t('view.submit') %></p>
+  <div class="actions">
+    <p><%= form.submit value=t('view.submit'), class: 'review-submit' %></p>
   </div>
 <% end %>

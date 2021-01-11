@@ -9,10 +9,16 @@ textarea#review_content {
 }
 
 .review-submit {
-  margin-bottom: 40px;
+  width: 100%;
+  color: white;
+  background-color: #337ab7;
+  border: none;
+  border-radius: 5px;
+  padding: 2px 0;
+  margin-bottom: 20px;
 }
-.right-submit {
-  text-align: right;
+.review-submit:hover {
+  background-color: #084479;
 }
 
 .left-review {
