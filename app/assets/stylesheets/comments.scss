@@ -1,3 +1,15 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment-submit {
+  width: 100%;
+  color: white;
+  background-color: #337ab7;
+  border: none;
+  border-radius: 5px;
+  padding: 2px 0;
+}
+.comment-submit:hover {
+  background-color: #084479;
+}
