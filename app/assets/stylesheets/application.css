@@ -24,11 +24,11 @@
   min-width: 1170px;
   max-width: 1170px;
   background-color: #fff;
-  /* padding: 0; */
+  margin-top: 70px;
 }
+
 body {
   clear: both;
-  /* background-color: rgb(151, 147, 147); */
   background-color: #DBDBDB;
 }
 
@@ -46,9 +46,22 @@ table {
 header{
   background-color: #252525;
   padding: 10px 0px 5px 0px;
-  /* position: fixed; */
   width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
 }
+
+.modal-backdrop {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
 
 hr {
   border-top: 1px solid #DBDBDB;
@@ -71,7 +84,6 @@ a:hover {
 .size {
   width: 600px;
   padding: 20px 0 20px 0;
-  /* height: 600px; */
 }
 
 .right {
