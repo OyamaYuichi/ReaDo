@@ -58,6 +58,7 @@
     <div class="book">
       <% if current_user %>
           <%= render partial: 'reviews/form', locals: { review: @review, book: @book } %>
+          <p class="summary-favorite"><%= t('view.review') %>　<%= @book.reviews.count %></p>
         <div id="reviews_area">
           <%= render partial: 'reviews/index', locals: { reviews: @reviews, book: @book } %>
         </div>
