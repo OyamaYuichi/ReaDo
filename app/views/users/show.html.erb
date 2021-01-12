@@ -1,6 +1,6 @@
 <% if current_user %>
   <div class="container center">
-    <div class="block">
+    <div class="block user-block">
       <div class="block__avator image-right">
         <% if @user.icon? %>
           <%= image_tag(@user.icon.url, :size =>'180x180')  %>

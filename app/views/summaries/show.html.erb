@@ -54,12 +54,54 @@
   <div class="content">
     <div class="summary">
       <div class="summary-sentence">
-        <p class="summary-favorite"><%= icon('far', 'star') %>　<%= @summary.favorites.count %></p>
         <p><%= @summary.content %></p>
         <div class="summary-time">
-        <p><%= @summary.created_at.strftime('%Y年 %m月 %d日 %k時 %M分') %></p>
+          <p><%= @summary.created_at.strftime('%Y年 %m月 %d日 %k時 %M分') %></p>
         </div>
       </div>
+      <p type="button" class="summary-favorite" data-toggle="modal" data-target=".bs-example-modal-m">
+        <%= icon('far', 'star') %>　<%= @summary.favorites.count %>
+      </p>
+      <% if @summary.favorites.count > 0%>
+        <div class="modal fade bs-example-modal-m" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm size" role="document">
+            <div class="modal-content">
+              <h3 class="modal-favorite"><%= t('view.favorite') %></h3>
+              <% @summary.favorite_users.each do |favorite_user| %>
+                <div class="block follow-block">
+                  <div class="block__avator__follow  favorite-icon">
+                    <% if favorite_user.icon? %>
+                      <%= image_tag(favorite_user.icon.url, :size =>'60x60')  %>
+                    <% else %>
+                      <img src="/assets/favicon.ico" class="icon" width="60" height="60" >
+                    <% end %>
+                  </div>
+                  <div class="block__text__favorite">
+                    <p class="user-name"><%= link_to "#{favorite_user.name}", user_path(favorite_user) %></p>
+                    <p class="user-profile follow-profile"><%= favorite_user.profile %></p>
+                  </div>
+                  <div class="block__control__follow">
+                    <% if current_user != favorite_user%>
+                      <div id="follow_form_<%= favorite_user.id %>">
+                        <% unless current_user.following?(favorite_user) %>
+                          <%= form_with(model: current_user.active_relationships.build(followed_id: favorite_user.id)) do |f| %>
+                            <%= f.hidden_field :followed_id %>
+                            <%= f.submit t('view.follow'), class: "follow-btn" %>
+                          <% end %>
+                        <% else %>
+                          <%= form_with(model: current_user.active_relationships.find_by(followed_id: favorite_user.id), method: :delete ) do |f| %>
+                            <%= f.submit t('view.not_follow'), class: "follow-btn" %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <% if current_user %>
         <% if @summary.user_id == current_user.id%>
           <div class="right-review">
@@ -79,8 +121,8 @@
 
     <div class="summary hide">
       <% if current_user %>
-          <p class="summary-favorite">コメント　<%= @summary.comments.count %></p>
           <%= render partial: 'comments/form', locals: { comment: @comment, summary: @summary } %>
+          <p class="summary-favorite"><%= t('view.comment') %>　<%= @summary.comments.count %></p>
         <div id="comments_area">
           <%= render partial: 'comments/index', locals: { comments: @comments, summary: @summary } %>
         </div>

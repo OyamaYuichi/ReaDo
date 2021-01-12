@@ -163,6 +163,9 @@ iframe {
   text-align: left;
   width: 170px;
 }
+.summary-favorite:hover {
+  color: red;
+}
 
 .carousel{
   background-color: white;
@@ -177,4 +180,18 @@ iframe {
 
 .index-tab td {
   border-bottom: 1px solid #DBDBDB;
+}
+
+.favorite-icon {
+  text-align: center;
+}
+.favorite-icon img {
+  box-shadow: none;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.modal-favorite {
+  text-align: center;
+  font-weight: bold;
 }

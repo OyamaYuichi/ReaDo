@@ -50,13 +50,20 @@
   display: table;
   box-sizing: border-box;
   width: 100%;
-  margin: 30px 0;
+}
+.user-block {
+  padding: 30px 0 30px 0;
 }
 
 .block .block__avator{
   vertical-align: top;
   display: table-cell;
   width: 300px;
+}
+.block .block__avator__follow{
+  vertical-align: top;
+  display: table-cell;
+  width: 120px;
 }
 
 .block .block__text{
@@ -70,12 +77,23 @@
   display: table-cell;
   padding: 0px 0 10px 10px;
 }
+.block .block__text__favorite{
+  vertical-align: top;
+  display: table-cell;
+}
 
 
 .block .block__control{
   vertical-align: top;
   display: table-cell;
   width: 200px;
+  padding: 0px 10px 10px 10px;
+  text-align: left;
+}
+.block .block__control__follow{
+  vertical-align: top;
+  display: table-cell;
+  width: 150px;
   padding: 0px 10px 10px 10px;
   text-align: left;
 }
@@ -110,7 +128,7 @@
 
 .follow-block {
   border-bottom: solid 1px gainsboro;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .follow-profile {
