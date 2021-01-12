@@ -78,6 +78,7 @@
 
     <div class="summary hide">
       <% if current_user %>
+          <p class="summary-favorite">コメント　<%= @summary.comments.count %></p>
           <%= render partial: 'comments/form', locals: { comment: @comment, summary: @summary } %>
         <div id="comments_area">
           <%= render partial: 'comments/index', locals: { comments: @comments, summary: @summary } %>
