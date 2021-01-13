@@ -6,7 +6,7 @@ class SummariesController < ApplicationController
     if params[:search].present?
       summaries = Summary.search(params[:title], params[:author], params[:category], params[:follow], current_user)
     else
-      summaries = Summary.all.order(created_at: :desc)
+      summaries = Summary.includes(:user, :book).order(created_at: :desc)
     end
     @summaries = summaries.page(params[:page]).per(30)
     if Summary.count > 4
