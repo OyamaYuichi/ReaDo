@@ -1,0 +1,5 @@
+<% if current_user.comment_favorites.find_by(comment_id: comment.id) %>
+  <%= link_to fa_icon("thumbs-up"), comment_favorite_path(comment), method: :delete, remote: true, class: "like" %>
+<% else %>
+  <%= link_to icon('far', 'thumbs-up'), comment_favorites_path(comment_id: comment.id), method: :post, remote: true %>
+<% end %>

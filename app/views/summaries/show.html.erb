@@ -109,12 +109,10 @@
             <%= link_to fa_icon("trash-alt 2x"), @summary, method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         <% end %>
-        <% unless @summary.user_id == current_user.id %>
-          <% if @favorite.present? %>
-            <%= link_to t('view.not_favorite'), favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-          <% else %>
-            <%= link_to t('view.favorite'), favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
-          <% end %>
+        <% if @favorite.present? %>
+          <%= link_to t('view.not_favorite'), favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to t('view.favorite'), favorites_path(summary_id: @summary.id), method: :post, class: 'btn btn-primary' %>
         <% end %>
       <% end %>
     </div>

@@ -87,11 +87,11 @@ a:hover {
 }
 
 .right {
-  float: right;
+  text-align: right;
 }
 
 .left {
-  float: left;
+  text-align: left;
 }
 
 .pagination>li>a {
