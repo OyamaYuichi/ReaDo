@@ -1,0 +1,2 @@
+class ReviewFavorite < ApplicationRecord
+end
