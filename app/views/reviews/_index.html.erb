@@ -11,6 +11,9 @@
           <%= link_to review.user.name, user_path(review.user) %>
         </p>
         <p class="review-user-content"><%= review.content %></p>
+        <div id="likes_buttons_<%= review.id %>" class="like-btn">
+            <h4><%= render partial: 'review_favorites/like', locals: { review: review} %><%= review.review_favorites.count %></h4>
+          </div>
       </div>
       <div class="review-content" id ="this_review_<%= review.id %>"></div>
       <% if review.user_id == current_user.id%>

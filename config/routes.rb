@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: [:create, :destroy]
   resources :comment_favorites, only: [:create, :destroy]
+  resources :review_favorites, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
   # mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

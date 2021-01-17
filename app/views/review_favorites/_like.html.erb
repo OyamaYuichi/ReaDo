@@ -1,0 +1,5 @@
+<% if current_user.review_favorites.find_by(review_id: review.id) %>
+  <%= link_to fa_icon("thumbs-up"), review_favorite_path(review), method: :delete, remote: true, class: "like" %>
+<% else %>
+  <%= link_to icon('far', 'thumbs-up'), review_favorites_path(review_id: review.id), method: :post, remote: true %>
+<% end %>

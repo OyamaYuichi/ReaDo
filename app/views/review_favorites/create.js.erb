@@ -1,0 +1,1 @@
+$('#likes_buttons_<%= @review.id %>').html("<%= j(render partial: 'review_favorites/like', locals: {review: @review}) %>");
