@@ -19,5 +19,8 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         icon: プロフィール画像
-        profile: 自己紹介
+        twitter_link: Twitter URL
+        facebook_link: Facebook URL
+        instagram_link: Instagram URL
+        favorite_book: お気に入り書籍
         cancel: キャンセル

@@ -24,6 +24,22 @@
         <td class="td-label"><%= f.label :email %><br /></td>
         <td class="td-sign"><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
       </tr>
+
+      <tr class="field">
+        <td class="td-label"><%= f.label :twitter_link %><br /></td>
+        <td class="td-sign"><%= f.text_field :twitter_link, autofocus: true, class: "form-control" %></td>
+      </tr>
+
+      <tr class="field">
+        <td class="td-label"><%= f.label :facebook_link %><br /></td>
+        <td class="td-sign"><%= f.text_field :facebook_link, autofocus: true, class: "form-control" %></td>
+      </tr>
+
+      <tr class="field">
+        <td class="td-label"><%= f.label :instagram_link %><br /></td>
+        <td class="td-sign"><%= f.text_field :instagram_link, autofocus: true, class: "form-control" %></td>
+      </tr>
+
     </table>
 
     <p class="edit-cancel"><%= link_to t('view.cancel'), user_path(current_user.id) %></p>

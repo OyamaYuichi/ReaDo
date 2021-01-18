@@ -7,10 +7,15 @@
         <% else %>
           <img src="/assets/favicon.ico" class="icon" width="180" height="180" >
         <% end %>
+        <p>
+        </p>
       </div>
       <div class="block__text">
         <p class="user-name"><%= @user.name %></p>
         <p class="user-profile"><%= @user.profile %></p>
+        <%= link_to icon('fab', 'twitter-square'), @user.twitter_link, class: "twitter-link" %>
+        <%= link_to icon('fab', 'facebook-square'), @user.facebook_link, class: "facebook-link" %>
+        <%= link_to icon('fab', 'instagram'), @user.instagram_link, class: "instagram-link" %>
       </div>
       <div class="block__control">
         <% if current_user != @user%>
