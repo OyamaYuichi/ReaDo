@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_105937) do
+ActiveRecord::Schema.define(version: 2021_01_18_131531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,10 @@ ActiveRecord::Schema.define(version: 2021_01_17_105937) do
     t.text "icon"
     t.string "profile", default: "こんにちは！"
     t.integer "level", default: 0
+    t.string "twitter_link"
+    t.string "facebook_link"
+    t.string "instagram_link"
+    t.text "favorite_book"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
