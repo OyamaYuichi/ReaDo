@@ -72,6 +72,7 @@ ja:
     destroy_notice: 削除しました
     notice_action_plan: 現在のアクションプランです。
     not_action_plan: 通知するアクションプランがありません。
+    read_data: 読書データ
   enums:
     summary:
       category:

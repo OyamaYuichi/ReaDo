@@ -13,9 +13,6 @@
       <div class="block__text">
         <p class="user-name"><%= @user.name %></p>
         <p class="user-profile"><%= @user.profile %></p>
-        <%= link_to icon('fab', 'twitter-square'), @user.twitter_link, class: "twitter-link" %>
-        <%= link_to icon('fab', 'facebook-square'), @user.facebook_link, class: "facebook-link" %>
-        <%= link_to icon('fab', 'instagram'), @user.instagram_link, class: "instagram-link" %>
       </div>
       <div class="block__control">
         <% if current_user != @user%>
@@ -23,6 +20,24 @@
         <% elsif %>
           <p><%= link_to t('view.edit_profile'), edit_user_registration_path, class: "profile-edit" %></p>
         <% end %>
+        <div class="modal-sns">
+          <%= link_to icon('fab', 'twitter-square'), @user.twitter_link, class: "twitter-link" %>
+          <%= link_to icon('fab', 'facebook-square'), @user.facebook_link, class: "facebook-link" %>
+          <%= link_to icon('fab', 'instagram'), @user.instagram_link, class: "instagram-link" %>
+        </div>
+        <p type="button" class="modal-sns modal-link" data-toggle="modal" data-target=".bs-example-modal-m">
+          <%= fa_icon("chart-bar lg") %>　<%= t('view.read_data') %>
+        </p>
+      </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-m" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm graph-modal" role="document">
+        <div class="modal-content">
+          <div class="graph">
+            <%= column_chart @read_count, download: true, colors: ['#FF4F02'] %>
+          </div>
+        </div>
       </div>
     </div>
 

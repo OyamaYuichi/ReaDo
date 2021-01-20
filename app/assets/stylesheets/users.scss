@@ -181,3 +181,25 @@
   font-size: 25px;
   color: rgb(212, 79, 212);
 }
+
+.graph-modal {
+  width: 80%;
+  height: 350px;
+  margin-top: 280px;
+}
+.graph {
+  padding: 50px;
+}
+.modal-sns{
+  margin-top: 40px;
+  margin-left: 10px;
+}
+
+.modal-link {
+  font-size: 14px;
+  color: #337ab7;
+  cursor: pointer;
+}
+.modal-link:hover {
+  color: red;
+}

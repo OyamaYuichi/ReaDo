@@ -87,3 +87,6 @@ gem 'font-awesome-sass', '~> 5.8.1'
 gem 'fog-aws'
 gem 'unicorn'
 gem 'mini_racer', platforms: :ruby
+
+gem 'chartkick'
+gem 'groupdate'
