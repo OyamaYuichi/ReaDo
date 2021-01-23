@@ -225,80 +225,117 @@ a:hover {
   height: 80px;
   margin-top: 100px;
   background-color: #252525;
-  }
+}
 
 
 
-  .footer-brand-name {
-    font-size: 30px;
-    font-style: italic;
-    font-weight: bold;
-  }
+.footer-brand-name {
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
 
-  .footer-brand-image {
-    width: 55px;
-    height: 55px;
-    box-shadow: none;
-    background-color: #DBDBDB;
-    border-radius: 50%;
-  }
-  .footer-table {
-    table-layout: fixed;
-  }
+.footer-brand-image {
+  width: 55px;
+  height: 55px;
+  box-shadow: none;
+  background-color: #DBDBDB;
+  border-radius: 50%;
+}
+.footer-table {
+  table-layout: fixed;
+}
 
-  .image-right {
-    text-align: right;
-    padding-right: 10px;
-  }
+.image-right {
+  text-align: right;
+  padding-right: 10px;
+}
 
-  .footer-padding {
-    padding-top: 15px;
-  }
+.footer-padding {
+  padding-top: 15px;
+}
 
-  .notice-action-plan {
-    text-align: left;
-    list-style: inside;
-    margin-left: 95px;
-  }
+.notice-action-plan {
+  text-align: left;
+  list-style: inside;
+  margin-left: 95px;
+}
 
-  i.far.fa-user {
-    padding-left: 2px;
-    padding-right: 0;
-  }
+i.far.fa-user {
+  padding-left: 2px;
+  padding-right: 0;
+}
 
-  i.far.fa-star {
-    padding-right: 8px;
-  }
+i.far.fa-star {
+  padding-right: 8px;
+}
 
-  .fa-home, .fa-users, .fa-sign-out-alt, .fa-user-plus, .fa-sign-in-alt{
-    color: #DBDBDB;
-  }
-  .fa-home:hover, .fa-users:hover, .fa-sign-out-alt:hover, .fa-user-plus:hover, .fa-sign-in-alt:hover{
-    color: gray;
-  }
+.fa-home, .fa-users, .fa-sign-out-alt, .fa-user-plus, .fa-sign-in-alt{
+  color: #DBDBDB;
+}
+.fa-home:hover, .fa-users:hover, .fa-sign-out-alt:hover, .fa-user-plus:hover, .fa-sign-in-alt:hover{
+  color: gray;
+}
 
-  .brand-name a, .footer-brand-name a{
-    color: #DBDBDB;
-  }
-  .brand-name a:hover, .footer-brand-name a:hover{
-    color: gray;
-  }
+.brand-name a, .footer-brand-name a{
+  color: #DBDBDB;
+}
+.brand-name a:hover, .footer-brand-name a:hover{
+  color: gray;
+}
 
-  .header-user, .header-edit {
-    color: #DBDBDB;
-  }
-  .header-user:hover, .header-edit:hover {
-    color: gray;
-  }
+.header-user, .header-edit {
+  color: #DBDBDB;
+}
+.header-user:hover, .header-edit:hover {
+  color: gray;
+}
 
-  .alert {
-    text-align: center;
-    background-color: rgb(214, 250, 160);
-    margin: 0;
-    color: gray;
-  }
+.alert {
+  text-align: center;
+  background-color: rgb(214, 250, 160);
+  margin: 0;
+  color: gray;
+}
 
-  #fadeout {
-    position: fixed;
-    width: 100%;
-  }
+#fadeout {
+  position: fixed;
+  width: 100%;
+}
+
+.notice-block {
+  border-bottom: solid 1px gainsboro;
+  padding: 20px 0;
+  font-size: 16px;
+  margin: 0 15px;
+}
+.notice-block img {
+  box-shadow: none;
+  border-radius: 50%;
+}
+
+.notice-comment {
+  color: #8f8f8f;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.notice-modal {
+  width: 500px;
+  margin: 60px 0 0 auto;
+}
+
+.bs-example-modal-lg{
+  margin-left: auto;
+}
+
+.not-notice {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.fa-circle {
+  position: absolute;
+  color: #efa04c;
+}

@@ -44,11 +44,17 @@
           <td class="header-content"><%= link_to fa_icon("users 2x"), users_path  %><p class="header-name"><%= t('view.reader') %></p></td>
           <td class="header-content user"><%= link_to fa_icon("user 2x"), user_path(current_user.id), class: "header-user" %><p class="header-name"><%= t('view.profile') %></p></td>
 
-          <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-lg"><%= fa_icon("bell 2x") %><p class="header-name search-name"><%= t('view.notice') %></p></td>
+          <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-lg">
+            <%= fa_icon("bell 2x") %>
+            <% if unchecked_notifications.any? %>
+              <%= fa_icon("circle") %>
+            <% end %>
+            <p class="header-name search-name"><%= t('view.notice') %></p>
+          </td>
 
           <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg size" role="document">
-              <div class="modal-content">
+            <div class="modal-dialog modal-lg notice-modal" role="document">
+              <div class="modal-content notice-content">
                 <% notifications = current_user.passive_notifications %>
                 <%
                   notifications.where(checked: false).each do |notification|
@@ -59,7 +65,7 @@
                 <% if notifications.exists? %>
                   <%= render notifications %>
                 <% else %>
-                  <p>通知はありません</p>
+                  <p class="not-notice">通知はありません</p>
                 <% end %>
               </div>
             </div>

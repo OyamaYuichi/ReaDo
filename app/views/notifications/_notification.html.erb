@@ -1,11 +1,11 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<p>
+<div class="notice-block">
   <% if visitor.icon? %>
-    <%= image_tag(visitor.icon.url, :size =>'20x20')  %>
+    <%= image_tag(visitor.icon.url, :size =>'23x23')  %>
   <% else %>
-    <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+    <img src="/assets/favicon.ico" class="icon" width="23" height="23" >
   <% end %>
     <%= link_to visitor.name, user_path(visitor) %><%= "さんが" %>
 
@@ -18,16 +18,14 @@
     <% if notification.summary.user_id == visited.id %>
       <%= link_to "あなたの投稿", summary_path(notification.summary) %>
     <% else %>
-      <span>
         <% if visitor.icon? %>
           <%= image_tag(visitor.icon.url, :size =>'20x20')  %>
         <% else %>
           <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
         <% end %>
         <%= link_to notification.summary.user.name, user_path(notification.summary.user) %><%= "さんの投稿" %>
-      </span>
     <% end %>
     <%= "にコメントしました" %>
-    <p><%= Comment.find_by(id: notification.comment_id)&.content %></p>
+    <p class="notice-comment"><%= Comment.find_by(id: notification.comment_id)&.content %></p>
   <% end %>
-</p>
+</div>
