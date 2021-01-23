@@ -1,0 +1,33 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<p>
+  <% if visitor.icon? %>
+    <%= image_tag(visitor.icon.url, :size =>'20x20')  %>
+  <% else %>
+    <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+  <% end %>
+    <%= link_to visitor.name, user_path(visitor) %><%= "さんが" %>
+
+  <% if notification.action == "follow" %>
+    <%= "あなたをフォローしました"%>
+  <% elsif notification.action == "like" %>
+    <%= link_to "あなたの投稿", summary_path(notification.summary) %>
+    <%= "にいいねしました" %>
+  <% else %>
+    <% if notification.summary.user_id == visited.id %>
+      <%= link_to "あなたの投稿", summary_path(notification.summary) %>
+    <% else %>
+      <span>
+        <% if visitor.icon? %>
+          <%= image_tag(visitor.icon.url, :size =>'20x20')  %>
+        <% else %>
+          <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+        <% end %>
+        <%= link_to notification.summary.user.name, user_path(notification.summary.user) %><%= "さんの投稿" %>
+      </span>
+    <% end %>
+    <%= "にコメントしました" %>
+    <p><%= Comment.find_by(id: notification.comment_id)&.content %></p>
+  <% end %>
+</p>

@@ -43,24 +43,24 @@
           <td class="header-content"><%= link_to fa_icon("edit 2x"), new_book_path, class: "header-edit" %><p class="header-name"><%= t('view.submit') %></p></td>
           <td class="header-content"><%= link_to fa_icon("users 2x"), users_path  %><p class="header-name"><%= t('view.reader') %></p></td>
           <td class="header-content user"><%= link_to fa_icon("user 2x"), user_path(current_user.id), class: "header-user" %><p class="header-name"><%= t('view.profile') %></p></td>
+
           <td type="button" class="search header-content" data-toggle="modal" data-target=".bs-example-modal-lg"><%= fa_icon("bell 2x") %><p class="header-name search-name"><%= t('view.notice') %></p></td>
 
           <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg size" role="document">
-              <div class="modal-content center">
-                <p class="header-notice">
-                  <% notice_plan = current_user.memos.where(email_send: true).order(created_at: :desc) %>
-                  <% if notice_plan.present? %>
-                    <h3><%= t('view.notice_action_plan') %></h3>
-                    <% notice_plan.each_with_index do |memo, index|%>
-                    <p><%= index + 1 %>.<%= memo.book.title %></p>
-                    <h4 class="notice-action-plan"><%= memo.action_plan %></h4>
-                    <hr>
-                    <% end %>
-                  <% elsif %>
-                    <h3><%= t('view.not_action_plan') %></h3>
-                  <% end %>
-                </p>
+              <div class="modal-content">
+                <% notifications = current_user.passive_notifications %>
+                <%
+                  notifications.where(checked: false).each do |notification|
+                    notification.update_attributes(checked: true)
+                  end
+                %>
+                <% notifications = notifications.where.not(visitor_id: current_user.id) %>
+                <% if notifications.exists? %>
+                  <%= render notifications %>
+                <% else %>
+                  <p>通知はありません</p>
+                <% end %>
               </div>
             </div>
           </div>

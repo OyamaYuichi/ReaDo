@@ -277,10 +277,6 @@ a:hover {
     color: gray;
   }
 
-  .fa-home:hover{
-    /* color: rgb(105, 105, 105); */
-    color: gray;
-  }
   .brand-name a, .footer-brand-name a{
     color: #DBDBDB;
   }
