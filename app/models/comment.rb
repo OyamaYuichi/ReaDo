@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :summary
   belongs_to :user
   has_many :comment_favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :content, presence: true
 

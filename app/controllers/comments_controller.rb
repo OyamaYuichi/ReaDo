@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
+        @summary.create_notification_comment!(current_user, @comment.id)
         read_level = Comment.calc_level(current_user)
         current_user.update(level: read_level.floor)
         format.js { render :index }
@@ -16,7 +17,6 @@ class CommentsController < ApplicationController
       end
     end
   end
-
 
   def edit
     @comment = @summary.comments.find(params[:id])
