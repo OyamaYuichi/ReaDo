@@ -91,3 +91,5 @@ gem 'mini_racer', platforms: :ruby
 
 gem 'chartkick'
 gem 'groupdate'
+
+gem 'trix'

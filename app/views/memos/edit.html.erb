@@ -64,14 +64,16 @@
 
     <div class="memo-block">
       <div class="memo__element1">
-        <%= form.rich_text_area :content %>
+        <%= form.hidden_field :content, id: 'post_content' %>
+        <trix-editor id="memo_content" input="post_content"></trix-editor>
       </div>
 
       <div class="memo__element2">
       </div>
 
       <div class="memo__element3">
-        <%= form.rich_text_area :action_plan %>
+        <%= form.hidden_field :action_plan, id: 'post_action' %>
+        <trix-editor id="memo_action_plan" input="post_action"></trix-editor>
       </div>
     </div>
 

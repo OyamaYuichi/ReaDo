@@ -60,14 +60,14 @@
 
   <div class="memo-block">
     <div class="block__element1">
-      <%= @memo.content %>
+      <p class="trix"><%= sanitize @memo.content %></p>
     </div>
 
     <div class="block__element2">
     </div>
 
     <div class="block__element3">
-      <%= @memo.action_plan %>
+      <p class="trix"><%= sanitize @memo.action_plan %></p>
     </div>
   </div>
 

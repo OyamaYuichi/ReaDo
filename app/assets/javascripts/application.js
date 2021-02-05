@@ -12,6 +12,8 @@
 //
 // require turbolinks
 
+//= require trix
+
 //= require rails-ujs
 //= require activestorage
 //= require jquery/dist/jquery.js

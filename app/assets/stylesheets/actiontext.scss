@@ -44,11 +44,22 @@ trix-editor {
   min-height: 30em;
   max-height: 30em;
   overflow-y: auto;
+  font-size: 18px;
+  line-height: 35px;
 }
 
 trix-editor#memo_content{
-  min-height: 15em;
+  min-height: 20em;
 }
 trix-editor#memo_action_plan{
-  min-height: 15em;
+  min-height: 20em;
+}
+
+.memo-block trix-toolbar .button_group {
+  width: 255px;
+}
+
+.trix {
+  font-size: 18px;
+  line-height: 35px;
 }

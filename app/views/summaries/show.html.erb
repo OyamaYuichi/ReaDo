@@ -54,7 +54,7 @@
   <div class="content">
     <div class="summary">
       <div class="summary-sentence">
-        <p><%= @summary.content %></p>
+        <p class="trix"><%= sanitize @summary.content %></p>
         <div class="summary-time">
           <p><%= @summary.created_at.strftime('%Y年 %m月 %d日 %k時 %M分') %></p>
         </div>
@@ -81,6 +81,7 @@
                     <p class="user-profile follow-profile"><%= favorite_user.profile %></p>
                   </div>
                   <div class="block__control__follow">
+                  <% if current_user %>
                     <% if current_user != favorite_user%>
                       <div id="follow_form_<%= favorite_user.id %>">
                         <% unless current_user.following?(favorite_user) %>
@@ -94,6 +95,7 @@
                           <% end %>
                         <% end %>
                       </div>
+                    <% end %>
                     <% end %>
                   </div>
                 </div>
