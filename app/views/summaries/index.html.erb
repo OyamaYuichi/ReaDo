@@ -25,7 +25,7 @@
               <% if summary.user.icon? %>
                 <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
               <% else %>
-                <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+                <%= image_tag("favicon.ico", :size =>'20x20') %>
               <% end %>
                 <%= link_to summary.user.name, user_path(summary.user) %>
               </p>

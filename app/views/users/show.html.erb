@@ -3,9 +3,9 @@
     <div class="block user-block">
       <div class="block__avator image-right">
         <% if @user.icon? %>
-          <%= image_tag(@user.icon.url, :size =>'180x180')  %>
+          <%= image_tag(@user.icon.url, :size =>'180x180') %>
         <% else %>
-          <img src="/assets/favicon.ico" class="icon" width="180" height="180" >
+          <%= image_tag("favicon.ico", :size =>'180x180') %>
         <% end %>
         <p>
         </p>
@@ -94,9 +94,9 @@
                 <p class="summary-user-name small-icon">
                   <%= icon('far', 'user') %>　
                 <% if summary.user.icon? %>
-                  <%= image_tag(summary.user.icon.url, :size =>'20x20')  %>
+                  <%= image_tag(summary.user.icon.url, :size =>'20x20') %>
                 <% else %>
-                  <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+                  <%= image_tag("favicon.ico", :size =>'20x20') %>
                 <% end %>
                   <%= link_to summary.user.name, user_path(summary.user) %>
                 </p>
@@ -138,9 +138,9 @@
                 <p class="summary-book-title"><%= favorite.book.title %></p>
                 <p class="summary-user-name small-icon"><%= icon('far', 'user') %>　
                 <% if favorite.user.icon? %>
-                  <%= image_tag(favorite.user.icon.url, :size =>'20x20')  %>
+                  <%= image_tag(favorite.user.icon.url, :size =>'20x20') %>
                 <% else %>
-                  <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+                  <%= image_tag("favicon.ico", :size =>'20x20') %>
                 <% end %>
                 <%= link_to favorite.user.name, user_path(favorite.user) %>
                 </p>

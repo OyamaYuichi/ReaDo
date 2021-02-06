@@ -29,7 +29,7 @@
             <% if @summary.user.icon? %>
               <%= image_tag(@summary.user.icon.url, :size =>'30x30')  %>
             <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="30" height="30" >
+              <%= image_tag("favicon.ico", :size =>'30x30') %>
             <% end %>
             <%= link_to @summary.user.name, user_path(@summary.user) %>
           </span>
@@ -73,7 +73,7 @@
                     <% if favorite_user.icon? %>
                       <%= image_tag(favorite_user.icon.url, :size =>'60x60')  %>
                     <% else %>
-                      <img src="/assets/favicon.ico" class="icon" width="60" height="60" >
+                      <%= image_tag("favicon.ico", :size =>'60x60') %>
                     <% end %>
                   </div>
                   <div class="block__text__favorite">

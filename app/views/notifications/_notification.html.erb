@@ -5,7 +5,7 @@
   <% if visitor.icon? %>
     <%= image_tag(visitor.icon.url, :size =>'23x23')  %>
   <% else %>
-    <img src="/assets/favicon.ico" class="icon" width="23" height="23" >
+    <%= image_tag("favicon.ico", :size =>'23x23') %>
   <% end %>
     <%= link_to visitor.name, user_path(visitor) %><%= "さんが" %>
 
@@ -21,7 +21,7 @@
         <% if visitor.icon? %>
           <%= image_tag(visitor.icon.url, :size =>'20x20')  %>
         <% else %>
-          <img src="/assets/favicon.ico" class="icon" width="20" height="20" >
+          <%= image_tag("favicon.ico", :size =>'20x20') %>
         <% end %>
         <%= link_to notification.summary.user.name, user_path(notification.summary.user) %><%= "さんの投稿" %>
     <% end %>

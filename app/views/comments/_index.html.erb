@@ -6,7 +6,7 @@
             <% if comment.user.icon? %>
               <%= image_tag(comment.user.icon.url, :size =>'30x30')  %>
             <% else %>
-              <img src="/assets/favicon.ico" class="icon" width="30" height="30" >
+              <%= image_tag("favicon.ico", :size =>'30x30') %>
             <% end %>
             <%= link_to comment.user.name, user_path(comment.user) %>
           </p>

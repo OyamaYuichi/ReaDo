@@ -5,7 +5,7 @@
         <% if user.icon? %>
           <%= image_tag(user.icon.url, :size =>'80x80')  %>
         <% else %>
-          <img src="/assets/favicon.ico" class="icon"  width="80" height="80" >
+          <%= image_tag("favicon.ico", :size =>'80x80') %>
         <% end %>
       </div>
       <div class="block__text__follow">
